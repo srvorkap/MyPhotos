@@ -1,7 +1,7 @@
 from .db import db
-# from .user import User
-# from .album import Album
-from .album_photos import album_photos
+from .user import User
+from .album import Album
+# from .album_photos import album_photos
 
 class Photo(db.Model):
     __tablename__ = 'photos'
@@ -13,9 +13,9 @@ class Photo(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id')) #nullable=False
 
-    user = db.relationship('User', backpopulates='photos')
+    user = db.relationship('User', back_populates='photos')
     # albums = db.relationship('Album', backpopulates='photos', secondary=album_photos)
-    album = db.relationship('Album', backpopulates='photos')
+    album = db.relationship('Album', back_populates='photos')
 
     def to_dict(self):
         return {
