@@ -14,7 +14,7 @@ class Album(db.Model):
 
     user = db.relationship('User', back_populates='albums')
     # photos = db.relationship('Photo', backpopulates='albums', secondary=album_photos)
-    photos = db.relationship('Photo', backpopulates='album')
+    photos = db.relationship('Photo', back_populates='album')
 
     def to_dict(self):
         return {
