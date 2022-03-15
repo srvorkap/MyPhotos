@@ -1,0 +1,26 @@
+from .db import db
+# from .user import User
+# from .album import Album
+from .album_photos import album_photos
+
+class Photo(db.Model):
+    __tablename__ = 'photos'
+
+    id = db.Column(db.Integer, primary_key=True)
+    image_url = db.Column(db.String, nullable=False)
+    title = db.Column(db.String(30), nullable=False)
+    description = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    album_id = db.Column(db.Integer, db.ForeignKey('albums.id')) #nullable=False
+
+    user = db.relationship('User', backpopulates='photos')
+    # albums = db.relationship('Album', backpopulates='photos', secondary=album_photos)
+    album = db.relationship('Album', backpopulates='photos')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'image_url': self.image_url,
+            'title': self.title,
+            'description': self.description,
+        }
