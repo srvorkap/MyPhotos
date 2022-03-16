@@ -60,6 +60,16 @@ def patch_album(album_id):
     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
-# @album_routes.route('/<int:album_id>')
-# def delete_album(album_id):
-#     photos =
+@album_routes.route('/<int:album_id>', methods=['DELETE'])
+def delete_album(album_id):
+    photos = Photo.query.filter(Photo.album_id == album_id).all()
+    print(photos)
+    for photo in photos:
+        db.session.delete(photo)
+        db.session.commit()
+
+    album = Album.query.get(album_id)
+    db.session.delete(album)
+    db.session.commit()
+
+    return { 'message': 'success' }
