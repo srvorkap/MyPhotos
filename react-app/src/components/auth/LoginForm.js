@@ -37,12 +37,17 @@ const LoginForm = () => {
         return <Redirect to="/" />;
     }
 
+    const formatError = error => {
+        const startIndex = error.indexOf(':') + 1
+        return error.slice(startIndex)
+      }
+
     return (
         <>
             <form onSubmit={onLogin}>
                 <div>
                     {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
+                        <div key={ind}>{formatError(error)}</div>
                     ))}
                 </div>
                 <div>

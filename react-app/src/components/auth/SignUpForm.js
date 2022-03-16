@@ -8,14 +8,17 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+//   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+    if (password) {
+    //  === repeatPassword) {
+        // console.log('-------------------', password, repeatPassword)
+      const data = await dispatch(signUp(username, email, password))
+        //  ,repeatPassword));
       if (data) {
         setErrors(data)
       }
@@ -34,19 +37,24 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+//   const updateRepeatPassword = (e) => {
+//     setRepeatPassword(e.target.value);
+//   };
 
   if (user) {
     return <Redirect to='/' />;
+  }
+
+  const formatError = error => {
+    const startIndex = error.indexOf(':') + 1
+    return error.slice(startIndex)
   }
 
   return (
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind}>{formatError(error)}</div>
         ))}
       </div>
       <div>
@@ -76,16 +84,16 @@ const SignUpForm = () => {
           value={password}
         ></input>
       </div>
-      <div>
+      {/* <div>
         <label>Repeat Password</label>
         <input
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
-          required={true}
+        //   required={true}
         ></input>
-      </div>
+      </div> */}
       <button type='submit'>Sign Up</button>
     </form>
   );
