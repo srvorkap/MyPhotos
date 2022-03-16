@@ -68,3 +68,20 @@ export default patchAlbum = album => async dispatch => {
     }
     return data
 }
+
+// Thunk creator for DELETE request
+export const deleteAlbum = id => async dispatch => {
+    const res = await fetch(`/api/albums/${album.id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+    })
+    const data = await res.json()
+
+    if (res.ok) {
+        dispatch(deleteAlbumActionCreator(id))
+    } else {
+        throw res
+    }
+    // return data
+}
