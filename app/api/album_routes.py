@@ -38,7 +38,7 @@ def post_album():
     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
-@album_routes.route('/<int:album_id>', methods=['PATCH'])
+@album_routes.route('/<int:album_id>/edit', methods=['PATCH'])
 def patch_album(album_id):
     form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
