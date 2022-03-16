@@ -53,7 +53,7 @@ export const postAlbum = album => async dispatch => {
 }
 
 // Thunk creator for PATCH request
-export default patchAlbum = album => async dispatch => {
+export const patchAlbum = album => async dispatch => {
     const res = await fetch(`/api/albums/${album.id}/edit`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json'},
@@ -85,3 +85,15 @@ export const deleteAlbum = id => async dispatch => {
     }
     // return data
 }
+
+// Reducer
+
+const initialState = {
+    entries: {}
+}
+
+const albumReducer = (state = initialState, action) => {
+    
+}
+
+export default albumReducer
