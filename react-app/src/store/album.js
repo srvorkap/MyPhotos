@@ -7,6 +7,7 @@ const DELETE_ALBUM = "album/deleteAlbum";
 // Action Creators
 
 export const getCurrentUserAlbumsActionCreator = albums => {
+    console.log('action creator', albums)
     return { type: GET_CURRENT_USER_ALBUMS, albums };
 };
 
@@ -26,9 +27,10 @@ export const deleteAlbumActionCreator = id => {
 export const getCurrentUserAlbums = () => async (dispatch, getState) => {
     const res = await fetch('/api/albums')
     const data = await res.json()
+    console.log('thunk creator', data)
 
     if (res.ok) {
-        dispatch(getCurrentUserAlbums(data))
+        dispatch(getCurrentUserAlbumsActionCreator(data))
     } else {
         throw res
     }
@@ -71,7 +73,7 @@ export const patchAlbum = album => async dispatch => {
 
 // Thunk creator for DELETE request
 export const deleteAlbum = id => async dispatch => {
-    const res = await fetch(`/api/albums/${album.id}`, {
+    const res = await fetch(`/api/albums/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id })
@@ -93,7 +95,20 @@ const initialState = {
 }
 
 const albumReducer = (state = initialState, action) => {
-    
+    console.log('reducer', action.albums)
+    let newState = {};
+    switch (action.type) {
+        case GET_CURRENT_USER_ALBUMS: {
+            newState = { ...state };
+            newState.entries = action.albums.reduce((entries, album) => {
+                entries[album.id] = album;
+                return entries;
+            }, {});
+            return newState;
+        }
+        default:
+            return state
+    }
 }
 
 export default albumReducer
