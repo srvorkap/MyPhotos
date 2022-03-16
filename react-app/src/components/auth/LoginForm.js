@@ -33,16 +33,28 @@ const LoginForm = () => {
       dispatch(login(email, password))
     }
 
+    const demoLogin2 = (e) => {
+        e.preventDefault();
+        let email = 'marnie@aa.io'
+        let password = 'password'
+        dispatch(login(email, password))
+      }
+
     if (user) {
         return <Redirect to="/" />;
     }
+
+    const formatError = error => {
+        const startIndex = error.indexOf(':') + 1
+        return error.slice(startIndex)
+      }
 
     return (
         <>
             <form onSubmit={onLogin}>
                 <div>
                     {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
+                        <div key={ind}>{formatError(error)}</div>
                     ))}
                 </div>
                 <div>
@@ -69,6 +81,9 @@ const LoginForm = () => {
             </form>
             <button id="demo-login" onClick={demoLogin}>
                 Demo User
+            </button>
+            <button id="demo-login" onClick={demoLogin2}>
+                Demo User2
             </button>
         </>
     );

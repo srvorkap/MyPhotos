@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import IntegerField, StringField
+from wtforms.fields import IntegerField, StringField, SelectField
 from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import Photo
 
@@ -15,3 +15,5 @@ class PhotoForm(FlaskForm):
     Length(min=2, message="Title must be > 1 character.")])
 
     description = StringField('description', validators=[Length(max=255, message="Description must be < 255 characters")])
+
+    album_id = SelectField('album_id', choices=[])
