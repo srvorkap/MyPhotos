@@ -17,4 +17,4 @@ def get_all_photos():
 
 @photo_routes.route('/', methods=['POST'])
 def post_photo():
-    
+    pass
