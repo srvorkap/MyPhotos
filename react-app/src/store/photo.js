@@ -41,7 +41,6 @@ const photoReducer = (state = {}, action) => {
     let newState = {}
     switch(action.type) {
         case GET_PHOTOS:
-            console.log('bogbozji', action)
             newState = {...state, ...action.photos}
             return newState
         default:
