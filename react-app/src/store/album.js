@@ -1,5 +1,5 @@
 // Action Types
-const GET_CURRENT_USER_ALBUMS = "album/getCurrentUserAlbums";
+const GET_ALBUMS = "album/getAlbums";
 const POST_ALBUM = "album/postAlbum";
 const PATCH_ALBUM = "album/patchAlbum";
 const DELETE_ALBUM = "album/deleteAlbum";
@@ -8,7 +8,7 @@ const DELETE_ALBUM = "album/deleteAlbum";
 
 export const getCurrentUserAlbumsActionCreator = albums => {
     console.log('action creator', albums)
-    return { type: GET_CURRENT_USER_ALBUMS, albums };
+    return { type: GET_ALBUMS, albums };
 };
 
 export const postAlbumActionCreator = album => {
@@ -24,7 +24,7 @@ export const deleteAlbumActionCreator = id => {
 };
 
 // Thunk Creator for GET request
-export const getCurrentUserAlbums = () => async (dispatch, getState) => {
+export const getAlbums = () => async (dispatch, getState) => {
     const res = await fetch('/api/albums')
     const data = await res.json()
     console.log('thunk creator', data)
@@ -114,7 +114,7 @@ export const deleteAlbum = id => async dispatch => {
 const albumReducer = (state = {}, action) => {
     let newState = {}
     switch(action.type) {
-        case GET_CURRENT_USER_ALBUMS:
+        case GET_ALBUMS:
             console.log('bogbozji', action)
             newState = {...state, ...action.albums}
             return newState

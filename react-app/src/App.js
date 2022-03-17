@@ -10,6 +10,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
+import AlbumPage from "./components/AlbumPage";
 import CreateAlbumForm from './components/CreateAlbumForm'
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
                 </ProtectedRoute> */}
                 <Route path="/albums" exact={true}>
                     <AlbumsPage sessionUser={sessionUser}/>
+                </Route>
+                <Route path="/albums/:albumId" exact={true}>
+                    <AlbumPage sessionUser={sessionUser}/>
                 </Route>
                 <Route path="/albums/new" exact={true}>
                     <CreateAlbumForm sessionUser={sessionUser}/>
