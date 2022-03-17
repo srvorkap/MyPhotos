@@ -15,6 +15,7 @@ import CreateAlbumForm from './components/CreateAlbumForm'
 import EditAlbumForm from "./components/EditAlbumForm";
 import PhotoPage from "./components/PhotoPage";
 import Photostream from "./components/Photostream";
+import Explore from "./components/Explore";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
@@ -62,6 +63,9 @@ function App() {
                 </Route>
                 <Route path="/photostream" exact={true}>
                     <Photostream sessionUser={sessionUser}/>
+                </Route>
+                <Route path="/explore" exact={true}>
+                    <Explore sessionUser={sessionUser}/>
                 </Route>
                 {/* <Route path="/albums/new">
                     <CreateAlbumForm sessionUser={sessionUser}/>
