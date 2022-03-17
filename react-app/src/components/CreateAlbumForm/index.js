@@ -30,7 +30,7 @@ const CreateAlbumForm = ({ sessionUser }) => {
         history.goBack();
     };
 
-    if (!sessionUser) return <Redirect to="/" />;
+    if (!sessionUser) return <Redirect to="/login" />;
 
     return (
         <div>

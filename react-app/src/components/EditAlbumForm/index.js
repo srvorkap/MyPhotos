@@ -44,7 +44,12 @@ const EditAlbumForm = ({ sessionUser }) => {
 
     }
 
-    if (!sessionUser) return <Redirect to='/' />
+    const onCancel = e => {
+        e.preventDefault()
+        history.push(`/albums/${currentAlbum.id}`)
+    }
+
+    if (!sessionUser) return <Redirect to='/login' />
     return (
         <div>
             <div>
@@ -84,14 +89,14 @@ const EditAlbumForm = ({ sessionUser }) => {
                         >
                             Edit
                         </button>
-                        {/* <button
+                        <button
                             type="button"
                             // className="red buttons"
                             // id="create-business-button"
                             onClick={onCancel}
                         >
                             Cancel
-                        </button> */}
+                        </button>
                     </div>
                 </form>
             </div>

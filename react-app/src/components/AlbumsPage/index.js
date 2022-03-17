@@ -35,7 +35,7 @@ const AlbumsPage = ({ sessionUser }) => {
     //     dispatch(deleteAlbum())
     // }
 
-    if (!sessionUser) return <Redirect to="/" />;
+    if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div>
             {sessionUserAlbums?.map(album => (

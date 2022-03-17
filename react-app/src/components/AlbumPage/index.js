@@ -27,30 +27,29 @@ const AlbumPage = ({ sessionUser }) => {
     }
 
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getPhotos());
     }, [dispatch]);
 
     const onBack = e => {
-        e.preventDefault()
-        history.push('/albums')
-    }
+        e.preventDefault();
+        history.push("/albums");
+    };
 
-    if (!sessionUser) return <Redirect to="/" />;
+    if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div>
             <div onClick={onBack}>Back to albums list</div>
-            {currentAlbumPhotos &&
-                currentAlbumPhotos?.map(photo => (
-                    <div>
-                        <NavLink to={`/photos/${photo.id}`}>
-                            <div>{photo?.title}</div>
-                            <img src={photo?.image_url} />
-                        </NavLink>
-                    </div>
-                ))}
+            {currentAlbumPhotos?.map(photo => (
+                <div>
+                    <NavLink to={`/photos/${photo.id}`}>
+                        <div>{photo?.title}</div>
+                        <img src={photo?.image_url} />
+                    </NavLink>
+                </div>
+            ))}
         </div>
     );
 };
