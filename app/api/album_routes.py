@@ -11,7 +11,7 @@ album_routes = Blueprint('album', __name__)
 def get_all_albums():
     albums = Album.query.all()
     albums_dict = [album.to_dict() for album in albums]
-    return { 'albums': albums_dict }
+    return { 'albums': [album.to_dict() for album in albums] }
 
 
 @album_routes.route('/', methods=['POST'])

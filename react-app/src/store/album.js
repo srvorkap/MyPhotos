@@ -90,22 +90,34 @@ export const deleteAlbum = id => async dispatch => {
 
 // Reducer
 
-const initialState = {
-    entries: {}
-}
+// const initialState = {
+//     entries: {}
+// }
 
-const albumReducer = (state = initialState, action) => {
-    console.log('reducer', action.albums)
-    let newState = {};
-    switch (action.type) {
-        case GET_CURRENT_USER_ALBUMS: {
-            newState = { ...state };
-            newState.entries = action.albums.reduce((entries, album) => {
-                entries[album.id] = album;
-                return entries;
-            }, {});
-            return newState;
-        }
+// const albumReducer = (state = initialState, action) => {
+//     console.log('reducer', action.albums)
+//     let newState = {};
+//     switch (action.type) {
+//         case GET_CURRENT_USER_ALBUMS: {
+//             newState = { ...state };
+//             newState.entries = action.albums.reduce((entries, album) => {
+//                 entries[album.id] = album;
+//                 return entries;
+//             }, {});
+//             return newState;
+//         }
+//         default:
+//             return state
+//     }
+// }
+
+const albumReducer = (state = {}, action) => {
+    let newState = {}
+    switch(action.type) {
+        case GET_CURRENT_USER_ALBUMS:
+            console.log('bogbozji', action)
+            newState = {...state, ...action.albums}
+            return newState
         default:
             return state
     }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
@@ -10,8 +10,10 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
+import CreateAlbumForm from './components/CreateAlbumForm'
 
 function App() {
+    const sessionUser = useSelector(state => state?.session?.user);
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
 
@@ -43,7 +45,10 @@ function App() {
                     <UsersList />
                 </ProtectedRoute> */}
                 <Route path="/albums" exact={true}>
-                  <AlbumsPage />
+                    <AlbumsPage sessionUser={sessionUser}/>
+                </Route>
+                <Route path="/albums/new" exact={true}>
+                    <CreateAlbumForm sessionUser={sessionUser}/>
                 </Route>
                 <ProtectedRoute path="/users/:userId" exact={true}>
                     <User />
