@@ -21,6 +21,6 @@ class Album(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            # 'user': self.user.to_dict(),
+            'user_id': self.user_id,
             # 'photos': [ ]
         }

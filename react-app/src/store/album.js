@@ -1,5 +1,5 @@
 // Action Types
-const GET_CURRENT_USER_ALBUMS = "album/getCurrentUserAlbums";
+const GET_ALBUMS = "album/getAlbums";
 const POST_ALBUM = "album/postAlbum";
 const PATCH_ALBUM = "album/patchAlbum";
 const DELETE_ALBUM = "album/deleteAlbum";
@@ -7,7 +7,8 @@ const DELETE_ALBUM = "album/deleteAlbum";
 // Action Creators
 
 export const getCurrentUserAlbumsActionCreator = albums => {
-    return { type: GET_CURRENT_USER_ALBUMS, albums };
+    console.log('action creator', albums)
+    return { type: GET_ALBUMS, albums };
 };
 
 export const postAlbumActionCreator = album => {
@@ -23,12 +24,13 @@ export const deleteAlbumActionCreator = id => {
 };
 
 // Thunk Creator for GET request
-export const getCurrentUserAlbums = () => async (dispatch, getState) => {
+export const getAlbums = () => async (dispatch, getState) => {
     const res = await fetch('/api/albums')
     const data = await res.json()
+    console.log('thunk creator', data)
 
     if (res.ok) {
-        dispatch(getCurrentUserAlbums(data))
+        dispatch(getCurrentUserAlbumsActionCreator(data))
     } else {
         throw res
     }
@@ -37,7 +39,7 @@ export const getCurrentUserAlbums = () => async (dispatch, getState) => {
 
 // Thunk creator for POST request
 export const postAlbum = album => async dispatch => {
-    const res = await fetch('/api/albums', {
+    const res = await fetch('/api/albums/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(album)
@@ -71,7 +73,7 @@ export const patchAlbum = album => async dispatch => {
 
 // Thunk creator for DELETE request
 export const deleteAlbum = id => async dispatch => {
-    const res = await fetch(`/api/albums/${album.id}`, {
+    const res = await fetch(`/api/albums/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id })
@@ -88,12 +90,37 @@ export const deleteAlbum = id => async dispatch => {
 
 // Reducer
 
-const initialState = {
-    entries: {}
-}
+// const initialState = {
+//     entries: {}
+// }
 
-const albumReducer = (state = initialState, action) => {
-    
+// const albumReducer = (state = initialState, action) => {
+//     console.log('reducer', action.albums)
+//     let newState = {};
+//     switch (action.type) {
+//         case GET_CURRENT_USER_ALBUMS: {
+//             newState = { ...state };
+//             newState.entries = action.albums.reduce((entries, album) => {
+//                 entries[album.id] = album;
+//                 return entries;
+//             }, {});
+//             return newState;
+//         }
+//         default:
+//             return state
+//     }
+// }
+
+const albumReducer = (state = {}, action) => {
+    let newState = {}
+    switch(action.type) {
+        case GET_ALBUMS:
+            console.log('bogbozji', action)
+            newState = {...state, ...action.albums}
+            return newState
+        default:
+            return state
+    }
 }
 
 export default albumReducer
