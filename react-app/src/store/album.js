@@ -110,13 +110,23 @@ export const deleteAlbum = id => async dispatch => {
 //             return state
 //     }
 // }
+const normalization = (arr) => {
+    let obj = {}
+    arr.map(element => obj[element.id] = element);
+    return obj
+}
 
 const albumReducer = (state = {}, action) => {
     let newState = {}
     switch(action.type) {
         case GET_ALBUMS:
-            console.log('bogbozji', action)
-            newState = {...state, ...action.albums}
+            newState = { ...state, ...action.albums }
+            return newState
+        case DELETE_ALBUM:
+            newState = { ...state }
+            const normalizedAlbums = normalization(newState.albums)
+            delete normalizedAlbums[action.id]
+            newState.albums = normalizedAlbums
             return newState
         default:
             return state
