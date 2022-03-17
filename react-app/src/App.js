@@ -46,15 +46,18 @@ function App() {
                 {/* <ProtectedRoute path="/users" exact={true}>
                     <UsersList />
                 </ProtectedRoute> */}
+                <Route path="/albums/new" exact={true}>
+                    <CreateAlbumForm sessionUser={sessionUser}/>
+                </Route>
                 <Route path="/albums" exact={true}>
                     <AlbumsPage sessionUser={sessionUser}/>
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
                     <AlbumPage sessionUser={sessionUser}/>
                 </Route>
-                <Route path="/albums/new" exact={true}>
+                {/* <Route path="/albums/new">
                     <CreateAlbumForm sessionUser={sessionUser}/>
-                </Route>
+                </Route> */}
                 <Route path="/photos/:photoId" exact={true}>
                     <PhotoPage sessionUser={sessionUser}/>
                 </Route>

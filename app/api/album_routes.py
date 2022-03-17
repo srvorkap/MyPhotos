@@ -15,11 +15,11 @@ def get_all_albums():
 
 
 @album_routes.route('/', methods=['POST'])
-# @login_required
+@login_required
 def post_album():
-    current_user_id = 1
+    # current_user_id = 1
     print('--------------------------\n')
-    # current_user_id = current_user.get_id()
+    current_user_id = current_user.get_id()
     form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
