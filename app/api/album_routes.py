@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import db, User, Album, Photo
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.forms.album_form import AlbumForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -15,12 +15,15 @@ def get_all_albums():
 
 
 @album_routes.route('/', methods=['POST'])
+# @login_required
 def post_album():
-    current_user_id = 1 #current_user.get_id()
+    current_user_id = 1
+    print('--------------------------\n')
+    # current_user_id = current_user.get_id()
     form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
-    print(form.data)
+    print('--------------------------\n', form.data)
 
     if form.validate_on_submit():
         title = data['title']

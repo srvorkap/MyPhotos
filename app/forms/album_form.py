@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import IntegerField, StringField
+from wtforms.fields import IntegerField, StringField, TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import Album
 
@@ -10,4 +10,4 @@ class AlbumForm(FlaskForm):
     Length(max=30, message="Title must be < 30 characters."),
     Length(min=2, message="Title must be > 1 character.")])
 
-    description = StringField('description', validators=[Length(max=255, message="Description must be < 255 characters")])
+    description = TextAreaField('description', validators=[Length(max=255, message="Description must be < 255 characters")])
