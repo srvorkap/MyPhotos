@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
 import AlbumPage from "./components/AlbumPage";
 import CreateAlbumForm from './components/CreateAlbumForm'
+import EditAlbumForm from "./components/EditAlbumForm";
 import PhotoPage from "./components/PhotoPage";
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
                 </ProtectedRoute> */}
                 <Route path="/albums/new" exact={true}>
                     <CreateAlbumForm sessionUser={sessionUser}/>
+                </Route>
+                <Route path="/albums/:albumId/edit" exact={true}>
+                    <EditAlbumForm sessionUser={sessionUser}/>
                 </Route>
                 <Route path="/albums" exact={true}>
                     <AlbumsPage sessionUser={sessionUser}/>
