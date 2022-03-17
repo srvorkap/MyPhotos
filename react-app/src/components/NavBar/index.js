@@ -99,33 +99,9 @@ const NavBar = () => {
         );
     }
     return (
-        <nav>
+        <nav id="nav">
             <div>
                 {sessionLinks}
-                {/* <div>
-                    <NavLink to="/" exact={true} activeClassName="active">
-                        Home
-                    </NavLink>
-                </div>
-                <div>
-                    <NavLink to="/login" exact={true} activeClassName="active">
-                        Login
-                    </NavLink>
-                </div>
-                <div>
-                    <NavLink
-                        to="/sign-up"
-                        exact={true}
-                        activeClassName="active"
-                    >
-                        Sign Up
-                    </NavLink>
-                </div> */}
-                {/* <div>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </div> */}
             </div>
         </nav>
     );

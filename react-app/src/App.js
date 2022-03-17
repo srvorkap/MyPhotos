@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
 import AlbumPage from "./components/AlbumPage";
 import CreateAlbumForm from './components/CreateAlbumForm'
+import EditAlbumForm from "./components/EditAlbumForm";
 import PhotoPage from "./components/PhotoPage";
 
 function App() {
@@ -46,15 +47,21 @@ function App() {
                 {/* <ProtectedRoute path="/users" exact={true}>
                     <UsersList />
                 </ProtectedRoute> */}
+                <Route path="/albums/new" exact={true}>
+                    <CreateAlbumForm sessionUser={sessionUser}/>
+                </Route>
+                <Route path="/albums/:albumId/edit" exact={true}>
+                    <EditAlbumForm sessionUser={sessionUser}/>
+                </Route>
                 <Route path="/albums" exact={true}>
                     <AlbumsPage sessionUser={sessionUser}/>
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
                     <AlbumPage sessionUser={sessionUser}/>
                 </Route>
-                <Route path="/albums/new" exact={true}>
+                {/* <Route path="/albums/new">
                     <CreateAlbumForm sessionUser={sessionUser}/>
-                </Route>
+                </Route> */}
                 <Route path="/photos/:photoId" exact={true}>
                     <PhotoPage sessionUser={sessionUser}/>
                 </Route>
