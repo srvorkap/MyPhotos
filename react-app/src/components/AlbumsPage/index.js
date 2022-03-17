@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Redirect, NavLink } from "react-router-dom";
-import { getAlbums } from "../../store/album";
+import { getAlbums, deleteAlbum } from "../../store/album";
 import { getPhotos } from "../../store/photo";
 
 const AlbumsPage = ({ sessionUser }) => {
@@ -30,9 +30,9 @@ const AlbumsPage = ({ sessionUser }) => {
         history.push("/albums/new");
     };
 
-    // const onEdit = e => {
+    // const onDelete = e => {
     //     e.preventDefault()
-    //     history.push(`/albums/${album.id}/edit`)
+    //     dispatch(deleteAlbum())
     // }
 
     if (!sessionUser) return <Redirect to="/" />;
@@ -49,8 +49,8 @@ const AlbumsPage = ({ sessionUser }) => {
                         }}>Edit</button>
                         <button onClick={e => {
                             e.preventDefault()
-                            // deleteThunk
-                        }}>Delete</button>
+                            dispatch(deleteAlbum(album.id))
+    }}>Delete</button>
                     </>
                 ))}
             <button onClick={onCreateAlbumForm}>Create new album</button>
