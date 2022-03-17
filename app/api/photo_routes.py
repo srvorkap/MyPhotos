@@ -13,6 +13,7 @@ def get_all_photos():
     photos_dict = [ photo.to_dict() for photo in photos ]
 
     return { 'photos': [photo.to_dict() for photo in photos] }
+    # return { 'photos': [photo.to_dict() for photo in photos] }
 
 @photo_routes.route('/', methods=['POST'])
 def post_photo():
