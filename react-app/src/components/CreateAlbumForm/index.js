@@ -4,7 +4,6 @@ import { Redirect, useHistory } from "react-router-dom";
 import { postAlbum } from "../../store/album";
 
 const CreateAlbumForm = ({ sessionUser }) => {
-    console.log('in component')
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
@@ -14,13 +13,11 @@ const CreateAlbumForm = ({ sessionUser }) => {
     const history = useHistory();
 
     const onSubmit = async e => {
-        console.log('in on submit')
         e.preventDefault();
         const album = {
             title,
             description
         }
-        console.log('srkica', album)
         const data = await dispatch(postAlbum(album))
 
         if (data && data.errors) setErrors(data.errors)
