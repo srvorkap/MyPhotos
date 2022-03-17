@@ -1,10 +1,58 @@
-import { Redirect } from "react-router-dom"
+import { useEffect } from "react";
+import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getPhotos } from "../../store/photo";
 
-const AlbumPage = ({sessionUser}) => {
-    
+const AlbumPage = ({ sessionUser }) => {
+    const { albumId } = useParams();
+    const albumIdNumerical = +albumId;
+
+    const allAlbumsObj = useSelector(store => store?.album?.albums);
+    let currentAlbum;
+    if (allAlbumsObj) {
+        const allAlbumsArr = Object?.values(allAlbumsObj);
+        currentAlbum = allAlbumsArr?.find(
+            album => album?.id === albumIdNumerical
+        );
+    }
+
+    const allPhotosObj = useSelector(store => store?.photo?.photos);
+    let currentAlbumPhotos;
+    if (allPhotosObj) {
+        const allPhotosArr = Object?.values(allPhotosObj);
+        console.log(allPhotosArr);
+        currentAlbumPhotos = allPhotosArr?.filter(
+            photo => photo?.album_id === albumIdNumerical
+        );
+    }
+
+    const dispatch = useDispatch();
+    const history = useHistory()
+
+    useEffect(() => {
+        dispatch(getPhotos());
+    }, [dispatch]);
+
+    const onBack = e => {
+        e.preventDefault()
+        history.push('/albums')
+    }
 
     if (!sessionUser) return <Redirect to="/" />;
-    return <h1>test</h1>
-}
+    return (
+        <div>
+            <div onClick={onBack}>Back to albums list</div>
+            {currentAlbumPhotos &&
+                currentAlbumPhotos?.map(photo => (
+                    <div>
+                        <NavLink to={`/photos/${photo.id}`}>
+                            <div>{photo?.title}</div>
+                            <img src={photo?.image_url} />
+                        </NavLink>
+                    </div>
+                ))}
+        </div>
+    );
+};
 
-export default AlbumPage
+export default AlbumPage;

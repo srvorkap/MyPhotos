@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, Redirect, NavLink } from "react-router-dom";
 import { getAlbums } from '../../store/album'
+import { getPhotos } from "../../store/photo";
 
 const AlbumsPage = ({sessionUser}) => {
     const allAlbumsObj = useSelector(store => store?.album?.albums);
@@ -18,6 +19,10 @@ const AlbumsPage = ({sessionUser}) => {
     useEffect(() => {
         dispatch(getAlbums())
     }, [dispatch])
+
+    // useEffect(() => {
+    //     dispatch(getPhotos())
+    // }, [dispatch])
 
     const onCreateAlbumForm = e => {
         e.preventDefault()

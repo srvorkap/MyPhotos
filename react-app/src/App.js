@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
 import AlbumPage from "./components/AlbumPage";
 import CreateAlbumForm from './components/CreateAlbumForm'
+import PhotoPage from "./components/PhotoPage";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
@@ -53,6 +54,9 @@ function App() {
                 </Route>
                 <Route path="/albums/new" exact={true}>
                     <CreateAlbumForm sessionUser={sessionUser}/>
+                </Route>
+                <Route path="/photos/:photoId" exact={true}>
+                    <PhotoPage sessionUser={sessionUser}/>
                 </Route>
                 <ProtectedRoute path="/users/:userId" exact={true}>
                     <User />
