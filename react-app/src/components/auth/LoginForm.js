@@ -41,7 +41,7 @@ const LoginForm = () => {
       }
 
     if (user) {
-        return <Redirect to="/login" />;
+        return <Redirect to="/photostream" />;
     }
 
     const formatError = error => {

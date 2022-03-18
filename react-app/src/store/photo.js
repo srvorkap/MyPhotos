@@ -24,7 +24,7 @@ export const deletePhotoActionCreator = id => {
 
 // Thunk Creator for GET request
 export const getPhotos = () => async (dispatch, getState) => {
-    const res = await fetch('/api/photos')
+    const res = await fetch('/api/photos/')
     const data = await res.json()
 
     if (res.ok) {
@@ -54,8 +54,8 @@ export const postPhoto = photo => async dispatch => {
 }
 
 // Thunk creator for DELETE request
-export const deletePhoto = id => {
-    const res = fetch('/api/photos', {
+export const deletePhoto = id => async dispatch => {
+    const res = await fetch(`/api/photos/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ id })

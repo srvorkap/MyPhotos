@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from app.models import db, User, Album, Photo
 from flask_login import current_user
@@ -39,3 +40,18 @@ def post_photo():
         db.session.commit()
         return { 'photo': photo.to_dict()}
     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+# @photo_routes.route('/<int:photo_id>/edit', methods=['PATCH'])
+
+
+@photo_routes.route('/<int:photo_id>', methods=['DELETE'])
+def delete_photo(photo_id):
+    print(photo_id)
+    photo = Photo.query.get(photo_id)
+    print(photo_id)
+
+    db.session.delete(photo)
+    db.session.commit()
+
+    return { 'message': 'photo deleted successfully' }

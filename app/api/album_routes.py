@@ -14,7 +14,7 @@ def get_all_albums():
 
 
 @album_routes.route('/', methods=['POST'])
-@login_required
+# @login_required
 def post_album():
     current_user_id = current_user.get_id()
     form = AlbumForm()
@@ -56,7 +56,6 @@ def patch_album(album_id):
 @album_routes.route('/<int:album_id>', methods=['DELETE'])
 def delete_album(album_id):
     photos = Photo.query.filter(Photo.album_id == album_id).all()
-    print(photos)
     for photo in photos:
         db.session.delete(photo)
         db.session.commit()
@@ -65,4 +64,4 @@ def delete_album(album_id):
     db.session.delete(album)
     db.session.commit()
 
-    return { 'message': 'deleted successfully' }
+    return { 'message': 'album deleted successfully' }
