@@ -39,20 +39,28 @@ const AlbumsPage = ({ sessionUser }) => {
     return (
         <div>
             {sessionUserAlbums?.map(album => (
-                    <div key={album.id}>
-                        <NavLink to={`/albums/${album.id}`}>
-                            <div>{album.title}</div>
-                        </NavLink>
-                        <button onClick={e => {
-                            e.preventDefault()
-                            history.push(`/albums/${album.id}/edit`)
-                        }}>Edit</button>
-                        <button onClick={e => {
-                            e.preventDefault()
-                            dispatch(deleteAlbum(album.id))
-    }}>Delete</button>
-                    </div>
-                ))}
+                <div key={album.id}>
+                    <NavLink to={`/albums/${album.id}`}>
+                        <div>{album.title}</div>
+                    </NavLink>
+                    <button
+                        onClick={e => {
+                            e.preventDefault();
+                            history.push(`/albums/${album.id}/edit`);
+                        }}
+                    >
+                        Edit
+                    </button>
+                    <button
+                        onClick={e => {
+                            e.preventDefault();
+                            dispatch(deleteAlbum(album.id));
+                        }}
+                    >
+                        Delete
+                    </button>
+                </div>
+            ))}
             <button onClick={onCreateAlbumForm}>Create new album</button>
         </div>
     );

@@ -24,6 +24,15 @@ const PhotoPage = ({ sessionUser }) => {
         dispatch(getPhotos());
     }, [dispatch]);
 
+    const onEdit = e => {
+        e.preventDefault();
+        history.push(`/photos/${currentPhoto.id}/edit`);
+    }
+
+    const onDelete = e => {
+        e.preventDefault();
+        // dispatch(deletePhoto(photo.id));
+    }
 
     const onBack = e => {
         e.preventDefault();
@@ -37,6 +46,16 @@ const PhotoPage = ({ sessionUser }) => {
             <div>
                 <h1>{currentPhoto?.title}</h1>
                 <img src={currentPhoto?.image_url} />
+                <button
+                        onClick={onEdit}
+                    >
+                        Edit
+                    </button>
+                    <button
+                        onClick={onDelete}
+                    >
+                        Delete
+                    </button>
             </div>
         </div>
     );

@@ -10,20 +10,16 @@ album_routes = Blueprint('album', __name__)
 @album_routes.route('/')
 def get_all_albums():
     albums = Album.query.all()
-    # albums_dict = [album.to_dict() for album in albums]
     return {'albums': {album.to_dict()['id']: album.to_dict() for album in albums}}
 
 
 @album_routes.route('/', methods=['POST'])
 @login_required
 def post_album():
-    # current_user_id = 1
-    print('--------------------------\n')
     current_user_id = current_user.get_id()
     form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
-    print('--------------------------\n', form.data)
 
     if form.validate_on_submit():
         title = data['title']
@@ -38,7 +34,6 @@ def post_album():
         db.session.add(album)
         db.session.commit()
         return { 'album': album.to_dict()}
-        # return album.to_dict()
     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -70,4 +65,4 @@ def delete_album(album_id):
     db.session.delete(album)
     db.session.commit()
 
-    return { 'message': 'success' }
+    return { 'message': 'deleted successfully' }
