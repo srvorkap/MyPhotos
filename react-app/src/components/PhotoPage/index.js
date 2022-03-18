@@ -2,6 +2,7 @@ import { useParams, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPhotos } from "../../store/photo";
+import { deletePhoto } from "../../store/photo";
 
 const PhotoPage = ({ sessionUser }) => {
     const { photoId } = useParams();
@@ -31,7 +32,7 @@ const PhotoPage = ({ sessionUser }) => {
 
     const onDelete = e => {
         e.preventDefault();
-        // dispatch(deletePhoto(photo.id));
+        dispatch(deletePhoto(currentPhoto.id));
     }
 
     const onBack = e => {
