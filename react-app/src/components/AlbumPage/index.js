@@ -20,7 +20,6 @@ const AlbumPage = ({ sessionUser }) => {
     let currentAlbumPhotos;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
-        console.log(allPhotosArr);
         currentAlbumPhotos = allPhotosArr?.filter(
             photo => photo?.album_id === albumIdNumerical
         );
@@ -42,6 +41,7 @@ const AlbumPage = ({ sessionUser }) => {
     return (
         <div>
             <div onClick={onBack}>Back to albums list</div>
+            <h1>{currentAlbum?.title}</h1>
             {currentAlbumPhotos?.map(photo => (
                 <div>
                     <NavLink to={`/photos/${photo.id}`}>

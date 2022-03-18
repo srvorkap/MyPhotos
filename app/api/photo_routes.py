@@ -11,13 +11,14 @@ photo_routes = Blueprint('photo', __name__)
 def get_all_photos():
     photos = Photo.query.all()
     photos_dict = [ photo.to_dict() for photo in photos ]
+    print('00000999999999999999999')
 
     return { 'photos': [photo.to_dict() for photo in photos] }
     # return { 'photos': [photo.to_dict() for photo in photos] }
 
 @photo_routes.route('/', methods=['POST'])
 def post_photo():
-    current_user_id = 1 #current_user.get_id()
+    current_user_id = current_user.get_id()
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data

@@ -11,9 +11,10 @@ import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
 import AlbumPage from "./components/AlbumPage";
-import CreateAlbumForm from './components/CreateAlbumForm'
+import CreateAlbumForm from "./components/CreateAlbumForm";
 import EditAlbumForm from "./components/EditAlbumForm";
 import PhotoPage from "./components/PhotoPage";
+import CreatePhotoForm from "./components/CreatePhotoForm";
 import Photostream from "./components/Photostream";
 import Explore from "./components/Explore";
 
@@ -50,28 +51,32 @@ function App() {
                     <UsersList />
                 </ProtectedRoute> */}
                 <Route path="/albums/new" exact={true}>
-                    <CreateAlbumForm sessionUser={sessionUser}/>
+                    <CreateAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums/:albumId/edit" exact={true}>
-                    <EditAlbumForm sessionUser={sessionUser}/>
+                    <EditAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums" exact={true}>
-                    <AlbumsPage sessionUser={sessionUser}/>
+                    <AlbumsPage sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
-                    <AlbumPage sessionUser={sessionUser}/>
+                    <AlbumPage sessionUser={sessionUser} />
+                    {/* <h1>srki</h1> */}
                 </Route>
                 <Route path="/photostream" exact={true}>
-                    <Photostream sessionUser={sessionUser}/>
+                    <Photostream sessionUser={sessionUser} />
                 </Route>
                 <Route path="/explore" exact={true}>
-                    <Explore sessionUser={sessionUser}/>
+                    <Explore sessionUser={sessionUser} />
                 </Route>
                 {/* <Route path="/albums/new">
                     <CreateAlbumForm sessionUser={sessionUser}/>
                 </Route> */}
+                <Route path="/photos/new" exact={true}>
+                    <CreatePhotoForm sessionUser={sessionUser} />
+                </Route>
                 <Route path="/photos/:photoId" exact={true}>
-                    <PhotoPage sessionUser={sessionUser}/>
+                    <PhotoPage sessionUser={sessionUser} />
                 </Route>
                 <ProtectedRoute path="/users/:userId" exact={true}>
                     <User />

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useSelector } from "react-redux";
-import './NavBar.css'
+import "./NavBar.css";
 
 const NavBar = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -27,6 +27,13 @@ const NavBar = () => {
                             <i class="fab fa-linkedin"></i>
                         </span>
                     </a>
+                </div>
+                <div className="margin-right">
+                    <NavLink to='/photos/new'>
+                        <span>
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        </span>
+                    </NavLink>
                 </div>
                 <div>
                     <NavLink
@@ -100,9 +107,7 @@ const NavBar = () => {
     }
     return (
         <nav id="nav">
-            <div>
-                {sessionLinks}
-            </div>
+            <div>{sessionLinks}</div>
         </nav>
     );
 };

@@ -35,6 +35,24 @@ export const getPhotos = () => async (dispatch, getState) => {
     // return data
 }
 
+// Thunk Creator for POST request
+export const postPhoto = photo => async dispatch => {
+    console.log('thunk', photo)
+    const res = await fetch('/api/photos/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(photo)
+    })
+    const data = await res.json()
+
+    if (res.ok) {
+        dispatch(postPhotoActionCreator(data))
+    } else {
+        throw res
+    }
+    return data
+}
+
 
 
 const photoReducer = (state = {}, action) => {
