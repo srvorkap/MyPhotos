@@ -39,7 +39,7 @@ const AlbumsPage = ({ sessionUser }) => {
     return (
         <div>
             {sessionUserAlbums?.map(album => (
-                    <>
+                    <div key={album.id}>
                         <NavLink to={`/albums/${album.id}`}>
                             <div>{album.title}</div>
                         </NavLink>
@@ -51,7 +51,7 @@ const AlbumsPage = ({ sessionUser }) => {
                             e.preventDefault()
                             dispatch(deleteAlbum(album.id))
     }}>Delete</button>
-                    </>
+                    </div>
                 ))}
             <button onClick={onCreateAlbumForm}>Create new album</button>
         </div>
