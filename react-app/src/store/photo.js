@@ -61,6 +61,10 @@ const photoReducer = (state = {}, action) => {
         case GET_PHOTOS:
             newState = {...state, ...action.photos}
             return newState
+        case DELETE_PHOTO:
+            newState = {...state}
+            newState.photos = { ...newState.photos, [action.id]: undefined}
+            return newState
         default:
             return state
     }
