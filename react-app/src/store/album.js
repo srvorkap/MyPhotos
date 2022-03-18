@@ -90,51 +90,19 @@ export const deleteAlbum = id => async dispatch => {
 
 // Reducer
 
-// const initialState = {
-//     entries: {}
-// }
-
-// const albumReducer = (state = initialState, action) => {
-//     console.log('reducer', action.albums)
-//     let newState = {};
-//     switch (action.type) {
-//         case GET_CURRENT_USER_ALBUMS: {
-//             newState = { ...state };
-//             newState.entries = action.albums.reduce((entries, album) => {
-//                 entries[album.id] = album;
-//                 return entries;
-//             }, {});
-//             return newState;
-//         }
-//         default:
-//             return state
-//     }
-// }
-const normalization = (arr) => {
-    let obj = {}
-    arr.map(element => obj[element.id] = element);
-    return obj
-}
-
 const albumReducer = (state = {}, action) => {
     let newState = {}
     switch(action.type) {
         case GET_ALBUMS:
-            newState = { ...state, ...action.albums }
+            newState = {...state, ...action.albums}
             return newState
         case PATCH_ALBUM:
-            newState = { ...state}
-            const normalizedAlbumsPatch = normalization(newState.albums)
-            console.log('in state', normalizedAlbumsPatch)
-            console.log('------------', action.album.album)
-            normalizedAlbumsPatch[action.id] = action.album.album
-            newState.albums = normalizedAlbumsPatch
+            newState = {...state, [action.album.id]: action.album}
             return newState
         case DELETE_ALBUM:
-            newState = { ...state }
-            const normalizedAlbums = normalization(newState.albums)
-            delete normalizedAlbums[action.id]
-            newState.albums = normalizedAlbums
+            newState = {...state}
+            console.log(newState.albums)
+            newState.albums = { ...newState.albums, [action.id]: undefined}
             return newState
         default:
             return state
