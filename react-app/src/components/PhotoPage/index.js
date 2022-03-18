@@ -31,7 +31,7 @@ const PhotoPage = ({ sessionUser }) => {
 
     const onDelete = e => {
         e.preventDefault();
-        // dispatch(deletePhoto(photo.id));
+        dispatch(deletePhoto(currentPhoto.id));
     }
 
     const onBack = e => {

@@ -53,6 +53,23 @@ export const postPhoto = photo => async dispatch => {
     return data
 }
 
+// Thunk creator for DELETE request
+export const deletePhoto = id => {
+    const res = fetch('/api/photos', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({ id })
+    })
+    const data = await res.json()
+
+    if (res.ok) {
+        dispatch(deletePhotoActionCreator(id))
+    } else {
+        throw res
+    }
+    // return data
+}
+
 
 
 const photoReducer = (state = {}, action) => {

@@ -11,7 +11,6 @@ photo_routes = Blueprint('photo', __name__)
 def get_all_photos():
     photos = Photo.query.all()
     photos_dict = [ photo.to_dict() for photo in photos ]
-    print('00000999999999999999999')
 
     return { 'photos': [photo.to_dict() for photo in photos] }
     # return { 'photos': [photo.to_dict() for photo in photos] }
