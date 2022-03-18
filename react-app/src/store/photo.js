@@ -40,13 +40,13 @@ export const postPhoto = photo => async dispatch => {
     console.log('thunk', photo)
     const res = await fetch('/api/photos/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(photo)
+        // headers: { 'Content-Type': 'application/json'}, // you must NOT set the Content-Type header on your request. If you leave the Content-Type field blank, the Content-Type will be generated and set correctly by your browser (check it out in the network tab!). If you include Content-Type, your request will be missing information and your Flask backend will be unable to locate the attached files.
+        body: photo // change change change change change
     })
     const data = await res.json()
 
     if (res.ok) {
-        dispatch(postPhotoActionCreator(data))
+        dispatch(postPhotoActionCreator(data.photo))
     } else {
         throw res
     }

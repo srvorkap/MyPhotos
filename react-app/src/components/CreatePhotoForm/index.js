@@ -13,13 +13,14 @@ const CreatePhotoForm = ({ sessionUser }) => {
             album => album?.user_id === sessionUser?.id
         );
     }
-
-    console.log(sessionUserAlbums)
-
-    const [image_url, setImage_url] = useState("");
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    const [image, setImage] = useState(null); // change
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [album_id, setAlbum_id] = useState()
+    const [imageLoading, setImageLoading] = useState(false) // add
+    const [photoPrev, setPhotoPrev] = useState('#') // add
 
     const [errors, setErrors] = useState([]);
 
@@ -30,21 +31,52 @@ const CreatePhotoForm = ({ sessionUser }) => {
         dispatch(getAlbums());
     }, [dispatch]);
 
+    const reset = () => {
+        setTitle('')
+        setDescription('')
+        setAlbum_id()
+    }
+
+
     const onSubmit = async e => {
         e.preventDefault();
-        const photo = {
-            image_url,
-            title,
-            description,
-            album_id
-        };
-        const data = await dispatch(postPhoto(photo));
 
-        if (data && data.errors) setErrors(data.errors);
+        const formData = new FormData()
 
-        if (!data.errors && album_id) history.push(`/albums/${album_id}`);
-        else history.push('/photostream')
+        formData.append('image', image)
+        formData.append('title', title)
+        formData.append('description', description)
+        formData.append('album_id', album_id)
+
+        setImageLoading(true)
+
+        // const photo = {
+        //     image_url,
+        //     title,
+        //     description,
+        //     album_id
+        // };
+        const data = await dispatch(postPhoto(formData));
+
+        if (data && data.errors) {
+            setErrors(data.errors);
+            setImageLoading(false)
+        }
+
+        if (!data.errors && album_id) {
+            setImageLoading(false)
+            reset()
+            history.push(`/albums/${album_id}`)
+        } else history.push('/photostream')
     };
+
+    const updateImage = (e) => {                     // add
+        const file = e.target.files[0];
+        setImage(file);
+        if (file) {
+            setPhotoPrev(URL.createObjectURL(file))
+        }
+    }
 
     const onCancel = e => {
         return null;
@@ -63,13 +95,21 @@ const CreatePhotoForm = ({ sessionUser }) => {
                     </ul>
                     <div>
                         <input
+                            type="file"
+                            name="image/*"
+                            onChange={updateImage}
+                            placeholder="Upload Image"
+                        />
+                    </div>
+                    {/* <div>
+                        <input
                             type="text"
                             name="image_url"
                             value={image_url}
                             onChange={e => setImage_url(e.target.value)}
                             placeholder="Image"
                         />
-                    </div>
+                    </div> */}
                     <div>
                         <input
                             type="text"
@@ -119,6 +159,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
                         >
                             Cancel
                         </button>
+                        {imageLoading && <p>Loading...</p>} {/* add */}
                     </div>
                 </form>
             </div>
