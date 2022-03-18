@@ -7,7 +7,6 @@ const DELETE_ALBUM = "album/deleteAlbum";
 // Action Creators
 
 export const getCurrentUserAlbumsActionCreator = albums => {
-    console.log('action creator', albums)
     return { type: GET_ALBUMS, albums };
 };
 
@@ -27,7 +26,6 @@ export const deleteAlbumActionCreator = id => {
 export const getAlbums = () => async (dispatch, getState) => {
     const res = await fetch('/api/albums')
     const data = await res.json()
-    console.log('thunk creator', data)
 
     if (res.ok) {
         dispatch(getCurrentUserAlbumsActionCreator(data))
@@ -56,12 +54,14 @@ export const postAlbum = album => async dispatch => {
 
 // Thunk creator for PATCH request
 export const patchAlbum = album => async dispatch => {
+    console.log('in thunk creator')
     const res = await fetch(`/api/albums/${album.id}/edit`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(album)
     })
     const data = await res.json()
+    console.log(data)
 
     if (res.ok) {
         dispatch(patchAlbumActionCreator(data))
@@ -121,6 +121,14 @@ const albumReducer = (state = {}, action) => {
     switch(action.type) {
         case GET_ALBUMS:
             newState = { ...state, ...action.albums }
+            return newState
+        case PATCH_ALBUM:
+            newState = { ...state}
+            const normalizedAlbumsPatch = normalization(newState.albums)
+            console.log('in state', normalizedAlbumsPatch)
+            console.log('------------', action.album.album)
+            normalizedAlbumsPatch[action.id] = action.album.album
+            newState.albums = normalizedAlbumsPatch
             return newState
         case DELETE_ALBUM:
             newState = { ...state }

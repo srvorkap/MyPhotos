@@ -37,8 +37,8 @@ def post_album():
 
         db.session.add(album)
         db.session.commit()
-        # return { 'album': album.to_dict()}
-        return album.to_dict()
+        return { 'album': album.to_dict()}
+        # return album.to_dict()
     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -55,6 +55,7 @@ def patch_album(album_id):
 
         db.session.commit()
         return { 'album': album.to_dict()}
+        # return album.to_dict()
     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 

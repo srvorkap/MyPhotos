@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "../../store/photo";
+import { getAlbums } from "../../store/album";
 
 const AlbumPage = ({ sessionUser }) => {
     const { albumId } = useParams();
@@ -27,6 +28,10 @@ const AlbumPage = ({ sessionUser }) => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        dispatch(getAlbums())
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(getPhotos());
