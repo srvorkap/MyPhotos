@@ -46,7 +46,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
         formData.append('image', image)
         formData.append('title', title)
         formData.append('description', description)
-        formData.append('album_id', album_id)
+        if (album_id) formData.append('album_id', album_id)
 
         setImageLoading(true)
 
@@ -99,6 +99,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
                             name="image/*"
                             onChange={updateImage}
                             placeholder="Upload Image"
+                            accept='image/png, image/jpeg, image/png, image/jpeg'
                         />
                     </div>
                     {/* <div>
