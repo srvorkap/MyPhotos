@@ -26,6 +26,8 @@ const AlbumPage = ({ sessionUser }) => {
         );
     }
 
+    currentAlbumPhotos?.reverse()
+
     const dispatch = useDispatch();
     const history = useHistory();
 

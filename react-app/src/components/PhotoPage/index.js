@@ -12,7 +12,7 @@ const PhotoPage = ({ sessionUser }) => {
     let currentPhoto;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
-        console.log(allPhotosArr);
+        console?.log(allPhotosArr);
         currentPhoto = allPhotosArr?.find(
             photo => photo?.id === photoIdNumerical
         );
@@ -28,12 +28,13 @@ const PhotoPage = ({ sessionUser }) => {
     const onEdit = e => {
         e.preventDefault();
         history.push(`/photos/${currentPhoto.id}/edit`);
-    }
+    };
 
     const onDelete = e => {
         e.preventDefault();
         dispatch(deletePhoto(currentPhoto.id));
-    }
+        history.push(`/photostream`)
+    };
 
     const onBack = e => {
         e.preventDefault();
@@ -47,16 +48,12 @@ const PhotoPage = ({ sessionUser }) => {
             <div>
                 <h1>{currentPhoto?.title}</h1>
                 <img src={currentPhoto?.image_url} />
-                <button
-                        onClick={onEdit}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        onClick={onDelete}
-                    >
-                        Delete
-                    </button>
+                {currentPhoto?.user_id === sessionUser?.id && (
+                    <>
+                        <button onClick={onEdit}>Edit</button>
+                        <button onClick={onDelete}>Delete</button>
+                    </>
+                )}
             </div>
         </div>
     );

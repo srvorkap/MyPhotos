@@ -4,13 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 
 const Photostream = ({ sessionUser }) => {
-    const allPhotosArr = useSelector(store => store?.photo?.photos);
+    const allPhotosObj = useSelector(store => store?.photo?.photos);
     let sessionUserPhotos;
-    if (allPhotosArr) {
+    if (allPhotosObj) {
+        const allPhotosArr = Object?.values(allPhotosObj);
         sessionUserPhotos = allPhotosArr?.filter(
             photo => photo?.user_id === sessionUser?.id
         );
     }
+
+    sessionUserPhotos?.reverse()
 
     const dispatch = useDispatch();
 

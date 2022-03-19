@@ -13,14 +13,13 @@ const CreatePhotoForm = ({ sessionUser }) => {
             album => album?.user_id === sessionUser?.id
         );
     }
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    const [image, setImage] = useState(null); // change
+
+    const [image, setImage] = useState(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [album_id, setAlbum_id] = useState()
-    const [imageLoading, setImageLoading] = useState(false) // add
-    const [photoPrev, setPhotoPrev] = useState('#') // add
+    const [imageLoading, setImageLoading] = useState(false)
+    const [photoPrev, setPhotoPrev] = useState('#')
 
     const [errors, setErrors] = useState([]);
 
@@ -37,7 +36,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
         setAlbum_id()
     }
 
-
     const onSubmit = async e => {
         e.preventDefault();
 
@@ -50,12 +48,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
 
         setImageLoading(true)
 
-        // const photo = {
-        //     image_url,
-        //     title,
-        //     description,
-        //     album_id
-        // };
         const data = await dispatch(postPhoto(formData));
 
         if (data && data.errors) {
@@ -70,7 +62,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
         } else history.push('/photostream')
     };
 
-    const updateImage = (e) => {                     // add
+    const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
         if (file) {
@@ -102,15 +94,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
                             accept='image/png, image/jpeg, image/png, image/jpeg'
                         />
                     </div>
-                    {/* <div>
-                        <input
-                            type="text"
-                            name="image_url"
-                            value={image_url}
-                            onChange={e => setImage_url(e.target.value)}
-                            placeholder="Image"
-                        />
-                    </div> */}
                     <div>
                         <input
                             type="text"
@@ -122,7 +105,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
                     </div>
                     <div>
                         <textarea
-                            // type="text"
                             name="description"
                             value={description}
                             onChange={e => setDescription(e.target.value)}
