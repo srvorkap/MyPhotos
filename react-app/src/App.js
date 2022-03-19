@@ -15,6 +15,7 @@ import CreateAlbumForm from "./components/CreateAlbumForm";
 import EditAlbumForm from "./components/EditAlbumForm";
 import PhotoPage from "./components/PhotoPage";
 import CreatePhotoForm from "./components/CreatePhotoForm";
+import EditPhotoForm from "./components/EditPhotoForm";
 import Photostream from "./components/Photostream";
 import Explore from "./components/Explore";
 import PageNotFound from "./components/PageNotFound";
@@ -79,12 +80,15 @@ function App() {
                 <Route path="/photos/:photoId" exact={true}>
                     <PhotoPage sessionUser={sessionUser} />
                 </Route>
+                <Route path="/photos/:photoId/edit" exact={true}>
+                    <EditPhotoForm sessionUser={sessionUser} />
+                </Route>
                 <ProtectedRoute path="/users/:userId" exact={true}>
                     <User />
                 </ProtectedRoute>
-                <ProtectedRoute path="/" exact={true}>
+                {/* <ProtectedRoute path="/" exact={true}>
                     <h1>My Home Page</h1>
-                </ProtectedRoute>
+                </ProtectedRoute> */}
                 <Route>
                     <PageNotFound sessionUser={sessionUser} />
                 </Route>
