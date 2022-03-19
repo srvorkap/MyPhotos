@@ -4,13 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 
 const Explore = ({ sessionUser }) => {
-    const allPhotosArr = useSelector(store => store?.photo?.photos);
+    const allPhotosObj = useSelector(store => store?.photo?.photos);
     let otherUsersPhotos;
-    if (allPhotosArr) {
+    if (allPhotosObj) {
+        const allPhotosArr = Object?.values(allPhotosObj);
         otherUsersPhotos = allPhotosArr?.filter(
             photo => photo?.user_id !== sessionUser?.id
         );
     }
+
+    // const allPhotosObj = useSelector(store => store?.photo?.photos);
+    // const allPhotosArr = Object?.values(allPhotosObj);
+    // const otherUsersPhotos = allPhotosArr?.filter(
+    //         photo => photo?.user_id !== sessionUser?.id
+    //     );
 
 
     const dispatch = useDispatch()

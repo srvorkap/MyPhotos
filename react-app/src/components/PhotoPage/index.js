@@ -12,7 +12,7 @@ const PhotoPage = ({ sessionUser }) => {
     let currentPhoto;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
-        console.log(allPhotosArr);
+        console?.log(allPhotosArr);
         currentPhoto = allPhotosArr?.find(
             photo => photo?.id === photoIdNumerical
         );
@@ -48,7 +48,7 @@ const PhotoPage = ({ sessionUser }) => {
             <div>
                 <h1>{currentPhoto?.title}</h1>
                 <img src={currentPhoto?.image_url} />
-                {currentPhoto.user_id === sessionUser.id && (
+                {currentPhoto?.user_id === sessionUser?.id && (
                     <>
                         <button onClick={onEdit}>Edit</button>
                         <button onClick={onDelete}>Delete</button>
