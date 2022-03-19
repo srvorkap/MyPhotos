@@ -29,12 +29,16 @@ const EditPhotoForm = ({ sessionUser }) => {
 
     console.log(currentPhoto)
 
-    const {
-        // image,
-        title,
-        description,
-        album_id,
-    } = currentPhoto
+    // let image
+    let title
+    let description
+    let album_id
+    if (currentPhoto) {
+        // image = currentPhoto.image
+        title = currentPhoto.title
+        description = currentPhoto.description
+        album_id = currentPhoto.album_id
+    }
 
     // const [editedImage, setEditedImage] = useState(image);
     const [editedTitle, setEditedTitle] = useState(title);
@@ -68,9 +72,9 @@ const EditPhotoForm = ({ sessionUser }) => {
         const editedFormData = new FormData()
 
         // formData.append('image', image)
-        editedFormData.append('title', title)
-        editedFormData.append('description', description)
-        if (album_id) editedFormData.append('album_id', album_id)
+        editedFormData.append('title', editedTitle)
+        editedFormData.append('description', editedDescription)
+        if (album_id) editedFormData.append('album_id', editedAlbum_id)
 
         setImageLoading(true)
 
@@ -83,14 +87,14 @@ const EditPhotoForm = ({ sessionUser }) => {
 
         if (!data.errors && album_id) {
             setImageLoading(false)
-            reset()
+            // reset()
             history.push(`/albums/${album_id}`)
         } else history.push('/photostream')
     };
 
     const updateImage = (e) => {
         const file = e.target.files[0];
-        setImage(file);
+        // setImage(file);
         if (file) {
             setPhotoPrev(URL.createObjectURL(file))
         }

@@ -46,7 +46,24 @@ export const postPhoto = photo => async dispatch => {
     const data = await res.json()
 
     if (res.ok) {
-        dispatch(postPhotoActionCreator(data.photo))
+        dispatch(postPhotoActionCreator(data.photo)) // change
+    } else {
+        throw res
+    }
+    return data
+}
+
+// Thunk Creator for PATCH request
+export const patchPhoto = photo => async dispatch => {
+    const res = await fetch(`/api/photos/${photo.id}/edit`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(photo)
+    })
+    const data = await res.json()
+
+    if (res.ok) {
+        dispatch(patchPhotoActionCreator(data))
     } else {
         throw res
     }
