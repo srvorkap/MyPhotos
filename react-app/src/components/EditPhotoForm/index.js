@@ -29,18 +29,18 @@ const EditPhotoForm = ({ sessionUser }) => {
 
     console.log(currentPhoto)
 
-    // let image
+    let image
     let title
     let description
     let album_id
     if (currentPhoto) {
-        // image = currentPhoto.image
+        image = currentPhoto.image
         title = currentPhoto.title
         description = currentPhoto.description
         album_id = currentPhoto.album_id
     }
 
-    // const [editedImage, setEditedImage] = useState(image);
+    const [editedImage, setEditedImage] = useState(image);
     const [editedTitle, setEditedTitle] = useState(title);
     const [editedDescription, setEditedDescription] = useState(description);
     const [editedAlbum_id, setEditedAlbum_id] = useState(album_id)
@@ -71,10 +71,10 @@ const EditPhotoForm = ({ sessionUser }) => {
 
         const editedFormData = new FormData()
 
-        // formData.append('image', image)
+        editedFormData.append('image', editedImage)
         editedFormData.append('title', editedTitle)
         editedFormData.append('description', editedDescription)
-        if (album_id) editedFormData.append('album_id', editedAlbum_id)
+        if (editedAlbum_id) editedFormData.append('album_id', editedAlbum_id)
 
         setImageLoading(true)
 
@@ -94,7 +94,7 @@ const EditPhotoForm = ({ sessionUser }) => {
 
     const updateImage = (e) => {
         const file = e.target.files[0];
-        // setImage(file);
+        setEditedImage(file);
         if (file) {
             setPhotoPrev(URL.createObjectURL(file))
         }
@@ -115,15 +115,15 @@ const EditPhotoForm = ({ sessionUser }) => {
                             <li key={error}>{error}</li>
                         ))}
                     </ul>
-                    {/* <div>
+                    <div>
                         <input
                             type="file"
-                            name="image/*"
+                            name="editedImage/*"
                             onChange={updateImage}
                             placeholder="Upload Image"
                             accept='image/png, image/jpeg, image/png, image/jpeg'
                         />
-                    </div> */}
+                    </div>
                     <div>
                         <input
                             type="text"
@@ -162,7 +162,7 @@ const EditPhotoForm = ({ sessionUser }) => {
                             // className="red buttons"
                             // id="create-business-button"
                         >
-                            Create
+                            Edit
                         </button>
                         <button
                             type="button"

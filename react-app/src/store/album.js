@@ -54,7 +54,6 @@ export const postAlbum = album => async dispatch => {
 
 // Thunk creator for PATCH request
 export const patchAlbum = album => async dispatch => {
-    console.log('in thunk creator')
     const res = await fetch(`/api/albums/${album.id}/edit`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json'},
