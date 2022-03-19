@@ -12,7 +12,6 @@ const PhotoPage = ({ sessionUser }) => {
     let currentPhoto;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
-        console?.log(allPhotosArr);
         currentPhoto = allPhotosArr?.find(
             photo => photo?.id === photoIdNumerical
         );
