@@ -13,6 +13,8 @@ const Photostream = ({ sessionUser }) => {
         );
     }
 
+    sessionUserPhotos?.reverse()
+
     const dispatch = useDispatch();
 
     useEffect(() => {

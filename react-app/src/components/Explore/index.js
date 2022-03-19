@@ -13,12 +13,7 @@ const Explore = ({ sessionUser }) => {
         );
     }
 
-    // const allPhotosObj = useSelector(store => store?.photo?.photos);
-    // const allPhotosArr = Object?.values(allPhotosObj);
-    // const otherUsersPhotos = allPhotosArr?.filter(
-    //         photo => photo?.user_id !== sessionUser?.id
-    //     );
-
+    otherUsersPhotos?.reverse()
 
     const dispatch = useDispatch()
 

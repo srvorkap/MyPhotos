@@ -17,6 +17,7 @@ import PhotoPage from "./components/PhotoPage";
 import CreatePhotoForm from "./components/CreatePhotoForm";
 import Photostream from "./components/Photostream";
 import Explore from "./components/Explore";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
@@ -84,6 +85,9 @@ function App() {
                 <ProtectedRoute path="/" exact={true}>
                     <h1>My Home Page</h1>
                 </ProtectedRoute>
+                <Route>
+                    <PageNotFound sessionUser={sessionUser} />
+                </Route>
             </Switch>
         </BrowserRouter>
     );
