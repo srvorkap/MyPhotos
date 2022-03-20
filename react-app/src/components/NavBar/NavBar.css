@@ -1,6 +1,12 @@
 #nav {
+    display: flex;
+    flex-direction: row;
     background-color: black;
     color: white;
+    height: 100px;
+    align-items: center;
+    /* justify-content: space-around; */
+    width: auto;
 }
 
 #nav a:hover{
@@ -9,12 +15,14 @@
 
 #flickr-dots {
     height: 12px;
+    justify-self: center;
 }
 
 #logo {
     display: flex;
 }
 
-#flickr-dots {
-    justify-self: center;
+.margin-right {
+    margin: 0 25px;
+    /* width: 150px; */
 }
