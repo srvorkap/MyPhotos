@@ -45,13 +45,14 @@ a:visited {
     margin-top: 32px;
     padding: 8px 24px;
     text-align: center;
-    vertical-align: middle;
+    /* vertical-align: middle; */
+    border-radius: 4px;
 }
 
-#signup-login-text {
+.signup-login-text {
     text-align: center;
 }
 
-#signup-login-link {
+.signup-login-link {
     color: #006dac;
 }

@@ -63,7 +63,7 @@ const LoginForm = () => {
                     <form onSubmit={onLogin} id="login-form">
                         <div>
                             {errors.map((error, ind) => (
-                                <div key={ind}>{formatError(error)}</div>
+                                <div key={ind} className='errors'>{formatError(error)}</div>
                             ))}
                         </div>
                         <div>
@@ -98,11 +98,12 @@ const LoginForm = () => {
                         >
                             Demo User
                         </div>
-                        <p id="signup-login-text">
+                        <p className="signup-login-text">
                             Not a MyPhotos member?{" "}
-                            <NavLink to="/signup" id="signup-login-link">
+                            <span className="signup-login-link">
+                            <NavLink to="/sign-up">
                                 Sign up here.
-                            </NavLink>
+                            </NavLink></span>
                         </p>
                     </form>
                 </div>
