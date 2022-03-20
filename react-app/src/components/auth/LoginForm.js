@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import loginSignupImage from "../../assets/LoginSignupImage.jpg";
+import NavBar from "../NavBar";
+import "./LoginForm.css";
 
 const LoginForm = () => {
     const [errors, setErrors] = useState([]);
@@ -26,31 +29,36 @@ const LoginForm = () => {
         setPassword(e.target.value);
     };
 
-    const demoLogin = (e) => {
-      e.preventDefault();
-      let email = 'demo@aa.io'
-      let password = 'password'
-      dispatch(login(email, password))
-    }
-
-    const demoLogin2 = (e) => {
+    const demoLogin = e => {
         e.preventDefault();
-        let email = 'marnie@aa.io'
-        let password = 'password'
-        dispatch(login(email, password))
-      }
+        let email = "demo@aa.io";
+        let password = "password";
+        dispatch(login(email, password));
+    };
+
+    const demoLogin2 = e => {
+        e.preventDefault();
+        let email = "marnie@aa.io";
+        let password = "password";
+        dispatch(login(email, password));
+    };
 
     if (user) {
         return <Redirect to="/photostream" />;
     }
 
     const formatError = error => {
-        const startIndex = error.indexOf(':') + 1
-        return error.slice(startIndex)
-      }
+        const startIndex = error.indexOf(":") + 1;
+        return error.slice(startIndex);
+    };
 
     return (
-        <>
+        <div
+            style={{ backgroundImage: `url(${loginSignupImage})` }}
+            id="whole-login-page"
+        >
+            <NavBar />
+
             <form onSubmit={onLogin}>
                 <div>
                     {errors.map((error, ind) => (
@@ -85,7 +93,7 @@ const LoginForm = () => {
             <button id="demo-login" onClick={demoLogin2}>
                 Demo User2
             </button>
-        </>
+        </div>
     );
 };
 

@@ -1,4 +1,20 @@
 #nav {
-    background-color: aqua;
-    margin-bottom: 20px;
+    background-color: black;
+    color: white;
+}
+
+#nav a:hover{
+    color: grey;
+}
+
+#flickr-dots {
+    height: 12px;
+}
+
+#logo {
+    display: flex;
+}
+
+#flickr-dots {
+    justify-self: center;
 }

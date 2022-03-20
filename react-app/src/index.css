@@ -9,3 +9,15 @@
 ul {
     list-style-type: none;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+.errors {
+    color: #cc4539;
+}
