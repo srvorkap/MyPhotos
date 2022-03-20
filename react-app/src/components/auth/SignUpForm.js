@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import NavBar from "../NavBar";
 import loginSignupImage from "../../assets/LoginSignupImage.jpg";
-import './SignUpForm.css'
+import { formatError } from "../../helper";
+import "./SignUpForm.css";
 
 const SignUpForm = () => {
     const [errors, setErrors] = useState([]);
@@ -19,7 +20,6 @@ const SignUpForm = () => {
         e.preventDefault();
         if (password) {
             //  === repeatPassword) {
-            // console.log('-------------------', password, repeatPassword)
             const data = await dispatch(signUp(username, email, password));
             //  ,repeatPassword));
             if (data) {
@@ -48,52 +48,54 @@ const SignUpForm = () => {
         return <Redirect to="/login" />;
     }
 
-    const formatError = error => {
-        const startIndex = error.indexOf(":") + 1;
-        return error.slice(startIndex);
-    };
-
     return (
         <div
             style={{ backgroundImage: `url(${loginSignupImage})` }}
             id="whole-signup-page"
         >
             <NavBar />
-
-            <form onSubmit={onSignUp}>
-                <div>
-                    {errors.map((error, ind) => (
-                        <div key={ind}>{formatError(error)}</div>
-                    ))}
-                </div>
-                <div>
-                    <label>User Name</label>
-                    <input
-                        type="text"
-                        name="username"
-                        onChange={updateUsername}
-                        value={username}
-                    ></input>
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="text"
-                        name="email"
-                        onChange={updateEmail}
-                        value={email}
-                    ></input>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={updatePassword}
-                        value={password}
-                    ></input>
-                </div>
-                {/* <div>
+            <div className="signup-login-page">
+                <div className="signup-login-form">
+                    <form onSubmit={onSignUp} id="signup-form">
+                        <div>
+                            {errors.map((error, ind) => (
+                                <div key={ind}>{formatError(error)}</div>
+                            ))}
+                        </div>
+                        <div>
+                            {/* <label>User Name</label> */}
+                            <input
+                                className="signup-login-fields"
+                                type="text"
+                                name="username"
+                                onChange={updateUsername}
+                                value={username}
+                                placeholder="Username"
+                            ></input>
+                        </div>
+                        <div>
+                            {/* <label>Email</label> */}
+                            <input
+                                className="signup-login-fields"
+                                type="text"
+                                name="email"
+                                onChange={updateEmail}
+                                value={email}
+                                placeholder="Email address"
+                            ></input>
+                        </div>
+                        <div>
+                            {/* <label>Password</label> */}
+                            <input
+                                className="signup-login-fields"
+                                type="password"
+                                name="password"
+                                onChange={updatePassword}
+                                value={password}
+                                placeholder="Password"
+                            ></input>
+                        </div>
+                        {/* <div>
         <label>Repeat Password</label>
         <input
           type='password'
@@ -103,8 +105,19 @@ const SignUpForm = () => {
         //   required={true}
         ></input>
       </div> */}
-                <button type="submit">Sign Up</button>
-            </form>
+                        <div type="submit" className="signup-login-button">
+                            Sign Up
+                        </div>
+                        <p className="signup-login-text">
+                            Already a MyPhotos member?{" "}
+                            <span className="signup-login-link">
+                            <NavLink to="/login">
+                                Log in here.
+                            </NavLink></span>
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };

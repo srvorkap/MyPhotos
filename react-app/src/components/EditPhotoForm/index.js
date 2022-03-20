@@ -27,8 +27,6 @@ const EditPhotoForm = ({ sessionUser }) => {
         );
     }
 
-    console.log(currentPhoto)
-
     let image
     let title
     let description

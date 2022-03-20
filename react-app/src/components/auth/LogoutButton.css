@@ -1,0 +1,10 @@
+#logout {
+    display: flex;
+    flex-direction: row;
+}
+#logout-image {
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}

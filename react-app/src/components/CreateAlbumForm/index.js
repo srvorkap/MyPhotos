@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { postAlbum } from "../../store/album";
+import { formatError } from "../../helper";
 
 const CreateAlbumForm = ({ sessionUser }) => {
     const [title, setTitle] = useState("");
@@ -20,9 +21,9 @@ const CreateAlbumForm = ({ sessionUser }) => {
         }
         const data = await dispatch(postAlbum(album))
 
-        if (data && data.errors) setErrors(data.errors)
+        if (data) setErrors(data)
 
-        if (!data.errors) history.push('/albums')
+        if (!data) history.push('/albums')
     };
 
     const onCancel = e => {
@@ -39,7 +40,7 @@ const CreateAlbumForm = ({ sessionUser }) => {
                 <form onSubmit={onSubmit}>
                     <ul className="errors">
                         {errors.map(error => (
-                            <li key={error}>{error}</li>
+                            <li key={error}>{formatError(error)}</li>
                         ))}
                     </ul>
                     <div>

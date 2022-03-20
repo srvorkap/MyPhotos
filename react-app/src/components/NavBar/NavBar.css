@@ -1,6 +1,12 @@
 #nav {
+    display: flex;
+    flex-direction: row;
     background-color: black;
     color: white;
+    height: 50px;
+    align-items: center;
+    /* justify-content: space-around; */
+    width: auto;
 }
 
 #nav a:hover{
@@ -9,12 +15,18 @@
 
 #flickr-dots {
     height: 12px;
+    justify-self: center;
 }
 
 #logo {
     display: flex;
 }
 
-#flickr-dots {
-    justify-self: center;
+.nav-items {
+    margin: 0 25px;
+    /* width: 150px; */
+}
+
+#upload-button {
+    font-size: 25px;
 }
