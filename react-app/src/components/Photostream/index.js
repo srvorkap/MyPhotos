@@ -2,6 +2,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
+import Cover from "../Cover";
 
 const Photostream = ({ sessionUser }) => {
     const allPhotosObj = useSelector(store => store?.photo?.photos);
@@ -13,7 +14,7 @@ const Photostream = ({ sessionUser }) => {
         );
     }
 
-    sessionUserPhotos?.reverse()
+    sessionUserPhotos?.reverse();
 
     const dispatch = useDispatch();
 
@@ -24,12 +25,21 @@ const Photostream = ({ sessionUser }) => {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div>
-            {sessionUserPhotos?.map(photo => (
-                <NavLink to={`/photos/${photo.id}`} key={photo.id}>
-                    <h1>{photo.title}</h1>
-                    <img src={photo.image_url} />
-                </NavLink>
-            ))}
+            <Cover
+                sessionUser={sessionUser}
+                sessionUserPhotos={sessionUserPhotos}
+            />
+            <div className="srki">
+                {sessionUserPhotos?.map(photo => (
+                    <NavLink to={`/photos/${photo.id}`} key={photo.id}>
+                        <h1>{photo.title}</h1>
+                        <img
+                            src={photo.image_url}
+                            className="individual-photo"
+                        />
+                    </NavLink>
+                ))}
+            </div>
         </div>
     );
 };

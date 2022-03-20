@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Redirect, NavLink } from "react-router-dom";
 import { getAlbums, deleteAlbum } from "../../store/album";
 import { getPhotos } from "../../store/photo";
+import Cover from '../Cover'
 
 const AlbumsPage = ({ sessionUser }) => {
     const allAlbumsObj = useSelector(store => store?.album?.albums);
@@ -40,6 +41,7 @@ const AlbumsPage = ({ sessionUser }) => {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div>
+            <Cover sessionUser={sessionUser} />
             {sessionUserAlbums?.map(album => (
                 <div key={album.id}>
                     <NavLink to={`/albums/${album.id}`}>

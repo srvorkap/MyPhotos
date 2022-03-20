@@ -27,29 +27,29 @@ def seed_photos():
     twelfth_photo = Photo(
         image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='12 Photo', description='This is the 12th photo', user_id=1, album_id=2)
     thirteenth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='13 Photo', description='This is the 13th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='13 Photo', description='This is the 13th photo', user_id=2, album_id=4)
     fourteenth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='14 Photo', description='This is the 14th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='14 Photo', description='This is the 14th photo', user_id=2, album_id=4)
     fifthteenth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='15 Photo', description='This is the 15th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='15 Photo', description='This is the 15th photo', user_id=2, album_id=4)
     sixteenth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='16 Photo', description='This is the 16th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='16 Photo', description='This is the 16th photo', user_id=2, album_id=4)
     seventeenth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='17 Photo', description='This is the 17th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='17 Photo', description='This is the 17th photo', user_id=2, album_id=5)
     eighteenth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='18 Photo', description='This is the 18th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='18 Photo', description='This is the 18th photo', user_id=2, album_id=5)
     nineteenth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='19 Photo', description='This is the 19th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='19 Photo', description='This is the 19th photo', user_id=2, album_id=None)
     twentyeth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='20 Photo', description='This is the 20th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='20 Photo', description='This is the 20th photo', user_id=2, album_id=None)
     twentyethfirst_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='21 Photo', description='This is the 21th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='21 Photo', description='This is the 21th photo', user_id=2, album_id=None)
     twentyethsecond_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='22 Photo', description='This is the 22th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='22 Photo', description='This is the 22th photo', user_id=2, album_id=None)
     twentyeththird_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='23 Photo', description='This is the 23th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='23 Photo', description='This is the 23th photo', user_id=2, album_id=None)
     twentyethfourth_photo = Photo(
-        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='24 Photo', description='This is the 24th photo', user_id=2, album_id=3)
+        image_url='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821__340.jpg', title='24 Photo', description='This is the 24th photo', user_id=2, album_id=None)
 
     db.session.add(first_photo)
     db.session.add(second_photo)
