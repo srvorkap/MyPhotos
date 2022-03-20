@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import loginSignupImage from "../../assets/LoginSignupImage.jpg";
 import NavBar from "../NavBar";
@@ -58,41 +58,58 @@ const LoginForm = () => {
             id="whole-login-page"
         >
             <NavBar />
-
-            <form onSubmit={onLogin}>
-                <div>
-                    {errors.map((error, ind) => (
-                        <div key={ind}>{formatError(error)}</div>
-                    ))}
+            <div className="signup-login-page">
+                <div className="signup-login-form">
+                    <form onSubmit={onLogin} id="login-form">
+                        <div>
+                            {errors.map((error, ind) => (
+                                <div key={ind}>{formatError(error)}</div>
+                            ))}
+                        </div>
+                        <div>
+                            {/* <label htmlFor="email">Email</label> */}
+                            <input
+                                className="signup-login-fields"
+                                name="email"
+                                type="text"
+                                placeholder="Email address"
+                                value={email}
+                                onChange={updateEmail}
+                            />
+                        </div>
+                        <div>
+                            {/* <label htmlFor="password">Password</label> */}
+                            <input
+                                className="signup-login-fields"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={updatePassword}
+                            />
+                        </div>
+                        <div onClick={onLogin} className="signup-login-button">
+                            Login
+                        </div>
+                        <div
+                            id="demo-login"
+                            onClick={demoLogin}
+                            className="signup-login-button"
+                        >
+                            Demo User
+                        </div>
+                        <p id="signup-login-text">
+                            Not a MyPhotos member?{" "}
+                            <NavLink to="/signup" id="signup-login-link">
+                                Sign up here.
+                            </NavLink>
+                        </p>
+                    </form>
                 </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                        value={email}
-                        onChange={updateEmail}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={updatePassword}
-                    />
-                    <button type="submit">Login</button>
-                </div>
-            </form>
-            <button id="demo-login" onClick={demoLogin}>
-                Demo User
-            </button>
-            <button id="demo-login" onClick={demoLogin2}>
+            </div>
+            {/* <button id="demo-login" onClick={demoLogin2}>
                 Demo User2
-            </button>
+            </button> */}
         </div>
     );
 };

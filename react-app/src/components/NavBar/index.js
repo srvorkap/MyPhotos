@@ -13,7 +13,7 @@ const NavBar = () => {
     if (sessionUser) {
         sessionLinks = (
             <>
-                <div className="margin-right">
+                <div className="nav-items">
                     <NavLink
                         to="/photostream"
                         exact={true}
@@ -22,12 +22,12 @@ const NavBar = () => {
                         Photostream
                     </NavLink>
                 </div>
-                <div className="margin-right">
+                <div className="nav-items">
                     <NavLink to="/albums" exact={true} activeClassName="active">
                         Albums
                     </NavLink>
                 </div>
-                <div className="margin-right">
+                <div className="nav-items">
                     <NavLink
                         to="/explore"
                         exact={true}
@@ -36,14 +36,14 @@ const NavBar = () => {
                         Explore
                     </NavLink>
                 </div>
-                <div className="margin-right">
+                <div className="nav-items">
                     <NavLink to="/photos/new">
-                        <span>
+                        <span id="upload-button">
                             <i class="fas fa-cloud-upload-alt"></i>
                         </span>
                     </NavLink>
                 </div>
-                <div className="margin-right">
+                <div className="nav-items">
                     <LogoutButton sessionUser={sessionUser} />
                 </div>
             </>
@@ -56,12 +56,12 @@ const NavBar = () => {
                         Home
                     </NavLink>
                 </div> */}
-                <div className="margin-right">
+                <div className="nav-items">
                     <NavLink to="/login" exact={true} activeClassName="active">
                         Login
                     </NavLink>
                 </div>
-                <div className="margin-right">
+                <div className="nav-items">
                     <NavLink
                         to="/sign-up"
                         exact={true}
@@ -75,18 +75,18 @@ const NavBar = () => {
     }
     return (
         <nav id="nav">
-            <div id="logo" className="margin-right">
+            <div id="logo" className="nav-items">
                 <img src={flickrDots} id="flickr-dots" />
                 <h1 id="my-photos">MyPhotos</h1>
             </div>
-            <div className="margin-right">
+            <div className="nav-items">
                 <a href="https://github.com/srvorkap" target="_blank">
                     <span id="github-icon">
                         <i class="fab fa-github"></i>
                     </span>
                 </a>
             </div>
-            <div className="margin-right">
+            <div className="nav-items">
                 <a
                     href="https://www.linkedin.com/in/srdanvorkapic/"
                     target="_blank"

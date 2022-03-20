@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import NavBar from "../NavBar";
 import loginSignupImage from "../../assets/LoginSignupImage.jpg";
-import './SignUpForm.css'
+import "./SignUpForm.css";
 
 const SignUpForm = () => {
     const [errors, setErrors] = useState([]);
@@ -67,8 +67,9 @@ const SignUpForm = () => {
                     ))}
                 </div>
                 <div>
-                    <label>User Name</label>
+                    {/* <label>User Name</label> */}
                     <input
+                        className="signup-login-fields"
                         type="text"
                         name="username"
                         onChange={updateUsername}
@@ -76,8 +77,9 @@ const SignUpForm = () => {
                     ></input>
                 </div>
                 <div>
-                    <label>Email</label>
+                    {/* <label>Email</label> */}
                     <input
+                        className="signup-login-fields"
                         type="text"
                         name="email"
                         onChange={updateEmail}
@@ -85,8 +87,9 @@ const SignUpForm = () => {
                     ></input>
                 </div>
                 <div>
-                    <label>Password</label>
+                    {/* <label>Password</label> */}
                     <input
+                        className="signup-login-fields"
                         type="password"
                         name="password"
                         onChange={updatePassword}
@@ -103,7 +106,7 @@ const SignUpForm = () => {
         //   required={true}
         ></input>
       </div> */}
-                <button type="submit">Sign Up</button>
+                <div type="submit" className="signup-login-button">Sign Up</div>
             </form>
         </div>
     );

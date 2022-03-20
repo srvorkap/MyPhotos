@@ -3,7 +3,7 @@
     flex-direction: row;
     background-color: black;
     color: white;
-    height: 100px;
+    height: 50px;
     align-items: center;
     /* justify-content: space-around; */
     width: auto;
@@ -22,7 +22,11 @@
     display: flex;
 }
 
-.margin-right {
+.nav-items {
     margin: 0 25px;
     /* width: 150px; */
+}
+
+#upload-button {
+    font-size: 25px;
 }

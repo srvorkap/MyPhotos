@@ -3,7 +3,7 @@
     font-family: "Soleil", Helvetica, Arial, sans-serif;
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 ul {
@@ -20,4 +20,38 @@ a:visited {
 
 .errors {
     color: #cc4539;
+}
+
+.signup-login-fields {
+    width: 270px;
+    height: 20px;
+    padding: 17px 16px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+/* .signup-login-fields::selection {
+    background-color: #b3d4fc;
+} */
+
+.signup-login-button {
+    width: 256px;
+    height: 24px;
+    background-color: #128fdc;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    align-self: center;
+    margin-top: 32px;
+    padding: 8px 24px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#signup-login-text {
+    text-align: center;
+}
+
+#signup-login-link {
+    color: #006dac;
 }
