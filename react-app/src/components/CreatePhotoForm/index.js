@@ -121,7 +121,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
                         >
                             <option value='11'>Select an album</option>
                             {sessionUserAlbums?.map((album, index) => (
-                                <option value={index+1}>{album?.title}</option>
+                                <option value={album.id}>{album?.title}</option>
                             ))}
                         </select>
                     </div>

@@ -20,15 +20,15 @@ const Photostream = ({ sessionUser }) => {
 
     const dispatch = useDispatch();
 
-    const onMouseEnter = e => {
-        e.preventDefault();
-        setIsActive(true);
-    };
+    // const onMouseEnter = e => {
+    //     e.preventDefault();
+    //     setIsActive(true);
+    // };
 
-    const onMouseLeave = e => {
-        e.preventDefault();
-        setIsActive(false);
-    };
+    // const onMouseLeave = e => {
+    //     e.preventDefault();
+    //     setIsActive(false);
+    // };
 
     useEffect(() => {
         dispatch(getPhotos());
@@ -47,8 +47,8 @@ const Photostream = ({ sessionUser }) => {
                                     backgroundImage: `url(${photo.image_url})`,
                                 }}
                                 className="individual-photo"
-                                onMouseEnter={onMouseEnter}
-                                onMouseLeave={onMouseLeave}
+                                onMouseEnter={() => setIsActive(true)}
+                                onMouseLeave={() => setIsActive(false)}
                             >
                                 {isActive && (
                                     <>
