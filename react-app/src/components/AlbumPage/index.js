@@ -51,7 +51,7 @@ const AlbumPage = ({ sessionUser }) => {
             <h1>{currentAlbum?.title}</h1>
             {currentAlbumPhotos?.map(photo => (
                 <div>
-                    <NavLink to={`/photos/${photo.id}`}>
+                    <NavLink to={`/photos/${photo?.id}`}>
                         <div>{photo?.title}</div>
                         <img src={photo?.image_url} />
                     </NavLink>

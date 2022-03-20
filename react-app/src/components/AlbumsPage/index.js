@@ -43,9 +43,9 @@ const AlbumsPage = ({ sessionUser }) => {
         <div>
             <Cover sessionUser={sessionUser} />
             {sessionUserAlbums?.map(album => (
-                <div key={album.id}>
-                    <NavLink to={`/albums/${album.id}`}>
-                        <div>{album.title}</div>
+                <div key={album?.id}>
+                    <NavLink to={`/albums/${album?.id}`}>
+                        <div>{album?.title}</div>
                     </NavLink>
                     <button
                         onClick={e => {

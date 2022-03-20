@@ -59,18 +59,22 @@ a:visited {
 }
 
 .individual-photo {
-    /* background-size: cover; */
+    background-size: cover;
     height: 241px;
     width: 241px;
     padding: 20px;
+    color: white;
+    margin: 2px;
 }
 
-.srki {
+.photos-container {
     display: flex;
     max-width: 80%;
+    /* min-width: 500px; */
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
     margin-bottom: 20px;
+    margin-top: 20px;
     flex-wrap: wrap;
 }
