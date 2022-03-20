@@ -4,6 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import NavBar from "../NavBar";
 import loginSignupImage from "../../assets/LoginSignupImage.jpg";
+import { formatError } from "../../helper";
 import "./SignUpForm.css";
 
 const SignUpForm = () => {
@@ -19,7 +20,6 @@ const SignUpForm = () => {
         e.preventDefault();
         if (password) {
             //  === repeatPassword) {
-            // console.log('-------------------', password, repeatPassword)
             const data = await dispatch(signUp(username, email, password));
             //  ,repeatPassword));
             if (data) {
@@ -47,11 +47,6 @@ const SignUpForm = () => {
     if (user) {
         return <Redirect to="/login" />;
     }
-
-    const formatError = error => {
-        const startIndex = error.indexOf(":") + 1;
-        return error.slice(startIndex);
-    };
 
     return (
         <div

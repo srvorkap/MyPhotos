@@ -4,6 +4,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import loginSignupImage from "../../assets/LoginSignupImage.jpg";
 import NavBar from "../NavBar";
+import { formatError } from "../../helper";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -36,21 +37,9 @@ const LoginForm = () => {
         dispatch(login(email, password));
     };
 
-    const demoLogin2 = e => {
-        e.preventDefault();
-        let email = "marnie@aa.io";
-        let password = "password";
-        dispatch(login(email, password));
-    };
-
     if (user) {
         return <Redirect to="/photostream" />;
     }
-
-    const formatError = error => {
-        const startIndex = error.indexOf(":") + 1;
-        return error.slice(startIndex);
-    };
 
     return (
         <div

@@ -42,14 +42,18 @@ export const postAlbum = album => async dispatch => {
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(album)
     })
-    const data = await res.json()
-
     if (res.ok) {
-        dispatch(postAlbumActionCreator(data))
+        const data = await res.json()
+        dispatch(postAlbumActionCreator(data.album))
+        return null
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
     } else {
-        throw res
+        return ['An error occurred. Please try again.']
     }
-    return data
 }
 
 // Thunk creator for PATCH request
@@ -60,7 +64,6 @@ export const patchAlbum = album => async dispatch => {
         body: JSON.stringify(album)
     })
     const data = await res.json()
-    console.log(data)
 
     if (res.ok) {
         dispatch(patchAlbumActionCreator(data))
@@ -94,6 +97,9 @@ const albumReducer = (state = {}, action) => {
     switch(action.type) {
         case GET_ALBUMS:
             newState = {...state, ...action.albums}
+            return newState
+        case POST_ALBUM:
+            newState = {...state, [action.album.id]: action.album}
             return newState
         case PATCH_ALBUM:
             newState = {...state, [action.album.id]: action.album}
