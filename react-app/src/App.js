@@ -38,10 +38,10 @@ function App() {
 
     return (
         <BrowserRouter>
-            <NavBar />
+            {/* <NavBar /> */}
             <Switch>
                 <Route path="/" exact={true}>
-                    <LandingPage />
+                    <LandingPage sessionUser={sessionUser}/>
                 </Route>
                 <Route path="/login" exact={true}>
                     <LoginForm />
@@ -53,34 +53,42 @@ function App() {
                     <UsersList />
                 </ProtectedRoute> */}
                 <Route path="/albums/new" exact={true}>
+                    <NavBar />
                     <CreateAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums/:albumId/edit" exact={true}>
+                    <NavBar />
                     <EditAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums" exact={true}>
+                    <NavBar />
                     <AlbumsPage sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
+                    <NavBar />
                     <AlbumPage sessionUser={sessionUser} />
-                    {/* <h1>srki</h1> */}
                 </Route>
                 <Route path="/photostream" exact={true}>
+                    <NavBar />
                     <Photostream sessionUser={sessionUser} />
                 </Route>
                 <Route path="/explore" exact={true}>
+                    <NavBar />
                     <Explore sessionUser={sessionUser} />
                 </Route>
                 {/* <Route path="/albums/new">
                     <CreateAlbumForm sessionUser={sessionUser}/>
                 </Route> */}
                 <Route path="/photos/new" exact={true}>
+                    <NavBar />
                     <CreatePhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId" exact={true}>
+                    <NavBar />
                     <PhotoPage sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId/edit" exact={true}>
+                    <NavBar />
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
                 <ProtectedRoute path="/users/:userId" exact={true}>
@@ -90,6 +98,7 @@ function App() {
                     <h1>My Home Page</h1>
                 </ProtectedRoute> */}
                 <Route>
+                    <NavBar />
                     <PageNotFound sessionUser={sessionUser} />
                 </Route>
             </Switch>

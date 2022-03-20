@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import { useSelector } from "react-redux";
+import flickrDots from '../../assets/1.svg'
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -11,6 +12,10 @@ const NavBar = () => {
     if (sessionUser) {
         sessionLinks = (
             <>
+                <div id="logo">
+                    <img src={flickrDots} id='flickr-dots'/>
+                    <h1 id="my-photos">MyPhotos</h1>
+                </div>
                 <div className="margin-right">
                     <a href="https://github.com/srvorkap" target="_blank">
                         <span id="github-icon">
