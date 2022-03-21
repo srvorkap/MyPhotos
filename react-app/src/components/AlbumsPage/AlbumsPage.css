@@ -1,0 +1,10 @@
+#albums-page {
+    padding-bottom: 20px;
+}
+
+#create-new-album {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding: 20px;
+}

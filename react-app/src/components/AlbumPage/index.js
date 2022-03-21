@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import { getAlbums } from "../../store/album";
 import defaultAlbumImage from "../../assets/default-album-image.jpeg";
+import { deleteAlbum } from "../../store/album";
 import "./AlbumPage.css";
 
 const AlbumPage = ({ sessionUser }) => {
@@ -44,6 +45,17 @@ const AlbumPage = ({ sessionUser }) => {
         dispatch(getPhotos());
     }, [dispatch]);
 
+    const onEdit = e => {
+        e.preventDefault();
+        history.push(`/albums/${currentAlbum.id}/edit`);
+    };
+
+    const onDelete = e => {
+        e.preventDefault();
+        dispatch(deleteAlbum(currentAlbum.id));
+        history.push("/albums");
+    };
+
     const onBack = e => {
         e.preventDefault();
         history.push("/albums");
@@ -57,29 +69,67 @@ const AlbumPage = ({ sessionUser }) => {
             </div>
             {currentAlbumPhotos && (
                 <div>
-                {currentAlbumPhotos.length > 0 ? (
+                    {console.log("--------------", currentAlbumPhotos.length)}
+                    {currentAlbumPhotos?.length > 0 ? (
+                        <div
+                            style={{
+                                backgroundImage: `url(${
+                                    currentAlbumPhotos[
+                                        currentAlbumPhotosLength - 1
+                                    ]?.image_url
+                                })`,
+                            }}
+                            id="srkica"
+                        >
+                            <h1>{currentAlbum?.title}</h1>
+                            <p>{currentAlbum?.description}</p>
+                            <p>
+                                {currentAlbumPhotosLength === 0
+                                    ? `no photos`
+                                    : currentAlbumPhotosLength === 1
+                                    ? `1 photo`
+                                    : `${currentAlbumPhotosLength} photos`}
+                            </p>
 
-                    <div
-                        style={{
-                            backgroundImage: `url(${currentAlbumPhotos[currentAlbumPhotosLength-1]?.image_url})`,
-                        }}
-                        id="srkica"
-                    >
-                        <h1>{currentAlbum?.title}</h1>
-                    </div>
-                ) : (
-                    <div
-                        style={{
-                            backgroundImage: `url(${defaultAlbumImage})`,
-                        }}
-                        id="srkica"
-                    >
-                        <h1>{currentAlbum?.title}</h1>
-                    </div>
-                )}
+                            <i
+                                class="fas fa-pen cursor-pointer"
+                                onClick={onEdit}
+                            ></i>
+                            <i
+                                class="fas fa-trash-alt cursor-pointer"
+                                onClick={onDelete}
+                            ></i>
+                        </div>
+                    ) : (
+                        <div
+                            style={{
+                                backgroundImage: `url(${defaultAlbumImage})`,
+                            }}
+                            id="srkica"
+                        >
+                            <h1>{currentAlbum?.title}</h1>
+                            <p>{currentAlbum?.description}</p>
+                            <p>
+                                {currentAlbumPhotosLength === 0
+                                    ? `no photos`
+                                    : currentAlbumPhotosLength === 1
+                                    ? `1 photo`
+                                    : `${currentAlbumPhotosLength} photos`}
+                            </p>
+
+                            <i
+                                class="fas fa-pen cursor-pointer"
+                                onClick={onEdit}
+                            ></i>
+                            {/* <i
+                                class="fas fa-trash-alt cursor-pointer"
+                                onClick={onDelete}
+                            ></i> */}
+                        </div>
+                    )}
                 </div>
             )}
-            <div className="photos-container">
+            <div className="albums-photos-container">
                 {currentAlbumPhotos?.map(photo => (
                     <div>
                         <NavLink to={`/photos/${photo?.id}`}>
@@ -96,7 +146,11 @@ const AlbumPage = ({ sessionUser }) => {
                                 {isActive && (
                                     <>
                                         <p>{photo.title}</p>
-                                        <p>{photo?.user_id === sessionUser?.id ? 'by YOU!' : `by ${photo?.user_id.username}`}</p>
+                                        <p>
+                                            {photo?.user_id === sessionUser?.id
+                                                ? "by YOU!"
+                                                : `by ${photo?.user_id.username}`}
+                                        </p>
                                     </>
                                 )}
                             </div>
@@ -105,7 +159,7 @@ const AlbumPage = ({ sessionUser }) => {
                 ))}
             </div>
         </div>
-    )
-                }
+    );
+};
 
 export default AlbumPage;

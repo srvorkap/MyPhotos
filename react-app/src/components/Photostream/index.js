@@ -1,8 +1,10 @@
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import Cover from "../Cover";
+import PhotoPage from "../PhotoPage";
+import './Photostream.css'
 
 const Photostream = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);
@@ -19,6 +21,7 @@ const Photostream = ({ sessionUser }) => {
     sessionUserPhotos?.reverse();
 
     const dispatch = useDispatch();
+    const history = useHistory()
 
     // const onMouseEnter = e => {
     //     e.preventDefault();
@@ -38,8 +41,12 @@ const Photostream = ({ sessionUser }) => {
     return (
         <div>
             <Cover sessionUser={sessionUser} />
+            <div onClick={() => history.push('/photos/new')} id='create-new-photo' className="cursor-pointer">
+                <i class="fas fa-plus"></i>
+                <div>New photo</div>
+            </div>
             <div>
-                <div className="photos-container">
+                <div className="albums-photos-container">
                     {sessionUserPhotos?.map(photo => (
                         <NavLink to={`/photos/${photo.id}`} key={photo.id}>
                             <div

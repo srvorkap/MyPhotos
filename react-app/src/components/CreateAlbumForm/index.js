@@ -28,7 +28,7 @@ const CreateAlbumForm = ({ sessionUser }) => {
 
     const onCancel = e => {
         e.preventDefault();
-        history.goBack();
+        history.push('/albums');
     };
 
     if (!sessionUser) return <Redirect to="/login" />;

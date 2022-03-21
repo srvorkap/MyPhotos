@@ -107,6 +107,7 @@ const albumReducer = (state = {}, action) => {
         case DELETE_ALBUM:
             newState = {...state}
             newState.albums = { ...newState.albums, [action.id]: undefined}
+            // delete newState[action.id]
             return newState
         default:
             return state

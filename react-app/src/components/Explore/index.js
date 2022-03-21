@@ -36,7 +36,7 @@ const Explore = ({ sessionUser }) => {
     if (!sessionUser) return <Redirect to='/login' />
     return (
         <div>
-                <div className="photos-container">
+                <div className="albums-photos-container">
                     {otherUsersPhotos?.map(photo => (
                         <NavLink to={`/photos/${photo.id}`} key={photo.id}>
                             <div
