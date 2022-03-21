@@ -129,7 +129,7 @@ const AlbumPage = ({ sessionUser }) => {
                     )}
                 </div>
             )}
-            <div className="photos-container">
+            <div className="albums-photos-container">
                 {currentAlbumPhotos?.map(photo => (
                     <div>
                         <NavLink to={`/photos/${photo?.id}`}>

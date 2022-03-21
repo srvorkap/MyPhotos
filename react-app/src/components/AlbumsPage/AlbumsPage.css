@@ -2,6 +2,9 @@
     padding-bottom: 20px;
 }
 
-#plus-sign-and-text {
+#create-new-album {
     display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding: 20px;
 }

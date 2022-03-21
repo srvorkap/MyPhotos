@@ -29,7 +29,7 @@ const Cover = ({ sessionUser }) => {
         <div style={{ backgroundImage: `url(${coverPhoto})` }}
         id="cover-background-image">
             <h1>{sessionUser?.username}</h1>
-            <h2>{sessionUserPhotos?.length}</h2>
+            <h2>{sessionUserPhotos?.length === 0 ? `no photos` : sessionUserPhotos?.length === 1 ? `1 photo` : `${sessionUserPhotos?.length} photos`}</h2>
         </div>
     )
 }

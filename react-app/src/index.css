@@ -67,7 +67,7 @@ a:visited {
     margin: 2px;
 }
 
-.photos-container {
+.albums-photos-container {
     display: flex;
     max-width: 80%;
     /* min-width: 500px; */
@@ -75,7 +75,6 @@ a:visited {
     margin-right: auto;
     box-sizing: border-box;
     margin-bottom: 20px;
-    margin-top: 20px;
     flex-wrap: wrap;
 }
 
