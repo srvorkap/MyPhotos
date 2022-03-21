@@ -26,6 +26,7 @@ export const deletePhotoActionCreator = id => {
 export const getPhotos = () => async (dispatch, getState) => {
     const res = await fetch('/api/photos/')
     const data = await res.json()
+    console.log('------------', data)
 
     if (res.ok) {
         dispatch(getPhotosActionCreator(data))

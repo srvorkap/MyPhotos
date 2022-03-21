@@ -32,7 +32,8 @@ const PhotoPage = ({ sessionUser }) => {
     const onDelete = e => {
         e.preventDefault();
         dispatch(deletePhoto(currentPhoto.id));
-        history.push(`/photostream`)
+        if (currentPhoto.album_id) history.push(`/albums/${currentPhoto.album_id}`)
+        else history.push(`/photostream`)
     };
 
     const onBack = e => {
@@ -43,7 +44,7 @@ const PhotoPage = ({ sessionUser }) => {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div>
-            <div onClick={onBack}>Back to album</div>
+            <div onClick={onBack} className='back'><i class="fas fa-arrow-left"></i>Back to album</div>
             <div>
                 <h1>{currentPhoto?.title}</h1>
                 <img src={currentPhoto?.image_url} />

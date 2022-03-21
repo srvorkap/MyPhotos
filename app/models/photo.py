@@ -24,5 +24,6 @@ class Photo(db.Model):
             'title': self.title,
             'description': self.description,
             'album_id': self.album_id,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'user': self.user.to_dict()
         }

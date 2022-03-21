@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import { getAlbums } from "../../store/album";
+import defaultAlbumImage from "../../assets/default-album-image.jpeg";
+import "./AlbumPage.css";
 
 const AlbumPage = ({ sessionUser }) => {
+    const [isActive, setIsActive] = useState(false);
     const { albumId } = useParams();
     const albumIdNumerical = +albumId;
 
@@ -19,21 +22,23 @@ const AlbumPage = ({ sessionUser }) => {
 
     const allPhotosObj = useSelector(store => store?.photo?.photos);
     let currentAlbumPhotos;
+    let currentAlbumPhotosLength;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
         currentAlbumPhotos = allPhotosArr?.filter(
             photo => photo?.album_id === albumIdNumerical
         );
+        currentAlbumPhotosLength = currentAlbumPhotos.length;
     }
 
-    currentAlbumPhotos?.reverse()
+    currentAlbumPhotos?.reverse();
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-        dispatch(getAlbums())
-    }, [dispatch])
+        dispatch(getAlbums());
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(getPhotos());
@@ -46,19 +51,61 @@ const AlbumPage = ({ sessionUser }) => {
 
     if (!sessionUser) return <Redirect to="/login" />;
     return (
-        <div>
-            <div onClick={onBack}>Back to albums list</div>
-            <h1>{currentAlbum?.title}</h1>
-            {currentAlbumPhotos?.map(photo => (
+        <div id="album-page">
+            <div onClick={onBack} className="back">
+                <i class="fas fa-arrow-left"></i>Back to albums list
+            </div>
+            {currentAlbumPhotos && (
                 <div>
-                    <NavLink to={`/photos/${photo.id}`}>
-                        <div>{photo?.title}</div>
-                        <img src={photo?.image_url} />
-                    </NavLink>
+                {currentAlbumPhotos.length > 0 ? (
+
+                    <div
+                        style={{
+                            backgroundImage: `url(${currentAlbumPhotos[currentAlbumPhotosLength-1]?.image_url})`,
+                        }}
+                        id="srkica"
+                    >
+                        <h1>{currentAlbum?.title}</h1>
+                    </div>
+                ) : (
+                    <div
+                        style={{
+                            backgroundImage: `url(${defaultAlbumImage})`,
+                        }}
+                        id="srkica"
+                    >
+                        <h1>{currentAlbum?.title}</h1>
+                    </div>
+                )}
                 </div>
-            ))}
+            )}
+            <div className="photos-container">
+                {currentAlbumPhotos?.map(photo => (
+                    <div>
+                        <NavLink to={`/photos/${photo?.id}`}>
+                            {/* <div>{photo?.title}</div>
+                            <img src={photo?.image_url} /> */}
+                            <div
+                                style={{
+                                    backgroundImage: `url(${photo.image_url})`,
+                                }}
+                                className="individual-photo"
+                                onMouseEnter={() => setIsActive(true)}
+                                onMouseLeave={() => setIsActive(false)}
+                            >
+                                {isActive && (
+                                    <>
+                                        <p>{photo.title}</p>
+                                        <p>{photo?.user_id === sessionUser?.id ? 'by YOU!' : `by ${photo?.user_id.username}`}</p>
+                                    </>
+                                )}
+                            </div>
+                        </NavLink>
+                    </div>
+                ))}
+            </div>
         </div>
-    );
-};
+    )
+                }
 
 export default AlbumPage;

@@ -1,10 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Redirect, NavLink } from "react-router-dom";
 import { getAlbums, deleteAlbum } from "../../store/album";
 import { getPhotos } from "../../store/photo";
+import Cover from "../Cover";
+import defaultAlbumImage from "../../assets/default-album-image.jpeg";
 
 const AlbumsPage = ({ sessionUser }) => {
+    // const [isActive, setIsActive] = useState(false)
+
     const allAlbumsObj = useSelector(store => store?.album?.albums);
     let sessionUserAlbums;
     if (allAlbumsObj) {
@@ -14,7 +18,7 @@ const AlbumsPage = ({ sessionUser }) => {
         );
     }
 
-    sessionUserAlbums?.reverse()
+    sessionUserAlbums?.reverse();
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -40,10 +44,27 @@ const AlbumsPage = ({ sessionUser }) => {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div>
+            <Cover sessionUser={sessionUser} />
             {sessionUserAlbums?.map(album => (
-                <div key={album.id}>
-                    <NavLink to={`/albums/${album.id}`}>
-                        <div>{album.title}</div>
+                <div key={album?.id}>
+                    <NavLink to={`/albums/${album?.id}`}>
+                        {/* <div>{album?.title}</div>
+                        <img src={album.photos.length === 0 ? defaultAlbumImage : album.photos[0].image_url} /> */}
+                        <div
+                            style={{
+                                backgroundImage: `url(${album.photos.length === 0 ? defaultAlbumImage : album.photos[0].image_url})`,
+                            }}
+                            className="individual-photo"
+                            // onMouseEnter={() => setIsActive(true)}
+                            // onMouseLeave={() => setIsActive(false)}
+                        >
+                            {/* {isActive && ( */}
+                                <>
+                                    <p>{album.title}</p>
+                                    <p>{album.photos.length === 0 ? 'Empty Album' : album.photos.length === 1 ? `1 Photo` : `${album.photos.length} Photos` }</p>
+                                </>
+                            {/* )} */}
+                        </div>
                     </NavLink>
                     <button
                         onClick={e => {

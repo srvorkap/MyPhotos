@@ -120,8 +120,8 @@ const CreatePhotoForm = ({ sessionUser }) => {
                             onChange={e => setAlbum_id(e.target.value)}
                         >
                             <option value='11'>Select an album</option>
-                            {sessionUserAlbums?.map((album, index) => (
-                                <option value={index+1}>{album?.title}</option>
+                            {sessionUserAlbums?.map((album) => (
+                                <option value={album.id}>{album?.title}</option>
                             ))}
                         </select>
                     </div>

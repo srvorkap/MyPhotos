@@ -1,0 +1,14 @@
+#album-page {
+    display: flex;
+    max-width: 80%;
+    /* min-width: 500px; */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+#srkica {
+    height: 300px;
+    color:white;
+    background-size: cover;
+}
