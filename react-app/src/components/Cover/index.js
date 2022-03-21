@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import coverPhoto from '../../assets/cover-photo.jpeg'
+import { getPhotos } from '../../store/photo';
 import './Cover.css'
 
 const Cover = ({ sessionUser }) => {
@@ -17,11 +19,17 @@ const Cover = ({ sessionUser }) => {
     else if (sessionUserPhotos?.length === 1) numberOfPhotos = '1 Photo'
     else numberOfPhotos = `${sessionUserPhotos?.length} Photos`
 
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPhotos())
+    }, [dispatch])
+
     return (
         <div style={{ backgroundImage: `url(${coverPhoto})` }}
         id="cover-background-image">
             <h1>{sessionUser?.username}</h1>
-            <h2>{numberOfPhotos}</h2>
+            <h2>{sessionUserPhotos?.length}</h2>
         </div>
     )
 }

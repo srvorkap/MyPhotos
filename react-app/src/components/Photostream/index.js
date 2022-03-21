@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import Cover from "../Cover";
+import PhotoPage from "../PhotoPage";
 
 const Photostream = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getPhotos } from "../../store/photo";
 import { deletePhoto } from "../../store/photo";
 
-const PhotoPage = ({ sessionUser }) => {
+const PhotoPage = ({ sessionUser, option }) => {
     const { photoId } = useParams();
     const photoIdNumerical = +photoId;
 
@@ -44,7 +44,8 @@ const PhotoPage = ({ sessionUser }) => {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div>
-            <div onClick={onBack} className='back'><i class="fas fa-arrow-left"></i>Back to album</div>
+            {option === true && <h1>photostream</h1>}
+            <div onClick={onBack} className='cursor-pointer'><i class="fas fa-arrow-left"></i>Back to album</div>
             <div>
                 <h1>{currentPhoto?.title}</h1>
                 <img src={currentPhoto?.image_url} />

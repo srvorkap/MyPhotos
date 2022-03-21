@@ -79,6 +79,6 @@ a:visited {
     flex-wrap: wrap;
 }
 
-.back {
+.cursor-pointer {
     cursor: pointer;
 }
