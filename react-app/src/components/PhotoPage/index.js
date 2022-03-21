@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPhotos } from "../../store/photo";
 import { deletePhoto } from "../../store/photo";
+import './PhotoPage.css'
 
 const PhotoPage = ({ sessionUser, option }) => {
     const { photoId } = useParams();
@@ -32,8 +33,9 @@ const PhotoPage = ({ sessionUser, option }) => {
     const onDelete = e => {
         e.preventDefault();
         dispatch(deletePhoto(currentPhoto.id));
-        if (currentPhoto.album_id) history.push(`/albums/${currentPhoto.album_id}`)
-        else history.push(`/photostream`)
+        if (currentPhoto.album_id)
+            history.push(`/albums/${currentPhoto.album_id}`);
+        else history.push(`/photostream`);
     };
 
     const onBack = e => {
@@ -43,11 +45,11 @@ const PhotoPage = ({ sessionUser, option }) => {
 
     if (!sessionUser) return <Redirect to="/login" />;
     return (
-        <div>
-            {option === true && <h1>photostream</h1>}
-            <div onClick={onBack} className='cursor-pointer'><i class="fas fa-arrow-left"></i>Back to album</div>
-            <div>
-                <h1>{currentPhoto?.title}</h1>
+        <div id="whole-photo-page">
+            <div id="photo-background">
+                <div onClick={onBack} className="cursor-pointer">
+                    <i class="fas fa-arrow-left"></i>Back to album
+                </div>
                 <img src={currentPhoto?.image_url} />
                 {currentPhoto?.user_id === sessionUser?.id && (
                     <>
@@ -55,6 +57,9 @@ const PhotoPage = ({ sessionUser, option }) => {
                         <button onClick={onDelete}>Delete</button>
                     </>
                 )}
+            </div>
+            <div>
+                <h1>{currentPhoto?.title}</h1>
             </div>
         </div>
     );
