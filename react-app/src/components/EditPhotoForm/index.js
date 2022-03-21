@@ -30,23 +30,23 @@ const EditPhotoForm = ({ sessionUser }) => {
         );
     }
 
-    let image;
+    let image_url;
     let title;
     let description;
     let album_id;
     if (currentPhoto) {
-        image = currentPhoto.image;
+        image_url = currentPhoto.image_url;
         title = currentPhoto.title;
         description = currentPhoto.description;
         album_id = currentPhoto.album_id;
     }
 
-    const [editedImage, setEditedImage] = useState(image);
+    const [editedImage_url, setEditedImage_url] = useState(image_url);
     const [editedTitle, setEditedTitle] = useState(title);
     const [editedDescription, setEditedDescription] = useState(description);
     const [editedAlbum_id, setEditedAlbum_id] = useState(album_id);
-    const [imageLoading, setImageLoading] = useState(false);
-    const [photoPrev, setPhotoPrev] = useState("#");
+    // const [imageLoading, setImageLoading] = useState(false);
+    // const [photoPrev, setPhotoPrev] = useState("#");
 
     const [errors, setErrors] = useState([]);
 
@@ -70,40 +70,56 @@ const EditPhotoForm = ({ sessionUser }) => {
     const onSubmit = async e => {
         e.preventDefault();
 
-        const editedFormData = new FormData();
+        const editedPhoto = {
+            id: currentPhoto.id,
+            title: editedTitle,
+            description: editedDescription,
+            album_id: editedAlbum_id
+        };
+        const data = await dispatch(patchPhoto(editedPhoto));
 
-        editedFormData.append("image", editedImage);
-        editedFormData.append("title", editedTitle);
-        editedFormData.append("description", editedDescription);
-        if (editedAlbum_id) editedFormData.append("album_id", editedAlbum_id);
-
-        setImageLoading(true);
-
-        const data = await dispatch(patchPhoto(editedFormData));
-
-        if (data && data.errors) {
-            setErrors(data.errors);
-            setImageLoading(false);
+        if (data) {
+            setErrors(data);
+            setEditedImage_url(image_url)
+            setEditedTitle(title);
+            setEditedDescription(description);
+            setEditedAlbum_id(album_id)
         }
 
-        if (!data.errors && album_id) {
-            setImageLoading(false);
-            // reset()
-            history.push(`/albums/${album_id}`);
-        } else history.push("/photostream");
+        if (!data) history.push(`/photos/${currentPhoto.id}`);
+
+
+
+        // const editedFormData = new FormData();
+
+        // editedFormData.append("image", editedImage);
+        // editedFormData.append("title", editedTitle);
+        // editedFormData.append("description", editedDescription);
+        // if (editedAlbum_id) editedFormData.append("album_id", editedAlbum_id);
+
+        // setImageLoading(true);
+
+        // const data = await dispatch(patchPhoto(editedFormData));
+
+        // if (data && data.errors) {
+        //     setErrors(data.errors);
+        //     setImageLoading(false);
+        // }
+
+        // if (!data.errors && album_id) {
+        //     setImageLoading(false);
+        //     // reset()
+        //     history.push(`/albums/${album_id}`);
+        // } else history.push("/photostream");
     };
 
-    const updateImage = e => {
-        const file = e.target.files[0];
-        setEditedImage(file);
-        if (file) {
-            setPhotoPrev(URL.createObjectURL(file));
-        }
-    };
-
-    const onCancel = e => {
-        return null;
-    };
+    // const updateImage = e => {
+    //     const file = e.target.files[0];
+    //     setEditedImage(file);
+    //     if (file) {
+    //         setPhotoPrev(URL.createObjectURL(file));
+    //     }
+    // };
 
     if (!sessionUser) return <Redirect to="/login" />;
     return (
@@ -121,7 +137,7 @@ const EditPhotoForm = ({ sessionUser }) => {
                                 <li key={error}>{error}</li>
                             ))}
                         </ul>
-                        <div className="form-label-input" id="new-photo-image">
+                        {/* <div className="form-label-input" id="new-photo-image">
                             <label htmlFor="image">Image</label>
                             <input
                                 id="image"
@@ -131,6 +147,17 @@ const EditPhotoForm = ({ sessionUser }) => {
                                 onChange={updateImage}
                                 placeholder="Upload Image"
                                 accept="image/png, image/jpeg, image/png, image/jpeg"
+                            />
+                        </div> */}
+                         <div className="form-label-input">
+                            <label htmlFor="editedImage_url">Image URL</label>
+                            <input
+                                className="signup-login-fields"
+                                id="editedImage_url"
+                                type="text"
+                                name="editedImage_url"
+                                value={editedImage_url}
+                                onChange={e => setEditedImage_url(e.target.value)}
                             />
                         </div>
                         <div className="form-label-input">
@@ -198,11 +225,11 @@ const EditPhotoForm = ({ sessionUser }) => {
                                 className="signup-login-button"
                                 // className="red buttons"
                                 // id="create-business-button"
-                                onClick={onCancel}
+                                onClick={() => history.push(`/photos/${currentPhoto.id}`)}
                             >
                                 Cancel
                             </button>
-                            {imageLoading && <p>Loading...</p>} {/* add */}
+                            {/* {imageLoading && <p>Loading...</p>} */}
                         </div>
                     </form>
                 </div>

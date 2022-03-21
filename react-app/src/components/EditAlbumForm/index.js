@@ -45,7 +45,6 @@ const EditAlbumForm = ({ sessionUser }) => {
             description: editedDescription,
         };
         const data = await dispatch(patchAlbum(editedAlbum));
-        console.log('---------------', data)
 
         if (data) {
             setErrors(data);

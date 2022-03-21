@@ -51,6 +51,8 @@ const Photostream = ({ sessionUser }) => {
                         <NavLink to={`/photos/${photo.id}`} key={photo.id}>
                             <div
                                 style={{
+                                    // backgroundSize: 'cover',
+                                    // background: 'black',
                                     backgroundImage: `url(${photo.image_url})`,
                                 }}
                                 className="individual-photo"

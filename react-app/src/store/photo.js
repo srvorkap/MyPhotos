@@ -65,14 +65,20 @@ export const patchPhoto = photo => async dispatch => {
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(photo)
     })
-    const data = await res.json()
+    // const data = await res.json()
 
     if (res.ok) {
-        dispatch(patchPhotoActionCreator(data.photo))
-    } else {
-        throw res
+        const data = await res.json();
+        dispatch(patchPhotoActionCreator(data))
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        } else {
+            return ["An error occurred. Please try again."];
+        }
     }
-    return data
 }
 
 // Thunk creator for DELETE request

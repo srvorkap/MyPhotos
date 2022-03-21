@@ -15,7 +15,8 @@ class PhotoForm(FlaskForm):
     Length(max=30, message="Title must be < 30 characters."),
     Length(min=2, message="Title must be > 1 character.")])
 
-    description = TextAreaField('description', validators=[])
+    description = TextAreaField('description', validators=[
+        Length(max=255, message="Description must be < 255 characters.")])
     # validators=[Length(max=255, message="Description must be < 255 characters")])
 
     # album_id = SelectField('album_id', choices=[])
