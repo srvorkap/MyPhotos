@@ -24,7 +24,7 @@ export const deleteAlbumActionCreator = id => {
 
 // Thunk Creator for GET request
 export const getAlbums = () => async (dispatch, getState) => {
-    const res = await fetch('/api/albums')
+    const res = await fetch('/api/albums/')
     const data = await res.json()
 
     if (res.ok) {
