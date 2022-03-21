@@ -57,6 +57,7 @@ const SignUpForm = () => {
             <div className="signup-login-page">
                 <div className="signup-login-form">
                     <form onSubmit={onSignUp} id="signup-form">
+                        <div className="form-title">Sign up for MyPhotos</div>
                         <div>
                             {errors.map((error, ind) => (
                                 <div key={ind}>{formatError(error)}</div>
@@ -111,9 +112,8 @@ const SignUpForm = () => {
                         <p className="signup-login-text">
                             Already a MyPhotos member?{" "}
                             <span className="signup-login-link">
-                            <NavLink to="/login">
-                                Log in here.
-                            </NavLink></span>
+                                <NavLink to="/login">Log in here.</NavLink>
+                            </span>
                         </p>
                     </form>
                 </div>

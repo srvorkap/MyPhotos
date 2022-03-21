@@ -29,7 +29,7 @@ const AlbumPage = ({ sessionUser }) => {
         currentAlbumPhotos = allPhotosArr?.filter(
             photo => photo?.album_id === albumIdNumerical
         );
-        currentAlbumPhotosLength = currentAlbumPhotos.length;
+        currentAlbumPhotosLength = currentAlbumPhotos?.length;
     }
 
     currentAlbumPhotos?.reverse();
@@ -52,13 +52,13 @@ const AlbumPage = ({ sessionUser }) => {
 
     const onDelete = e => {
         e.preventDefault();
-        dispatch(deleteAlbum(currentAlbum.id));
-        history.push("/albums");
+        dispatch(deleteAlbum(currentAlbum?.id));
+        history?.push("/albums");
     };
 
     const onBack = e => {
         e.preventDefault();
-        history.push("/albums");
+        history?.push("/albums");
     };
 
     if (!sessionUser) return <Redirect to="/login" />;
@@ -69,7 +69,6 @@ const AlbumPage = ({ sessionUser }) => {
             </div>
             {currentAlbumPhotos && (
                 <div>
-                    {console.log("--------------", currentAlbumPhotos.length)}
                     {currentAlbumPhotos?.length > 0 ? (
                         <div
                             style={{
@@ -95,10 +94,10 @@ const AlbumPage = ({ sessionUser }) => {
                                 class="fas fa-pen cursor-pointer"
                                 onClick={onEdit}
                             ></i>
-                            <i
+                            {/* <i
                                 class="fas fa-trash-alt cursor-pointer"
                                 onClick={onDelete}
-                            ></i>
+                            ></i> */}
                         </div>
                     ) : (
                         <div
@@ -137,7 +136,7 @@ const AlbumPage = ({ sessionUser }) => {
                             <img src={photo?.image_url} /> */}
                             <div
                                 style={{
-                                    backgroundImage: `url(${photo.image_url})`,
+                                    backgroundImage: `url(${photo?.image_url})`,
                                 }}
                                 className="individual-photo"
                                 onMouseEnter={() => setIsActive(true)}
@@ -145,11 +144,11 @@ const AlbumPage = ({ sessionUser }) => {
                             >
                                 {isActive && (
                                     <>
-                                        <p>{photo.title}</p>
+                                        <p>{photo?.title}</p>
                                         <p>
                                             {photo?.user_id === sessionUser?.id
                                                 ? "by YOU!"
-                                                : `by ${photo?.user_id.username}`}
+                                                : `by ${photo?.user_id?.username}`}
                                         </p>
                                     </>
                                 )}

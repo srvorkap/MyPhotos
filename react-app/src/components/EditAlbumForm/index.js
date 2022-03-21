@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { patchAlbum } from "../../store/album";
+import formBackgroundImage from "../../assets/cover-photo.jpeg";
+import NavBar from "../NavBar";
+import "./EditAlbumForm.css";
 
 const EditAlbumForm = ({ sessionUser }) => {
     const { albumId } = useParams();
@@ -16,92 +19,109 @@ const EditAlbumForm = ({ sessionUser }) => {
         );
     }
 
-    const { title, description } = currentAlbum
+    const { title, description } = currentAlbum;
 
-    const [editedTitle, setEditedTitle] = useState(title)
-    const [editedDescription, setEditedDescription] = useState(description)
+    const [editedTitle, setEditedTitle] = useState(title);
+    const [editedDescription, setEditedDescription] = useState(description);
 
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([]);
 
-    const dispatch = useDispatch()
-    const history = useHistory()
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const onSubmit = async e => {
-        e.preventDefault()
+        e.preventDefault();
         const editedAlbum = {
             id: currentAlbum.id,
             title: editedTitle,
             description: editedDescription,
-        }
-        const data = await dispatch(patchAlbum(editedAlbum))
+        };
+        const data = await dispatch(patchAlbum(editedAlbum));
         if (data && data.errors) {
-            setErrors(data.errors)
+            setErrors(data.errors);
 
-            setEditedTitle(title)
-            setEditedDescription(description)
+            setEditedTitle(title);
+            setEditedDescription(description);
         }
-        if (!data.errors) history.push(`/albums/${currentAlbum.id}`)
-
-    }
+        if (!data.errors) history.push(`/albums/${currentAlbum.id}`);
+    };
 
     const onCancel = e => {
-        e.preventDefault()
-        history.push(`/albums/${currentAlbum.id}`)
-    }
+        e.preventDefault();
+        history.push(`/albums/${currentAlbum.id}`);
+    };
 
-    if (!sessionUser) return <Redirect to='/login' />
+    if (!sessionUser) return <Redirect to="/login" />;
     return (
-        <div>
-            <div>
-                <h1>Edit Album</h1>
-                <form onSubmit={onSubmit}>
-                    <ul className="errors">
-                        {errors.map(error => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
-                    <div>
-                        <input
-                            type="text"
-                            name="editedTitle"
-                            value={editedTitle}
-                            onChange={e => setEditedTitle(e.target.value)}
-                            placeholder='Title'
-                        />
-                    </div>
-                    <div>
-                        <textarea
-                        type='text'
-                        name="editedDescription"
-                        value={editedDescription}
-                        onChange={e => setEditedDescription(e.target.value)}
-                        placeholder='Write a description'
-                        rows='20'
-                        cols='80'
-                        />
-                    </div>
-                    <div className="business-buttons-container">
-                        <button
-                            onClick={onSubmit}
-                            type="submit"
-                            // className="red buttons"
-                            // id="create-business-button"
-                        >
-                            Edit
-                        </button>
-                        <button
-                            type="button"
-                            // className="red buttons"
-                            // id="create-business-button"
-                            onClick={onCancel}
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                </form>
+        <div
+            style={{ backgroundImage: `url(${formBackgroundImage})` }}
+            id="whole-login-page"
+        >
+            <NavBar />
+            <div className="signup-login-page">
+                <div className="signup-login-form">
+                    <form onSubmit={onSubmit} id="login-form">
+                        <h1 className="form-heading">Edit Album</h1>
+                        <ul className="errors">
+                            {errors.map(error => (
+                                <li key={error}>{error}</li>
+                            ))}
+                        </ul>
+                        <div className="form-label-input">
+                            <label htmlFor="editedTitle">Album title</label>
+                            <input
+                                className="signup-login-fields"
+                                id="editedTitle"
+                                type="text"
+                                name="editedTitle"
+                                value={editedTitle}
+                                onChange={e => setEditedTitle(e.target.value)}
+                                // placeholder="Title"
+                            />
+                        </div>
+                        <div className="form-label-input">
+                            <label htmlFor="editedDescription">
+                                Description (optional)
+                            </label>
+                            <textarea
+                                className="signup-login-fields"
+                                id="editedDescription"
+                                type="text"
+                                name="editedDescription"
+                                value={editedDescription}
+                                onChange={e =>
+                                    setEditedDescription(e.target.value)
+                                }
+                                // placeholder="Write a description"
+                                rows="20"
+                                cols="80"
+                            />
+                        </div>
+                        <div className="business-buttons-container">
+                            <div
+                                className="signup-login-button"
+                                onClick={onSubmit}
+                                type="submit"
+                                // className="red buttons"
+                                // id="create-business-button"
+                            >
+                                Edit
+                            </div>
+                            <div
+                                className="signup-login-button"
+                                type="button"
+                                // className="red buttons"
+                                // id="create-business-button"
+                                onClick={onCancel}
+                            >
+                                Cancel
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
-}
+};
 
-export default EditAlbumForm
+export default EditAlbumForm;

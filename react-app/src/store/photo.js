@@ -95,6 +95,12 @@ const photoReducer = (state = {}, action) => {
         case GET_PHOTOS:
             newState = {...state, ...action.photos}
             return newState
+        case POST_PHOTO:
+            newState = {...state, [action.photo.id]: action.photo}
+            return newState
+        case PATCH_PHOTO:
+            newState = {...state, [action.photo.id]: action.photo}
+            return newState
         case DELETE_PHOTO:
             newState = {...state}
             // delete newState[action.id]
