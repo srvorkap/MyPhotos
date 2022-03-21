@@ -107,4 +107,3 @@ const CreateAlbumForm = ({ sessionUser }) => {
 };
 
 export default CreateAlbumForm;
-

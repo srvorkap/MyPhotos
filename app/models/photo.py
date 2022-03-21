@@ -11,7 +11,7 @@ class Photo(db.Model):
     title = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    album_id = db.Column(db.Integer, db.ForeignKey('albums.id')) #nullable=False
+    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'))
 
     user = db.relationship('User', back_populates='photos')
     # albums = db.relationship('Album', backpopulates='photos', secondary=album_photos)

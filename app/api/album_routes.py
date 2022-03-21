@@ -24,7 +24,6 @@ def post_album():
     if form.validate_on_submit():
         title = data['title']
         description = data['description']
-        print(form.errors)
 
         album = Album(
             title = title,
@@ -35,7 +34,6 @@ def post_album():
         db.session.add(album)
         db.session.commit()
         return { 'album': album.to_dict()}
-    print(form.errors)
     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 

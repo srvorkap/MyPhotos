@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { patchAlbum } from "../../store/album";
+import { getAlbums, patchAlbum } from "../../store/album";
 import formBackgroundImage from "../../assets/cover-photo.jpeg";
 import NavBar from "../NavBar";
+import { formatError } from "../../helper";
 import "./EditAlbumForm.css";
 
 const EditAlbumForm = ({ sessionUser }) => {
@@ -19,7 +20,14 @@ const EditAlbumForm = ({ sessionUser }) => {
         );
     }
 
-    const { title, description } = currentAlbum;
+    let title;
+    let description
+    if (currentAlbum) {
+        title = currentAlbum.title
+        description = currentAlbum.description
+    }
+
+    // const { title, description } = currentAlbum;
 
     const [editedTitle, setEditedTitle] = useState(title);
     const [editedDescription, setEditedDescription] = useState(description);
@@ -37,19 +45,32 @@ const EditAlbumForm = ({ sessionUser }) => {
             description: editedDescription,
         };
         const data = await dispatch(patchAlbum(editedAlbum));
-        if (data && data.errors) {
-            setErrors(data.errors);
+        console.log('---------------', data)
 
+        if (data) {
+            setErrors(data);
             setEditedTitle(title);
             setEditedDescription(description);
         }
-        if (!data.errors) history.push(`/albums/${currentAlbum.id}`);
+
+        if (!data) history.push(`/albums/${currentAlbum.id}`);
+        // if (data && data.errors) {
+        //     setErrors(data.errors);
+
+        //     setEditedTitle(title);
+        //     setEditedDescription(description);
+        // }
+        // if (!data.errors) history.push(`/albums/${currentAlbum.id}`);
     };
 
     const onCancel = e => {
         e.preventDefault();
         history.push(`/albums/${currentAlbum.id}`);
     };
+
+    useEffect(() => {
+        dispatch(getAlbums())
+    }, [dispatch])
 
     if (!sessionUser) return <Redirect to="/login" />;
     return (
@@ -64,7 +85,7 @@ const EditAlbumForm = ({ sessionUser }) => {
                         <h1 className="form-heading">Edit Album</h1>
                         <ul className="errors">
                             {errors.map(error => (
-                                <li key={error}>{error}</li>
+                                <li key={error}>{formatError(error)}</li>
                             ))}
                         </ul>
                         <div className="form-label-input">

@@ -24,94 +24,99 @@ export const deleteAlbumActionCreator = id => {
 
 // Thunk Creator for GET request
 export const getAlbums = () => async (dispatch, getState) => {
-    const res = await fetch('/api/albums/')
-    const data = await res.json()
+    const res = await fetch("/api/albums/");
+    const data = await res.json();
 
     if (res.ok) {
-        dispatch(getCurrentUserAlbumsActionCreator(data))
+        dispatch(getCurrentUserAlbumsActionCreator(data));
     } else {
-        throw res
+        throw res;
     }
     // return data
-}
+};
 
 // Thunk creator for POST request
 export const postAlbum = album => async dispatch => {
-    const res = await fetch('/api/albums/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(album)
-    })
+    const res = await fetch("/api/albums/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(album),
+    });
     if (res.ok) {
-        const data = await res.json()
-        dispatch(postAlbumActionCreator(data.album))
-        return null
+        const data = await res.json();
+        dispatch(postAlbumActionCreator(data.album));
+        return null;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
             return data.errors;
         }
     } else {
-        return ['An error occurred. Please try again.']
+        return ["An error occurred. Please try again."];
     }
-}
+};
 
 // Thunk creator for PATCH request
 export const patchAlbum = album => async dispatch => {
     const res = await fetch(`/api/albums/${album.id}/edit`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(album)
-    })
-    const data = await res.json()
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(album),
+    });
 
     if (res.ok) {
-        dispatch(patchAlbumActionCreator(data))
-    } else {
-        throw res
+        const data = await res.json();
+        dispatch(patchAlbumActionCreator(data));
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        } else {
+            return ["An error occurred. Please try again."];
+        }
     }
-    return data
-}
+};
 
 // Thunk creator for DELETE request
 export const deleteAlbum = id => async dispatch => {
     const res = await fetch(`/api/albums/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id })
-    })
-    const data = await res.json()
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+    });
+    const data = await res.json();
 
     if (res.ok) {
-        dispatch(deleteAlbumActionCreator(id))
+        dispatch(deleteAlbumActionCreator(id));
     } else {
-        throw res
+        throw res;
     }
     // return data
-}
+};
 
 // Reducer
 
 const albumReducer = (state = {}, action) => {
-    let newState = {}
-    switch(action.type) {
+    let newState = {};
+    switch (action.type) {
         case GET_ALBUMS:
-            newState = {...state, ...action.albums}
-            return newState
+            newState = { ...state, ...action.albums };
+            return newState;
         case POST_ALBUM:
-            newState = {...state, [action.album.id]: action.album}
-            return newState
+            newState = { ...state, [action.album.id]: action.album };
+            return newState;
         case PATCH_ALBUM:
-            newState = {...state, [action.album.id]: action.album}
-            return newState
+            newState = { ...state, [action.album.id]: action.album };
+            return newState;
         case DELETE_ALBUM:
-            newState = {...state}
+            newState = { ...state };
             // newState.albums = { ...newState.albums, [action.id]: undefined}
-            delete newState[action.id]
-            return newState
+            delete newState[action.id];
+            return newState;
         default:
-            return state
+            return state;
     }
-}
+};
 
-export default albumReducer
+export default albumReducer;

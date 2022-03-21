@@ -45,38 +45,60 @@ def get_all_photos():
 @photo_routes.route('/', methods=['POST'])
 def post_photo():
     current_user_id = current_user.get_id()
+    # current_user_id = 1
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    data = form.data
 
-    if "image" in request.files:
-        image = request.files["image"]
-        if not allowed_file(image.filename):
-            return {"errors": ["File type not permitted"]}, 400
+    if form.validate_on_submit():
+        image_url = data['image_url']
+        title = data['title']
+        description = data['description']
+        album_id = data['album_id']
 
-        image.filename = get_unique_filename(image.filename)
+        photo = Photo(
+            image_url=image_url,
+            title=title,
+            description=description,
+            album_id=album_id,
+            user_id=current_user_id
+        )
 
-        upload = upload_file_to_s3(image)
+        db.session.add(photo)
+        db.session.commit()
+        return { 'photo': photo.to_dict()}
+    return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-        if 'url' not in upload:
-            return upload, 400
+    # if "image" in request.files:
+    #     image = request.files["image"]
+    #     if not allowed_file(image.filename):
+    #         return {"errors": ["File type not permitted"]}, 400
 
-        url = upload['url']
+    #     image.filename = get_unique_filename(image.filename)
 
-        if form.validate_on_submit():
-            data = form.data
+    #     upload = upload_file_to_s3(image)
 
-            photo = Photo(
-                image_url = url,
-                title = data['title'],
-                description = data['description'],
-                user_id = current_user_id,
-                album_id = data['album_id']
-            )
+    #     if 'url' not in upload:
+    #         return upload, 400
 
-            db.session.add(photo)
-            db.session.commit()
-            return { 'photo': photo.to_dict()}
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    #     url = upload['url']
+
+        # if form.validate_on_submit():
+        #     data = form.data
+        #     print('----------------------', data)
+
+        #     photo = Photo(
+        #         image_url = url,
+        #         title = data['title'],
+        #         description = data['description'],
+        #         user_id = current_user_id,
+        #         album_id = data['album_id']
+        #     )
+
+        #     db.session.add(photo)
+        #     db.session.commit()
+        #     return { 'photo': photo.to_dict()}
+        # return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @photo_routes.route('/<int:photo_id>/edit', methods=['PATCH'])

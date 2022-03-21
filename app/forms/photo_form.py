@@ -6,9 +6,10 @@ from app.models import Photo
 # add custom validators
 
 class PhotoForm(FlaskForm):
-    # image_url = StringField('image_url', validators=[DataRequired('Image URL is required.'),
+    image_url = StringField('image_url', validators=[DataRequired('Image URL is required.')])
     # Length(max=255, message="Image URL must be < 255 characters."),
     # Length(min=2, message="Image URL must be > 1 character.")])
+    # image = FileField('image', validators=[DataRequired('Image file is required.')])
 
     title = StringField('title', validators=[DataRequired('Title is required.'),
     Length(max=30, message="Title must be < 30 characters."),
