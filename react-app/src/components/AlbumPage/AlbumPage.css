@@ -7,9 +7,28 @@
     box-sizing: border-box;
     flex-direction: column;
 }
-#srkica {
+
+#album-background-image {
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background: rgba(0,0,0,.6);
+}
+
+.srkica {
     height: 300px;
-    color:white;
+    color: white;
+    text-align: center;
     background-size: cover;
     background-position: center;
+}
+
+#album-description {
+    height: 100px;
+    word-wrap: break-word;
+}
+
+#image-itself {
+    background-color: rgba(0,0,0,.6);
 }

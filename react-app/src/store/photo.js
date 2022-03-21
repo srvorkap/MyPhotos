@@ -103,8 +103,8 @@ const photoReducer = (state = {}, action) => {
             return newState
         case DELETE_PHOTO:
             newState = {...state}
-            // delete newState[action.id]
-            newState.photos = { ...newState.photos, [action.id]: undefined}
+            delete newState[action.id]
+            // newState.photos = { ...newState.photos, [action.id]: undefined}
             return newState
         default:
             return state
