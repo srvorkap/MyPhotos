@@ -53,11 +53,9 @@ function App() {
                     <UsersList />
                 </ProtectedRoute> */}
                 <Route path="/albums/new" exact={true}>
-                    <NavBar />
                     <CreateAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums/:albumId/edit" exact={true}>
-                    <NavBar />
                     <EditAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums" exact={true}>
@@ -80,7 +78,6 @@ function App() {
                     <CreateAlbumForm sessionUser={sessionUser}/>
                 </Route> */}
                 <Route path="/photos/new" exact={true}>
-                    <NavBar />
                     <CreatePhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId" exact={true}>
@@ -88,7 +85,6 @@ function App() {
                     <PhotoPage sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId/edit" exact={true}>
-                    <NavBar />
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
                 <ProtectedRoute path="/users/:userId" exact={true}>

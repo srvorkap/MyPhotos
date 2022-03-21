@@ -50,6 +50,7 @@ const LoginForm = () => {
             <div className="signup-login-page">
                 <div className="signup-login-form">
                     <form onSubmit={onLogin} id="login-form">
+                        <div className="form-title">Log in to MyPhotos</div>
                         <div>
                             {errors.map((error, ind) => (
                                 <div key={ind} className='errors'>{formatError(error)}</div>
