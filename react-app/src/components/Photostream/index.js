@@ -70,8 +70,8 @@ const Photostream = ({ sessionUser }) => {
                                     // }}
                                     // className="individual-photo"
                                     className='photo-grid-image'
-                                    onMouseEnter={() => setIsActive(true)}
-                                    onMouseLeave={() => setIsActive(false)}
+                                    // onMouseEnter={() => setIsActive(true)}
+                                    // onMouseLeave={() => setIsActive(false)}
                                 />
                                 <div id="text-for-image">
                                     <p>{photo.title}</p>

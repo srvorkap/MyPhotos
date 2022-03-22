@@ -68,9 +68,9 @@ a:visited {
 
 .individual-photo {
     background-size: cover;
-    height: 241px;
-    width: 241px;
-    padding: 20px;
+    height: 344px;
+    width: 344px;
+    /* padding: 20px; */
     color: white;
     margin: 2px;
     object-fit:cover;
