@@ -24,7 +24,7 @@ const LogoutButton = ({ sessionUser }) => {
                 {showMenu && (
                     <>
                         <p>Hi {sessionUser.username}!</p>
-                        <p onClick={onLogout}>Logout</p>
+                        <p onClick={onLogout} className='cursor-pointer'>Logout</p>
                     </>
                 )}
             </div>
