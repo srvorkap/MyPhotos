@@ -44,21 +44,24 @@ const LoginForm = () => {
     return (
         <div
             style={{ backgroundImage: `url(${loginSignupImage})` }}
-            id="whole-login-page"
+            className="whole-signup-login-page"
         >
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onLogin} id="login-form">
+                    <form onSubmit={onLogin} id="login-form" className="forms">
                         <div className="form-title">Log in to MyPhotos</div>
                         <div>
                             {errors.map((error, ind) => (
-                                <div key={ind} className='errors'>{formatError(error)}</div>
+                                <div key={ind} className="errors">
+                                    {formatError(error)}
+                                </div>
                             ))}
                         </div>
                         <div>
-                            {/* <label htmlFor="email">Email</label> */}
+                            <label htmlFor="email">Email</label>
                             <input
+                                id="email"
                                 className="signup-login-fields"
                                 name="email"
                                 type="text"
@@ -68,8 +71,9 @@ const LoginForm = () => {
                             />
                         </div>
                         <div>
-                            {/* <label htmlFor="password">Password</label> */}
+                            <label htmlFor="password">Password</label>
                             <input
+                                id="password"
                                 className="signup-login-fields"
                                 name="password"
                                 type="password"
@@ -91,9 +95,8 @@ const LoginForm = () => {
                         <p className="signup-login-text">
                             Not a MyPhotos member?{" "}
                             <span className="signup-login-link">
-                            <NavLink to="/sign-up">
-                                Sign up here.
-                            </NavLink></span>
+                                <NavLink to="/sign-up">Sign up here.</NavLink>
+                            </span>
                         </p>
                     </form>
                 </div>

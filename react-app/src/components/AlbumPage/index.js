@@ -68,20 +68,28 @@ const AlbumPage = ({ sessionUser }) => {
                 <i class="fas fa-arrow-left"></i>Back to albums list
             </div>
             {currentAlbumPhotos && (
-                <div>
+                <div id="album-background-image">
                     {currentAlbumPhotos?.length > 0 ? (
-                        <div
+                        <div id="image-itself"
                             style={{
-                                backgroundImage: `url(${
+                                backgroundImage: `linear-gradient(rgba(0,0,0,0) -10%, rgba(0,0,0,0.6)),url(${
                                     currentAlbumPhotos[
                                         currentAlbumPhotosLength - 1
                                     ]?.image_url
                                 })`,
                             }}
-                            id="srkica"
+                            className="srkica"
                         >
-                            <h1>{currentAlbum?.title}</h1>
-                            <p>{currentAlbum?.description}</p>
+                            {/* backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,1)), url(${currentBusiness?.imageURL})`, */}
+                            <i
+                                class="fas fa-pen cursor-pointer"
+                                id="edit-pen"
+                                onClick={onEdit}
+                            ></i>
+                            <h1 id="album-title">{currentAlbum?.title}</h1>
+                            <p id="album-description">
+                                {currentAlbum?.description}
+                            </p>
                             <p>
                                 {currentAlbumPhotosLength === 0
                                     ? `no photos`
@@ -90,24 +98,27 @@ const AlbumPage = ({ sessionUser }) => {
                                     : `${currentAlbumPhotosLength} photos`}
                             </p>
 
-                            <i
-                                class="fas fa-pen cursor-pointer"
-                                onClick={onEdit}
-                            ></i>
                             {/* <i
                                 class="fas fa-trash-alt cursor-pointer"
                                 onClick={onDelete}
                             ></i> */}
                         </div>
                     ) : (
-                        <div
+                        <div id="image-itself"
                             style={{
                                 backgroundImage: `url(${defaultAlbumImage})`,
                             }}
-                            id="srkica"
+                            className="srkica"
                         >
-                            <h1>{currentAlbum?.title}</h1>
-                            <p>{currentAlbum?.description}</p>
+                            <i
+                                class="fas fa-pen cursor-pointer"
+                                id="edit-pen"
+                                onClick={onEdit}
+                            ></i>
+                            <h1 id="album-title">{currentAlbum?.title}</h1>
+                            <p id="album-description">
+                                {currentAlbum?.description}
+                            </p>
                             <p>
                                 {currentAlbumPhotosLength === 0
                                     ? `no photos`
@@ -116,10 +127,6 @@ const AlbumPage = ({ sessionUser }) => {
                                     : `${currentAlbumPhotosLength} photos`}
                             </p>
 
-                            <i
-                                class="fas fa-pen cursor-pointer"
-                                onClick={onEdit}
-                            ></i>
                             {/* <i
                                 class="fas fa-trash-alt cursor-pointer"
                                 onClick={onDelete}

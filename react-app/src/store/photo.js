@@ -26,7 +26,6 @@ export const deletePhotoActionCreator = id => {
 export const getPhotos = () => async (dispatch, getState) => {
     const res = await fetch('/api/photos/')
     const data = await res.json()
-    console.log('------------', data)
 
     if (res.ok) {
         dispatch(getPhotosActionCreator(data))
@@ -40,34 +39,46 @@ export const getPhotos = () => async (dispatch, getState) => {
 export const postPhoto = photo => async dispatch => {
     const res = await fetch('/api/photos/', {
         method: 'POST',
-        // headers: { 'Content-Type': 'application/json'}, // you must NOT set the Content-Type header on your request. If you leave the Content-Type field blank, the Content-Type will be generated and set correctly by your browser (check it out in the network tab!). If you include Content-Type, your request will be missing information and your Flask backend will be unable to locate the attached files.
-        body: photo // change change change change change
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(photo)
     })
-    const data = await res.json()
+    // const data = await res.json()
 
     if (res.ok) {
-        dispatch(postPhotoActionCreator(data.photo)) // change
-    } else {
-        throw res
+        const data = await res.json();
+        dispatch(postPhotoActionCreator(data.photo));
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        } else {
+            return ["An error occurred. Please try again."];
+        }
     }
-    return data
 }
 
 // Thunk Creator for PATCH request
 export const patchPhoto = photo => async dispatch => {
     const res = await fetch(`/api/photos/${photo.id}/edit`, {
         method: 'PATCH',
-        // headers: { 'Content-Type': 'application/json'},
-        body: photo
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(photo)
     })
-    const data = await res.json()
+    // const data = await res.json()
 
     if (res.ok) {
-        dispatch(patchPhotoActionCreator(data.photo))
-    } else {
-        throw res
+        const data = await res.json();
+        dispatch(patchPhotoActionCreator(data))
+        return null;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        } else {
+            return ["An error occurred. Please try again."];
+        }
     }
-    return data
 }
 
 // Thunk creator for DELETE request
@@ -103,8 +114,8 @@ const photoReducer = (state = {}, action) => {
             return newState
         case DELETE_PHOTO:
             newState = {...state}
-            // delete newState[action.id]
-            newState.photos = { ...newState.photos, [action.id]: undefined}
+            delete newState[action.id]
+            // newState.photos = { ...newState.photos, [action.id]: undefined}
             return newState
         default:
             return state

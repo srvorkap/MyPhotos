@@ -44,7 +44,7 @@ const CreateAlbumForm = ({ sessionUser }) => {
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onSubmit} id='login-form'>
+                    <form onSubmit={onSubmit} id='login-form' className="forms">
                         <h1 className="form-heading">New Album</h1>
                         <ul className="errors">
                             {errors.map(error => (
@@ -107,4 +107,3 @@ const CreateAlbumForm = ({ sessionUser }) => {
 };
 
 export default CreateAlbumForm;
-

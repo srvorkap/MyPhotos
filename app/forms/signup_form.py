@@ -35,4 +35,4 @@ class SignUpForm(FlaskForm):
         Email("Must be a valid email."),
         user_exists])
     password = StringField('password', validators=[DataRequired('Password is required.')])
-    # repeat_password = StringField(validators=[password_match])
+    repeat_password = StringField('repeat_password', validators=[DataRequired('Repeat Password is required.'), password_match])

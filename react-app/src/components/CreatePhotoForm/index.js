@@ -4,6 +4,7 @@ import { postPhoto } from "../../store/photo";
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbums } from "../../store/album";
 import formBackgroundImage from "../../assets/cover-photo.jpeg";
+import { formatError } from "../../helper";
 import "./CreatePhotoForm.css";
 import NavBar from "../NavBar";
 
@@ -17,12 +18,10 @@ const CreatePhotoForm = ({ sessionUser }) => {
         );
     }
 
-    const [image, setImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [album_id, setAlbum_id] = useState();
-    const [imageLoading, setImageLoading] = useState(false);
-    const [photoPrev, setPhotoPrev] = useState("#");
+    const [albumId, setAlbumId] = useState();
 
     const [errors, setErrors] = useState([]);
 
@@ -36,73 +35,51 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const reset = () => {
         setTitle("");
         setDescription("");
-        setAlbum_id();
+        setAlbumId();
     };
 
     const onSubmit = async e => {
         e.preventDefault();
+        const photo = {
+            image_url: imageUrl,
+            title,
+            description,
+            album_id: albumId,
+        };
 
-        const formData = new FormData();
+        const data = await dispatch(postPhoto(photo));
 
-        formData.append("image", image);
-        formData.append("title", title);
-        formData.append("description", description);
-        if (album_id) formData.append("album_id", album_id);
+        if (data) setErrors(data);
 
-        setImageLoading(true);
-
-        const data = await dispatch(postPhoto(formData));
-
-        if (data && data.errors) {
-            setErrors(data.errors);
-            setImageLoading(false);
-        }
-
-        if (!data.errors && album_id) {
-            setImageLoading(false);
-            reset();
-            history.push(`/albums/${album_id}`);
-        } else history.push("/photostream");
-    };
-
-    const updateImage = e => {
-        const file = e.target.files[0];
-        setImage(file);
-        if (file) {
-            setPhotoPrev(URL.createObjectURL(file));
-        }
-    };
-
-    const onCancel = e => {
-        return null;
+        if (!data && albumId) history.push(`/albums/${albumId}`);
+        else if (!data && !albumId) history.push("/photostream");
     };
 
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div
             style={{ backgroundImage: `url(${formBackgroundImage})` }}
-            id="whole-login-page"
+            className="whole-signup-login-page"
         >
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onSubmit} id="photo-form">
+                    <form onSubmit={onSubmit} id="photo-form" className="forms">
                         <h1 className="form-heading">New Photo</h1>
                         <ul className="errors">
                             {errors.map(error => (
-                                <li key={error}>{error}</li>
+                                <li key={error}>{formatError(error)}</li>
                             ))}
                         </ul>
-                        <div className="form-label-input" id="new-photo-image">
-                            <label htmlFor="image">Image</label>
+                        <div className="form-label-input">
+                            <label htmlFor="imageUrl">Image URL</label>
                             <input
-                                id="image"
                                 className="signup-login-fields"
-                                type="file"
-                                name="image/*"
-                                onChange={updateImage}
-                                // placeholder="Upload Image"
-                                accept="image/png, image/jpeg, image/png, image/jpeg"
+                                id="imageUrl"
+                                type="text"
+                                name="imageUrl"
+                                value={imageUrl}
+                                onChange={e => setImageUrl(e.target.value)}
                             />
                         </div>
                         <div className="form-label-input">
@@ -114,7 +91,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
                                 name="title"
                                 value={title}
                                 onChange={e => setTitle(e.target.value)}
-                                // placeholder="Title"
                             />
                         </div>
                         <div className="form-label-input">
@@ -127,19 +103,19 @@ const CreatePhotoForm = ({ sessionUser }) => {
                                 name="description"
                                 value={description}
                                 onChange={e => setDescription(e.target.value)}
-                                // placeholder="Write a description"
                                 rows="20"
                                 cols="80"
                             />
                         </div>
                         <div className="form-label-input">
-                            <label htmlFor="album_id">Select an album (optional)</label>
+                            <label htmlFor="album-id">
+                                Select an album (optional)
+                            </label>
                             <select
-                                className="signup-login-fields"
-                                id="album_id"
-                                name="album_id"
-                                value={album_id}
-                                onChange={e => setAlbum_id(e.target.value)}
+                                id="album-id"
+                                name="albumId"
+                                value={albumId}
+                                onChange={e => setAlbumId(e.target.value)}
                             >
                                 <option value="11">-optional-</option>
                                 {sessionUserAlbums?.map(album => (
@@ -152,23 +128,16 @@ const CreatePhotoForm = ({ sessionUser }) => {
                         <div className="business-buttons-container">
                             <div
                                 onClick={onSubmit}
-                                type="submit"
                                 className="signup-login-button"
-                                // className="red buttons"
-                                // id="create-business-button"
                             >
                                 Create
                             </div>
                             <div
-                                type="button"
                                 className="signup-login-button"
-                                // className="red buttons"
-                                // id="create-business-button"
-                                onClick={onCancel}
+                                onClick={() => history.push("/photostream")}
                             >
                                 Cancel
                             </div>
-                            {imageLoading && <p>Loading...</p>} {/* add */}
                         </div>
                     </form>
                 </div>
