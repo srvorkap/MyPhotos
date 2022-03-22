@@ -8,10 +8,6 @@ import { formatError } from "../../helper";
 import "./LoginForm.css";
 
 const LoginForm = () => {
-    const srki =
-        "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111-1500x1000.jp";
-    const srki2 =
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Altja_j%C3%B5gi_Lahemaal.jpg/800px-Altja_j%C3%B5gi_Lahemaal.jpg";
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -103,13 +99,6 @@ const LoginForm = () => {
                     </form>
                 </div>
             </div>
-            <img
-                src={srki}
-                onError={e => (
-                    (e.target.onerror = null), (e.target.src = srki2)
-                )}
-            />
-            {/* // <img src= onError={}/> */}
         </div>
     );
 };
