@@ -5,6 +5,7 @@ import { getPhotos } from "../../store/photo";
 import Cover from "../Cover";
 import PhotoPage from "../PhotoPage";
 import './Photostream.css'
+import { defaultImage } from "../../helper";
 
 const Photostream = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);
@@ -49,23 +50,25 @@ const Photostream = ({ sessionUser }) => {
                 <div className="albums-photos-container">
                     {sessionUserPhotos?.map(photo => (
                         <NavLink to={`/photos/${photo.id}`} key={photo.id}>
-                            <div
-                                style={{
-                                    // backgroundSize: 'cover',
-                                    // background: 'black',
-                                    backgroundImage: `url(${photo.image_url})`,
-                                }}
+                            <img src={photo.image_url} onError={e => (
+                    (e.target.onerror = null), (e.target.src = defaultImage)
+                )}
+                                // style={{
+                                //     // backgroundSize: 'cover',
+                                //     // background: 'black',
+                                //     backgroundImage: `url(${photo.image_url})`,
+                                // }}
                                 className="individual-photo"
                                 onMouseEnter={() => setIsActive(true)}
                                 onMouseLeave={() => setIsActive(false)}
                             >
-                                {isActive && (
+                                {/* {isActive && (
                                     <>
                                         <p>{photo.title}</p>
                                         <p>{photo?.user_id === sessionUser?.id ? 'by YOU!' : `by ${photo?.user_id.username}`}</p>
                                     </>
-                                )}
-                            </div>
+                                )} */}
+                            </img>
                         </NavLink>
                     ))}
                 </div>

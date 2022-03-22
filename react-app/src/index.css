@@ -6,6 +6,10 @@
     /* box-sizing: border-box; */
 }
 
+body {
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+}
+
 ul {
     list-style-type: none;
 }
@@ -69,6 +73,7 @@ a:visited {
     padding: 20px;
     color: white;
     margin: 2px;
+    object-fit:cover;
 }
 
 .albums-photos-container {
