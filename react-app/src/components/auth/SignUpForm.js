@@ -74,7 +74,7 @@ const SignUpForm = () => {
                                 </div>
                             ))}
                         </div>
-                        <div>
+                        <div className="form-label-input">
                             <label htmlFor="username">User Name</label>
                             <input
                                 id="username"
@@ -85,7 +85,7 @@ const SignUpForm = () => {
                                 value={username}
                             ></input>
                         </div>
-                        <div>
+                        <div className="form-label-input">
                             <label htmlFor="email">Email</label>
                             <input
                                 id="email"
@@ -94,10 +94,9 @@ const SignUpForm = () => {
                                 name="email"
                                 onChange={updateEmail}
                                 value={email}
-                                placeholder="Email address"
                             ></input>
                         </div>
-                        <div>
+                        <div className="form-label-input">
                             <label htmlFor="password">Password</label>
                             <input
                                 id="password"
@@ -106,10 +105,9 @@ const SignUpForm = () => {
                                 name="password"
                                 onChange={updatePassword}
                                 value={password}
-                                placeholder="Password"
                             ></input>
                         </div>
-                        <div>
+                        <div className="form-label-input">
                             <label htmlFor="repeatPassword">
                                 Repeat Password
                             </label>
@@ -120,8 +118,6 @@ const SignUpForm = () => {
                                 name="repeat_password"
                                 onChange={updateRepeatPassword}
                                 value={repeatPassword}
-                                placeholder="Repeat password"
-                                //   required={true}
                             ></input>
                         </div>
                         <div onClick={onSignUp} className="signup-login-button">
