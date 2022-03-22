@@ -1,7 +1,35 @@
-#cover-background-image {
+#cover-container {
+    position: relative;
+}
+
+#cover-image {
     height: 250px;
     background-size: cover;
     background-position: center;
     width: 100%;
     object-fit: cover;
+    display: absolute;
+    top: 0px;
+}
+
+#cover-text {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    color: white;
+}
+
+#cover-gradient {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    height: 80px;
+    bottom: 5px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.1)
+    );
 }

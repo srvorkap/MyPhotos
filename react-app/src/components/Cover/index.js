@@ -27,23 +27,26 @@ const Cover = ({ sessionUser }) => {
     }, [dispatch]);
 
     return (
-        <>
+        <div id="cover-container">
+            <div id="cover-gradient"></div>
             <img
                 src={coverPhoto}
                 onError={e => (
                     (e.target.onerror = null), (e.target.src = defaultImage)
                 )}
-                id="cover-background-image"
+                id="cover-image"
             ></img>
-            <h1>{sessionUser?.username}</h1>
-            <h2>
-                {sessionUserPhotos?.length === 0
-                    ? `no photos`
-                    : sessionUserPhotos?.length === 1
-                    ? `1 photo`
-                    : `${sessionUserPhotos?.length} photos`}
-            </h2>
-        </>
+            <div id='cover-text'>
+                <h1>{sessionUser?.username}</h1>
+                <h2>
+                    {sessionUserPhotos?.length === 0
+                        ? `no photos`
+                        : sessionUserPhotos?.length === 1
+                        ? `1 photo`
+                        : `${sessionUserPhotos?.length} photos`}
+                </h2>
+            </div>
+        </div>
     );
 };
 

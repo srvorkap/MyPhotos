@@ -5,7 +5,47 @@
     padding: 20px;
 }
 
-#boze-gospode {
-        /* background: #000 url('https://media.istockphoto.com/photos/renewable-energy-and-sustainable-development-picture-id1186330948?k=20&m=1186330948&s=612x612&w=0&h=5aNPCcQ8FcZraX44PEhb2mqcHkow2xMITJMHdh28xNg=') 0 0 no-repeat; */
-        /* background-image: url('https://media.istockphoto.com/photos/renewable-energy-and-sustainable-development-picture-id1186330948?k=20&m=1186330948&s=612x612&w=0&h=5aNPCcQ8FcZraX44PEhb2mqcHkow2xHdh28xNg='); */
+#image-text-container {
+    display: inline-block;
+}
+
+#text-for-image {
+    position: relative;
+    top: -70px;
+    right: -35px;
+    color: white;
+}
+
+.individual-album-photo-container {
+    height: 300px;
+}
+
+/* boze gospode */
+
+.photo-grid-image {
+    height: 18rem;
+    width: 18rem;
+    object-fit: cover;
+    margin: 2px 15px;
+    margin-bottom: 15px;
+    display: flex;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.album-overlay {
+    position: relative;
+    height: 5rem;
+    width: 18rem;
+    margin: 2px 15px;
+    margin-bottom: 15px;
+    bottom: -304px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.1)
+    );
+    pointer-events: none;
 }
