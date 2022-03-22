@@ -21,10 +21,10 @@ const EditAlbumForm = ({ sessionUser }) => {
     }
 
     let title;
-    let description
+    let description;
     if (currentAlbum) {
-        title = currentAlbum.title
-        description = currentAlbum.description
+        title = currentAlbum.title;
+        description = currentAlbum.description;
     }
 
     // const { title, description } = currentAlbum;
@@ -68,8 +68,8 @@ const EditAlbumForm = ({ sessionUser }) => {
     };
 
     useEffect(() => {
-        dispatch(getAlbums())
-    }, [dispatch])
+        dispatch(getAlbums());
+    }, [dispatch]);
 
     if (!sessionUser) return <Redirect to="/login" />;
     return (
@@ -80,7 +80,7 @@ const EditAlbumForm = ({ sessionUser }) => {
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onSubmit} id="login-form">
+                    <form onSubmit={onSubmit} id="login-form" className="forms">
                         <h1 className="form-heading">Edit Album</h1>
                         <ul className="errors">
                             {errors.map(error => (
@@ -96,7 +96,6 @@ const EditAlbumForm = ({ sessionUser }) => {
                                 name="editedTitle"
                                 value={editedTitle}
                                 onChange={e => setEditedTitle(e.target.value)}
-                                // placeholder="Title"
                             />
                         </div>
                         <div className="form-label-input">

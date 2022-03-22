@@ -1,31 +1,13 @@
-#whole-login-page {
-    height: 100vh;
-    background-size: cover;
-}
-
-.signup-login-page {
-    display: flex;
-    height: 80vh;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-}
-
-.signup-login-form {
-    padding: 0px 15px;
-    margin-right: 50px;
-}
-
-
-
 #photo-form {
-    width: 304px;
-    height: 550px;
-    padding: 24px;
-    background-color: white;
+    height: 600px;
+    margin-top: 5px;
+    align-self: center;
+    justify-self: center;
 }
 
 #new-photo-image {
     border: 1px solid black;
     border-radius: 4px;
 }
+
+

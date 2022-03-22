@@ -51,12 +51,12 @@ const SignUpForm = () => {
     return (
         <div
             style={{ backgroundImage: `url(${loginSignupImage})` }}
-            id="whole-signup-page"
+            className="whole-signup-login-page"
         >
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onSignUp} id="signup-form">
+                    <form onSubmit={onSignUp} id="signup-form" className="forms">
                         <div className="form-title">Sign up for MyPhotos</div>
                         <div>
                             {errors.map((error, ind) => (
