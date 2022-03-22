@@ -12,19 +12,24 @@ const SignUpForm = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    //   const [repeatPassword, setRepeatPassword] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState("");
+
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
     const onSignUp = async e => {
         e.preventDefault();
-        if (password) {
-            //  === repeatPassword) {
-            const data = await dispatch(signUp(username, email, password));
-            //  ,repeatPassword));
-            if (data) {
-                setErrors(data);
-            }
+        const formData = {
+            username,
+            email,
+            password,
+            repeat_password: repeatPassword,
+        };
+        console.log(formData);
+        const data = await dispatch(signUp(formData));
+        console.log(data);
+        if (data) {
+            setErrors(data);
         }
     };
 
@@ -40,12 +45,12 @@ const SignUpForm = () => {
         setPassword(e.target.value);
     };
 
-    //   const updateRepeatPassword = (e) => {
-    //     setRepeatPassword(e.target.value);
-    //   };
+    const updateRepeatPassword = e => {
+        setRepeatPassword(e.target.value);
+    };
 
     if (user) {
-        return <Redirect to="/login" />;
+        return <Redirect to="/photostream" />;
     }
 
     return (
@@ -56,27 +61,34 @@ const SignUpForm = () => {
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onSignUp} id="signup-form" className="forms">
+                    <form
+                        onSubmit={onSignUp}
+                        id="signup-form"
+                        className="forms"
+                    >
                         <div className="form-title">Sign up for MyPhotos</div>
                         <div>
                             {errors.map((error, ind) => (
-                                <div key={ind}>{formatError(error)}</div>
+                                <div key={ind} className="errors">
+                                    {formatError(error)}
+                                </div>
                             ))}
                         </div>
                         <div>
-                            {/* <label>User Name</label> */}
+                            <label htmlFor="username">User Name</label>
                             <input
+                                id="username"
                                 className="signup-login-fields"
                                 type="text"
                                 name="username"
                                 onChange={updateUsername}
                                 value={username}
-                                placeholder="Username"
                             ></input>
                         </div>
                         <div>
-                            {/* <label>Email</label> */}
+                            <label htmlFor="email">Email</label>
                             <input
+                                id="email"
                                 className="signup-login-fields"
                                 type="text"
                                 name="email"
@@ -86,8 +98,9 @@ const SignUpForm = () => {
                             ></input>
                         </div>
                         <div>
-                            {/* <label>Password</label> */}
+                            <label htmlFor="password">Password</label>
                             <input
+                                id="password"
                                 className="signup-login-fields"
                                 type="password"
                                 name="password"
@@ -96,17 +109,22 @@ const SignUpForm = () => {
                                 placeholder="Password"
                             ></input>
                         </div>
-                        {/* <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-        //   required={true}
-        ></input>
-      </div> */}
-                        <div type="submit" className="signup-login-button">
+                        <div>
+                            <label htmlFor="repeatPassword">
+                                Repeat Password
+                            </label>
+                            <input
+                                id="repeatPassword"
+                                className="signup-login-fields"
+                                type="password"
+                                name="repeat_password"
+                                onChange={updateRepeatPassword}
+                                value={repeatPassword}
+                                placeholder="Repeat password"
+                                //   required={true}
+                            ></input>
+                        </div>
+                        <div onClick={onSignUp} className="signup-login-button">
                             Sign Up
                         </div>
                         <p className="signup-login-text">

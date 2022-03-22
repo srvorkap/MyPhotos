@@ -87,12 +87,12 @@ const EditPhotoForm = ({ sessionUser }) => {
     return (
         <div
             style={{ backgroundImage: `url(${formBackgroundImage})` }}
-            id="whole-login-page"
+            className="whole-signup-login-page"
         >
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onSubmit} id="photo-form" className="forms">
+                    <form onSubmit={onSubmit} id="edit-photo-form" className="forms">
                         <h1 className="form-heading">Edit Photo</h1>
                         <ul className="errors">
                             {errors.map(error => (
@@ -144,8 +144,8 @@ const EditPhotoForm = ({ sessionUser }) => {
                                 Select an album (optional)
                             </label>
                             <select
-                                id="editedAlbum_id"
-                                className="signup-login-fields"
+                                id="edit-album-id"
+                                // className="signup-login-fields"
                                 name="editedAlbum_id"
                                 value={editedAlbumId}
                                 onChange={e =>

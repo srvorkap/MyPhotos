@@ -10,4 +10,9 @@
     border-radius: 4px;
 }
 
-
+#album-id {
+    padding: 17px 16px;
+    border: 1px black solid;
+    font-size: 13.33px;
+    font-weight: 400;
+}

@@ -108,12 +108,11 @@ const CreatePhotoForm = ({ sessionUser }) => {
                             />
                         </div>
                         <div className="form-label-input">
-                            <label htmlFor="albumId">
+                            <label htmlFor="album-id">
                                 Select an album (optional)
                             </label>
                             <select
-                                className="signup-login-fields"
-                                id="albumId"
+                                id="album-id"
                                 name="albumId"
                                 value={albumId}
                                 onChange={e => setAlbumId(e.target.value)}
