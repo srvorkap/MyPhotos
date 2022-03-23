@@ -78,20 +78,24 @@ const AlbumsPage = ({ sessionUser }) => {
                             <NavLink to={`/albums/${album?.id}`}>
                                 {/* <div>{album?.title}</div>
                         <img src={album.photos.length === 0 ? defaultAlbumImage : album.photos[0].image_url} /> */}
-                                <div
-                                    style={{
-                                        backgroundImage: `url(${
-                                            album.photos.length === 0
-                                                ? defaultAlbumImage
-                                                : album.photos[0].image_url
-                                        })`,
-                                    }}
+                                <img src={album.photos.length === 0 ? defaultAlbumImage : album.photos[0].image_url}
+                                onError={e => (
+                                    (e.target.onerror = null),
+                                    (e.target.src = defaultImage)
+                                )}
+
+                                    // style={{
+                                    //     backgroundImage: `url(${
+                                    //         album.photos.length === 0
+                                    //             ? defaultAlbumImage
+                                    //             : album.photos[0].image_url
+                                    //     })`,
+                                    // }}
                                     className="individual-photo"
                                     // onMouseEnter={() => setIsActive(true)}
                                     // onMouseLeave={() => setIsActive(false)}
-                                >
-                                    {/* {isActive && ( */}
-                                    <>
+                                />
+                                    <div>
                                         <p>{album.title}</p>
                                         <p>
                                             {album.photos.length === 0
@@ -107,9 +111,8 @@ const AlbumsPage = ({ sessionUser }) => {
                                                 dispatch(deleteAlbum(album.id));
                                             }}
                                         ></i>
-                                    </>
+                                    </div>
                                     {/* )} */}
-                                </div>
                             </NavLink>
                             {/* <button
                         onClick={e => {
