@@ -1,134 +1,180 @@
-# Flask React Project
+# MyPhotos
+MyPhotos is a full-stack application inspired by Flickr, is an image hosting platform where users can upload their photos. Users can also create albums for better organization of their photos.
 
-This is the starter for the Flask React project.
+[Visit the site live here!](https://my-photos-application.herokuapp.com/)
 
-## Getting started
+* [Feature List](https://github.com/srvorkap/MyPhotos/wiki/Feature-List)
+* [User Stories](https://github.com/srvorkap/MyPhotos/wiki/User-Stories)
+* [Database Schema](https://github.com/srvorkap/MyPhotos/wiki/Database-Schema)
 
-1. Clone this repository (only this branch)
+# Technologies Used
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+<img src="react-app/public/images/AWS.png" width="40" height="40"><img src="react-app/public/images/Python.png" width="40" height="40"><img src="react-app/public/images/Flask.png" width="40" height="40"><img src="react-app/public/images/React.png" width="40" height="40"><img src="react-app/public/images/Redux.png" width="40" height="40"><img src="react-app/public/images/HTML.png" width="40" height="40"><img src="react-app/public/images/CSS.png" width="40" height="40"><img src="react-app/public/images/Node.png" width="40" height="40"><img src="react-app/public/images/PostgresQL.png" width="40" height="40"><img src="react-app/public/images/SQLA.png" width="40" height="40"><img src="react-app/public/images/Javascript.png" width="40" height="40"><img src="react-app/public/images/Docker.png" width="40" height="40">
 
-2. Install dependencies
+- Python
+- Flask
+- React
+- Redux
+- HTML
+- CSS
+- Node
+- Postgres
+- Sequel Alchemy
+- JavaScript
+- Docker
+# Getting Started
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+1. Clone the repository
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+       git clone git@github.com:srvorkap/MyPhotos.git
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+2. CD into the root directory and install dependencies
 
-   ```bash
-   pipenv shell
-   ```
+        pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
 
-   ```bash
-   flask db upgrade
-   ```
+3. Create a .env file based on the example with proper settings for your development environment
 
-   ```bash
-   flask seed all
-   ```
+4. Setup your PostgreSQL user, password and database and make sure it matches your .env file
 
-   ```bash
-   flask run
-   ```
+5. Start your environment shell
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+         pipenv shell
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+6. Migrate your database
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+         flask db upgrade
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+7. Seed your data
 
-## Deploy to Heroku
+         flask seed all
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+8. Run the flask app
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+         flask run
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
+9. Open second terminal, cd into /react-app directory and install dependencies with command
 
-   ```bash
-   heroku login
-   ```
+         npm install
 
-6. Login to the heroku container registry
+10. Run the React app
 
-   ```bash
-   heroku container:login
-   ```
+         npm start
 
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
+# Features
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+## Landing Page
+New users can click on start button or sign up button which will take them to the sign up page. Existing users can click on login button in navbar that will take them to the login page.
 
-9. Release your docker container to heroku
+<img landing page/>
 
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
+## Login Page
 
-10. set up your database
+On login page there is also a demo button which will allow someone to quickly sign up as a demo user and explore the site.
+Error handling login page.
 
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
+<img login page/>
 
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
+## Signup page
 
-12. profit
+Error handling for signup page
 
-### For M1 Mac users
+<img signup page/>
 
-(Replaces **Step 8**)
 
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
+## Navbar
 
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
+Navbar is visible on every page. There is difference between navbar when user is logged in and when user is logged out. I both cases navbar has logo that cannot be clicked and github and linkedin about links.
 
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
+# Navbar for logged out users
 
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+Navbar has login and signup buttons when user is logged in.
 
-3. Use docker to push the image to the Heroku container registry:
+<img navbar for logged out users/>
 
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+# Navbar for logged in users
+
+Navbar doesn't have login and signup buttons when user log in but it has some additional buttons.
+
+1. Photostream button - navigates to photostream page
+2. Albums button - navigates to albums page
+3. Explore button - navigates to explore page
+4. Upload button - opens create photo form
+5. Profile button - opens menu that gives us an option to logout
+
+<img navbar for logged in users/>
+
+
+
+
+
+
+
+## Dashboard
+
+Once logged in, the dashboard presents the user with a feed of posts shared by those they follow. The user is then able to infinitely scroll down his feed and click on a post they would like to interact with. There is also a nav bar at the top of the dashboard that coveniently allows the user to create a post, go to their profile page, or log out.
+
+- When logging in you will be greeted with dashboard feed that is filled with post from users that you are following.
+- This feed will infinitely scroll until you run out of posts.
+
+<img src='react-app/public/read-me-imgs/dashboard.png'></img>
+
+- If you aren't following anyone your dashboard will be empty but you will see a list of suggested people to follow
+
+<img src='react-app/public/read-me-imgs/suggested-follows.png'></img>
+
+- On each dashboard post you can:
+  1. Click the ellipsis to open a modal that has an unfollow option. If you unfollow someone their post will stay on your feed until refresh and you will be given the option to follow that person again.
+  2. Click on the owner of the post to visit their profile.
+  3. Click on the heart to like a post which dynamically changes the color aswell as the like count.
+  4. Click the comment bubble to view all comments.
+  5. The user can add a comment to the post which updates dynamically. When there are more than 2 comments the rest are hidden.
+
+<img src='react-app/public/read-me-imgs/dashboard-post.png'></img> <img src='react-app/public/read-me-imgs/additional-comments.png'></img>
+
+- When you click on the comment bubble or 'View all comments' it opens the postView modal where you can see all comments
+  1. User can click on these ellipsis to unfollow this post's owner
+  2. Here you can also leave a comment or like a post and it will update here and the feed dynamically.
+  3. If you are the user that created a comment, this ellipsis will be here for you to edit or delete your comment.
+
+<img src='react-app/public/read-me-imgs/dashboard-postview-modal.png'></img>
+## Images
+
+Clicking on the upload icon in the nav bar will open up a modal form, where the user is able to create a new post with an image of their favorite pet and caption.
+
+Once a post is created, the user can both edit and delete their post.
+
+- When creating a post, user can click 'Select from computer' button to choose a file from their local machine.
+
+<img src='react-app/public/read-me-imgs/create-post.png'></img>
+
+- User can also just drag and drop an image and it will give you a preview.
+
+<img src='react-app/public/read-me-imgs/create-post-img.png'></img>
+
+- When clicking next, user can then add a caption to their image before posting.
+
+<img src='react-app/public/read-me-imgs/create-post-caption.png'></img>
+
+- After creating a post, it will show up on your feed and you can click the ellipsis to edit or delete that post.
+- If you refresh the page the post will disappear because your own posts are not part of your feed.
+<img src='react-app/public/read-me-imgs/delete-edit-post.png'></img>
+## Comments
+
+Upon clicking on a post, the user is able to read/write comments as well as delete/edit their own individual comment.
+
+
+
+
+## User Profile Page
+
+On the profile page, if it is the user's profile they can change their profile image. On any profile page, they can see the profile users followers and who the profile user is following. Here they can also view details of any post and view all of the post's comments.
+
+<img src='react-app/public/read-me-imgs/profile-page.png'></img>
+
+1. If the user is on his own profile page, he/she has the option to update the profile picture by clicking the profile picture. When the profile picture is clicked, it will generate a modal with options to update the profile image, but there will be more features to come in this menu.
+2. The profile page also displays a grid view of all posts from that user, with the most recent posts showing at the top. When hovering over a post, the user will be able to see an overlay which will display the amount of likes and comments that post currently has.
+3. In the header for the profile page, users can view how many posts this profile has, and the amount of followers and following the profile has as well. If the user clicks on followers or following, a modal will pop up which displays more detailed information such as the username, full name, and the option to follow/unfollow the other related users.
+
+<img src='react-app/public/read-me-imgs/edit-profile-image.png'></img>
+<img src='react-app/public/read-me-imgs/post-meta-data.png'></img>
+<img src='react-app/public/read-me-imgs/followers.png'></img>
