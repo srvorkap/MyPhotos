@@ -62,12 +62,6 @@ const Explore = ({ sessionUser }) => {
                                 </p>
                             </div>
                         </div>
-                        {/* {isActive && (
-                                    <>
-                                        <p>{photo.title}</p>
-                                        <p>{photo?.user_id === sessionUser?.id ? 'by YOU!' : `by ${photo?.user.username}`}</p>
-                                    </>
-                                )} */}
                     </NavLink>
                 ))}
             </div>

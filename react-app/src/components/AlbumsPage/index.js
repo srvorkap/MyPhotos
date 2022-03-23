@@ -32,7 +32,7 @@ const AlbumsPage = ({ sessionUser }) => {
     return (
         <div id="albums-page">
             <div id="album-cover-container">
-                <div id='album-cover-gradient'></div>
+                <div id="album-cover-gradient"></div>
                 <img
                     src={coverPhoto}
                     onError={e => (
@@ -40,7 +40,7 @@ const AlbumsPage = ({ sessionUser }) => {
                     )}
                     id="album-cover-image"
                 />
-                <div id='album-cover-text'>
+                <div id="album-cover-text">
                     <h1>{sessionUser?.username}</h1>
                     <h2>
                         {sessionUserAlbums?.length === 0
@@ -64,14 +64,21 @@ const AlbumsPage = ({ sessionUser }) => {
                     {sessionUserAlbums?.map(album => (
                         <div key={album?.id}>
                             <NavLink to={`/albums/${album?.id}`}>
-                                <img src={album.photos.length === 0 ? defaultAlbumImage : album.photos[0].image_url}
-                                onError={e => (
-                                    (e.target.onerror = null),
-                                    (e.target.src = defaultImage)
-                                )}
-                                    className="individual-photo"
-                                />
-                                    <div>
+                                <div id="albums-individual-photo-container">
+                                    <div id="albums-gradient"></div>
+                                    <img
+                                        src={
+                                            album.photos.length === 0
+                                                ? defaultAlbumImage
+                                                : album.photos[0].image_url
+                                        }
+                                        onError={e => (
+                                            (e.target.onerror = null),
+                                            (e.target.src = defaultImage)
+                                        )}
+                                        className="individual-photo"
+                                    />
+                                    <div id="albums-text">
                                         <p>{album.title}</p>
                                         <p>
                                             {album.photos.length === 0
@@ -80,14 +87,16 @@ const AlbumsPage = ({ sessionUser }) => {
                                                 ? `1 Photo`
                                                 : `${album.photos.length} Photos`}
                                         </p>
-                                        <i
-                                            class="fas fa-trash-alt cursor-pointer"
-                                            onClick={e => {
-                                                e.preventDefault();
-                                                dispatch(deleteAlbum(album.id));
-                                            }}
-                                        ></i>
                                     </div>
+                                    <i
+                                        id="albums-trash"
+                                        class="fas fa-trash-alt cursor-pointer"
+                                        onClick={e => {
+                                            e.preventDefault();
+                                            dispatch(deleteAlbum(album.id));
+                                        }}
+                                    ></i>
+                                </div>
                             </NavLink>
                         </div>
                     ))}
