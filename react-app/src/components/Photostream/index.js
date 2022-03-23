@@ -69,7 +69,7 @@ const Photostream = ({ sessionUser }) => {
                                     //     backgroundImage: `url(${photo.image_url})`,
                                     // }}
                                     // className="individual-photo"
-                                    className='photo-grid-image'
+                                    className="photo-grid-image"
                                     // onMouseEnter={() => setIsActive(true)}
                                     // onMouseLeave={() => setIsActive(false)}
                                 />

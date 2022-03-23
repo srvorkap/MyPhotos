@@ -6,6 +6,7 @@ import { getAlbums } from "../../store/album";
 import defaultAlbumImage from "../../assets/default-album-image.jpeg";
 import { deleteAlbum } from "../../store/album";
 import "./AlbumPage.css";
+import { defaultImage } from "../../helper";
 
 const AlbumPage = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);
@@ -70,67 +71,66 @@ const AlbumPage = ({ sessionUser }) => {
             {currentAlbumPhotos && (
                 <div id="album-background-image">
                     {currentAlbumPhotos?.length > 0 ? (
-                        <div id="image-itself"
-                            style={{
-                                backgroundImage: `linear-gradient(rgba(0,0,0,0) -10%, rgba(0,0,0,0.6)),url(${
+                        <div className="aq">
+                            <div id="album-header-gradient"></div>
+                            <img
+                                src={
                                     currentAlbumPhotos[
                                         currentAlbumPhotosLength - 1
                                     ]?.image_url
-                                })`,
-                            }}
-                            className="srkica"
-                        >
-                            {/* backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,1)), url(${currentBusiness?.imageURL})`, */}
-                            <i
-                                class="fas fa-pen cursor-pointer"
-                                id="edit-pen"
-                                onClick={onEdit}
-                            ></i>
+                                }
+                                onError={e => (
+                                    (e.target.onerror = null),
+                                    (e.target.src = defaultImage)
+                                )}
+                                id="image-itself"
+                                className="srkica"
+                            />
+                            <span className="pen-size">
+                                <i
+                                    class="fas fa-pen cursor-pointer"
+                                    id="edit-pen"
+                                    onClick={onEdit}
+                                ></i>
+                            </span>
                             <h1 id="album-title">{currentAlbum?.title}</h1>
                             <p id="album-description">
                                 {currentAlbum?.description}
                             </p>
-                            <p>
+                            <h2 id="album-number-of-photos">
                                 {currentAlbumPhotosLength === 0
                                     ? `no photos`
                                     : currentAlbumPhotosLength === 1
                                     ? `1 photo`
                                     : `${currentAlbumPhotosLength} photos`}
-                            </p>
-
-                            {/* <i
-                                class="fas fa-trash-alt cursor-pointer"
-                                onClick={onDelete}
-                            ></i> */}
+                            </h2>
                         </div>
                     ) : (
-                        <div id="image-itself"
-                            style={{
-                                backgroundImage: `url(${defaultAlbumImage})`,
-                            }}
-                            className="srkica"
-                        >
-                            <i
-                                class="fas fa-pen cursor-pointer"
-                                id="edit-pen"
-                                onClick={onEdit}
-                            ></i>
+                        <div className="aq">
+                            <div id="album-header-gradient"></div>
+                            <img
+                                src={defaultAlbumImage}
+                                id="image-itself"
+                                className="srkica"
+                            />
+                            <span className="pen-size">
+                                <i
+                                    class="fas fa-pen cursor-pointer"
+                                    id="edit-pen"
+                                    onClick={onEdit}
+                                ></i>
+                            </span>
                             <h1 id="album-title">{currentAlbum?.title}</h1>
                             <p id="album-description">
                                 {currentAlbum?.description}
                             </p>
-                            <p>
+                            <h2 id="album-number-of-photos">
                                 {currentAlbumPhotosLength === 0
                                     ? `no photos`
                                     : currentAlbumPhotosLength === 1
                                     ? `1 photo`
                                     : `${currentAlbumPhotosLength} photos`}
-                            </p>
-
-                            {/* <i
-                                class="fas fa-trash-alt cursor-pointer"
-                                onClick={onDelete}
-                            ></i> */}
+                            </h2>
                         </div>
                     )}
                 </div>
@@ -141,15 +141,18 @@ const AlbumPage = ({ sessionUser }) => {
                         <NavLink to={`/photos/${photo?.id}`}>
                             {/* <div>{photo?.title}</div>
                             <img src={photo?.image_url} /> */}
-                            <div
-                                style={{
-                                    backgroundImage: `url(${photo?.image_url})`,
-                                }}
-                                className="individual-photo"
-                                onMouseEnter={() => setIsActive(true)}
-                                onMouseLeave={() => setIsActive(false)}
-                            >
-                                {isActive && (
+                            <div>
+                                <img
+                                    src={photo?.image_url}
+                                    onError={e => (
+                                        (e.target.onerror = null),
+                                        (e.target.src = defaultImage)
+                                    )}
+                                    className="individual-photo"
+                                    // onMouseEnter={() => setIsActive(true)}
+                                    // onMouseLeave={() => setIsActive(false)}
+                                />
+                                {/* {isActive && (
                                     <>
                                         <p>{photo?.title}</p>
                                         <p>
@@ -158,7 +161,7 @@ const AlbumPage = ({ sessionUser }) => {
                                                 : `by ${photo?.user_id?.username}`}
                                         </p>
                                     </>
-                                )}
+                                )} */}
                             </div>
                         </NavLink>
                     </div>
