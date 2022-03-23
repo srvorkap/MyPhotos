@@ -58,7 +58,7 @@ const Explore = ({ sessionUser }) => {
                                 <p>
                                     {photo?.user_id === sessionUser?.id
                                         ? "by YOU!"
-                                        : `by ${photo?.user.username}`}
+                                        : `by ${photo?.user?.username}`}
                                 </p>
                             </div>
                         </div>

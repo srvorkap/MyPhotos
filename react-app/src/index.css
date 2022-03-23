@@ -74,6 +74,8 @@ a:visited {
     color: white;
     margin: 2px;
     object-fit:cover;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .albums-photos-container {

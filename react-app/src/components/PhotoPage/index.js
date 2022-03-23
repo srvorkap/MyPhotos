@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPhotos } from "../../store/photo";
 import { deletePhoto } from "../../store/photo";
-import './PhotoPage.css'
+import NavBar from "../NavBar";
+import "./PhotoPage.css";
+import { defaultImage } from "../../helper";
 
 const PhotoPage = ({ sessionUser, option }) => {
     const { photoId } = useParams();
@@ -46,20 +48,50 @@ const PhotoPage = ({ sessionUser, option }) => {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div id="whole-photo-page">
+            <NavBar />
             <div id="photo-background">
-                <div onClick={onBack} className="cursor-pointer">
+                <div
+                    onClick={onBack}
+                    className="cursor-pointer"
+                    id="photo-page-go-back"
+                >
                     <i class="fas fa-arrow-left"></i>Back to album
                 </div>
-                <img src={currentPhoto?.image_url} />
-                {currentPhoto?.user_id === sessionUser?.id && (
-                    <>
-                        <button onClick={onEdit}>Edit</button>
-                        <button onClick={onDelete}>Delete</button>
-                    </>
-                )}
+                <div id="photo-image-container">
+                    <img
+                        src={currentPhoto?.image_url}
+                        onError={e => (
+                            (e.target.onerror = null),
+                            (e.target.src = defaultImage)
+                        )}
+                        id="photo-page-image"
+                    />
+                </div>
+                <div>
+                    {currentPhoto?.user_id === sessionUser?.id && (
+                        <>
+                            <span className="trash-and-pen-size">
+                                <i
+                                    class="fas fa-pen"
+                                    id="photo-page-edit-pen"
+                                    onClick={onEdit}
+                                ></i>
+                            </span>
+                            <span className="trash-and-pen-size">
+                                <i
+                                    class="fas fa-trash-alt cursor-pointer"
+                                    id="photo-page-trash"
+                                    onClick={onDelete}
+                                ></i>
+                            </span>
+                        </>
+                    )}
+                </div>
             </div>
-            <div>
-                <h1>{currentPhoto?.title}</h1>
+            <div id="photo-page-footer">
+                <h1>{currentPhoto?.user?.username}</h1>
+                <h3>{currentPhoto?.title}</h3>
+                <h5>{currentPhoto?.description}</h5>
             </div>
         </div>
     );
