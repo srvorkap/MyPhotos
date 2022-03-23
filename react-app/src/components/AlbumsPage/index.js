@@ -51,13 +51,15 @@ const AlbumsPage = ({ sessionUser }) => {
                     </h2>
                 </div>
             </div>
-            <div
-                onClick={() => history.push("/albums/new")}
-                id="create-new-album"
-                className="cursor-pointer"
-            >
-                <i class="fas fa-plus"></i>
-                <div>New album</div>
+            <div id="create-new-album-container">
+                <div
+                    onClick={() => history.push("/albums/new")}
+                    id="create-new-album"
+                    className="cursor-pointer"
+                >
+                    <i class="fas fa-plus"></i>
+                    <div>New album</div>
+                </div>
             </div>
             <div>
                 <div className="albums-photos-container">

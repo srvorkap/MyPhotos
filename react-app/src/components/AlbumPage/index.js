@@ -65,7 +65,7 @@ const AlbumPage = ({ sessionUser }) => {
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div id="album-page">
-            <div onClick={onBack} className="back">
+            <div onClick={onBack} className="back" id="go-back-srki">
                 <i class="fas fa-arrow-left"></i>Back to albums list
             </div>
             {currentAlbumPhotos && (
@@ -139,9 +139,8 @@ const AlbumPage = ({ sessionUser }) => {
                 {currentAlbumPhotos?.map(photo => (
                     <div>
                         <NavLink to={`/photos/${photo?.id}`}>
-                            {/* <div>{photo?.title}</div>
-                            <img src={photo?.image_url} /> */}
-                            <div>
+                            <div id="album-individual-photo-container">
+                                <div id="album-container-gradient"></div>
                                 <img
                                     src={photo?.image_url}
                                     onError={e => (
@@ -149,19 +148,15 @@ const AlbumPage = ({ sessionUser }) => {
                                         (e.target.src = defaultImage)
                                     )}
                                     className="individual-photo"
-                                    // onMouseEnter={() => setIsActive(true)}
-                                    // onMouseLeave={() => setIsActive(false)}
                                 />
-                                {/* {isActive && (
-                                    <>
-                                        <p>{photo?.title}</p>
-                                        <p>
-                                            {photo?.user_id === sessionUser?.id
-                                                ? "by YOU!"
-                                                : `by ${photo?.user_id?.username}`}
-                                        </p>
-                                    </>
-                                )} */}
+                                <div id='album-container-text'>
+                                    <p>{photo?.title}</p>
+                                    <p>
+                                        {photo?.user_id === sessionUser?.id
+                                            ? "by YOU!"
+                                            : `by ${photo?.user_id?.username}`}
+                                    </p>
+                                </div>
                             </div>
                         </NavLink>
                     </div>

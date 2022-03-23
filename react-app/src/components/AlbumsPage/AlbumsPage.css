@@ -79,3 +79,12 @@
     right: 5%;
     bottom: 5%;
 }
+
+#create-new-album-container {
+    display: flex;
+    justify-content: center;
+}
+
+#create-new-album {
+    width: fit-content;
+}

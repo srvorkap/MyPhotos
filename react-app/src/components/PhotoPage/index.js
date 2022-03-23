@@ -35,14 +35,16 @@ const PhotoPage = ({ sessionUser, option }) => {
     const onDelete = e => {
         e.preventDefault();
         dispatch(deletePhoto(currentPhoto.id));
-        if (currentPhoto.album_id)
-            history.push(`/albums/${currentPhoto.album_id}`);
-        else history.push(`/photostream`);
+        // if (currentPhoto.album_id)
+        //     history.push(`/albums/${currentPhoto.album_id}`);
+        // else history.push(`/photostream`);
+        history.goBack()
     };
 
     const onBack = e => {
         e.preventDefault();
-        history.push(`/albums/${currentPhoto.album_id}`);
+        // history.push(`/albums/${currentPhoto.album_id}`);
+        history.goBack()
     };
 
     if (!sessionUser) return <Redirect to="/login" />;
@@ -55,7 +57,7 @@ const PhotoPage = ({ sessionUser, option }) => {
                     className="cursor-pointer"
                     id="photo-page-go-back"
                 >
-                    <i class="fas fa-arrow-left"></i>Back to album
+                    <i class="fas fa-arrow-left"></i>Back
                 </div>
                 <div id="photo-image-container">
                     <img

@@ -76,3 +76,34 @@
         rgba(0, 0, 0, 0.3)
     );
 }
+
+#album-individual-photo-container {
+    position: relative;
+}
+
+#album-container-text {
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    color: white;
+}
+
+#album-container-gradient {
+    position: absolute;
+    bottom: 6px;
+    height: 50px;
+    width: 98%;
+    right: 4px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.1)
+    );
+}
+
+#go-back-srki {
+    width: fit-content;
+    cursor: pointer;
+}

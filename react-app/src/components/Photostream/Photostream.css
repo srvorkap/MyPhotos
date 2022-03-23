@@ -79,3 +79,12 @@
         rgba(0, 0, 0, 0.1)
     );
 }
+
+#create-new-photo-container {
+    display: flex;
+    justify-content: center;
+}
+
+#create-new-photo {
+    width: fit-content;
+}

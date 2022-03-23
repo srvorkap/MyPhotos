@@ -42,19 +42,20 @@ const Photostream = ({ sessionUser }) => {
     return (
         <div>
             <Cover sessionUser={sessionUser} />
-            <div
-                onClick={() => history.push("/photos/new")}
-                id="create-new-photo"
-                className="cursor-pointer"
-            >
-                <i class="fas fa-plus"></i>
-                <div>New photo</div>
+            <div id="create-new-photo-container">
+                <div
+                    onClick={() => history.push("/photos/new")}
+                    id="create-new-photo"
+                    className="cursor-pointer"
+                >
+                    <i class="fas fa-plus"></i>
+                    <div id="new-middle">New photo</div>
+                </div>
             </div>
             <div>
                 <div className="albums-photos-container">
                     {sessionUserPhotos?.map(photo => (
                         <NavLink to={`/photos/${photo.id}`} key={photo.id}>
-                            {/* <div id="image-text-container"> */}
                             <div id="photostream-individual-photo-container">
                                 <div id="photostream-gradient"></div>
                                 <img
@@ -65,7 +66,7 @@ const Photostream = ({ sessionUser }) => {
                                     )}
                                     className="individual-photo"
                                 />
-                                <div id='photostream-text'>
+                                <div id="photostream-text">
                                     <p>{photo.title}</p>
                                     <p>
                                         {photo?.user_id === sessionUser?.id
