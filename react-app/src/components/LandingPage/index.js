@@ -15,7 +15,7 @@ const LandingPage = ({ sessionUser }) => {
                 <h1 id="find-your-inspiration">Find your inspiration.</h1>
                 <h3 id="join-myphotos">Join MyPhotos and upload images</h3>
                 <NavLink to="/sign-up">
-                    <div id="start-for-free">Start for free</div>
+                    <div id="start-for-free">Start</div>
                 </NavLink>
             </div>
         </div>
