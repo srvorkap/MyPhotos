@@ -7,10 +7,9 @@ import Cover from "../Cover";
 import defaultAlbumImage from "../../assets/default-album-image.jpeg";
 import coverPhoto from "../../assets/cover-photo.jpeg";
 import "./AlbumsPage.css";
+import { defaultImage } from "../../helper";
 
 const AlbumsPage = ({ sessionUser }) => {
-    // const [isActive, setIsActive] = useState(false)
-
     const allAlbumsObj = useSelector(store => store?.album?.albums);
     let sessionUserAlbums;
     if (allAlbumsObj) {
@@ -29,24 +28,19 @@ const AlbumsPage = ({ sessionUser }) => {
         dispatch(getAlbums());
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     dispatch(getPhotos())
-    // }, [dispatch])
-
-    // const onDelete = e => {
-    //     e.preventDefault()
-    //     dispatch(deleteAlbum())
-    // }
-
     if (!sessionUser) return <Redirect to="/login" />;
     return (
         <div id="albums-page">
-            {/* <Cover sessionUser={sessionUser} /> */}
-            <div>
-                <div
-                    style={{ backgroundImage: `url(${coverPhoto})` }}
-                    id="cover-background-image"
-                >
+            <div id="album-cover-container">
+                <div id="album-cover-gradient"></div>
+                <img
+                    src={coverPhoto}
+                    onError={e => (
+                        (e.target.onerror = null), (e.target.src = defaultImage)
+                    )}
+                    id="album-cover-image"
+                />
+                <div id="album-cover-text">
                     <h1>{sessionUser?.username}</h1>
                     <h2>
                         {sessionUserAlbums?.length === 0
@@ -70,22 +64,21 @@ const AlbumsPage = ({ sessionUser }) => {
                     {sessionUserAlbums?.map(album => (
                         <div key={album?.id}>
                             <NavLink to={`/albums/${album?.id}`}>
-                                {/* <div>{album?.title}</div>
-                        <img src={album.photos.length === 0 ? defaultAlbumImage : album.photos[0].image_url} /> */}
-                                <div
-                                    style={{
-                                        backgroundImage: `url(${
+                                <div id="albums-individual-photo-container">
+                                    <div id="albums-gradient"></div>
+                                    <img
+                                        src={
                                             album.photos.length === 0
                                                 ? defaultAlbumImage
                                                 : album.photos[0].image_url
-                                        })`,
-                                    }}
-                                    className="individual-photo"
-                                    // onMouseEnter={() => setIsActive(true)}
-                                    // onMouseLeave={() => setIsActive(false)}
-                                >
-                                    {/* {isActive && ( */}
-                                    <>
+                                        }
+                                        onError={e => (
+                                            (e.target.onerror = null),
+                                            (e.target.src = defaultImage)
+                                        )}
+                                        className="individual-photo"
+                                    />
+                                    <div id="albums-text">
                                         <p>{album.title}</p>
                                         <p>
                                             {album.photos.length === 0
@@ -94,33 +87,17 @@ const AlbumsPage = ({ sessionUser }) => {
                                                 ? `1 Photo`
                                                 : `${album.photos.length} Photos`}
                                         </p>
-                                        <i
-                                            class="fas fa-trash-alt cursor-pointer"
-                                            onClick={e => {
-                                                e.preventDefault();
-                                                dispatch(deleteAlbum(album.id));
-                                            }}
-                                        ></i>
-                                    </>
-                                    {/* )} */}
+                                    </div>
+                                    <i
+                                        id="albums-trash"
+                                        class="fas fa-trash-alt cursor-pointer"
+                                        onClick={e => {
+                                            e.preventDefault();
+                                            dispatch(deleteAlbum(album.id));
+                                        }}
+                                    ></i>
                                 </div>
                             </NavLink>
-                            {/* <button
-                        onClick={e => {
-                            e.preventDefault();
-                            history.push(`/albums/${album.id}/edit`);
-                        }}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        onClick={e => {
-                            e.preventDefault();
-                            dispatch(deleteAlbum(album.id));
-                        }}
-                    >
-                        Delete
-                    </button> */}
                         </div>
                     ))}
                 </div>

@@ -8,3 +8,74 @@
     justify-items: center;
     padding: 20px;
 }
+
+#album-cover-container {
+    position: relative;
+}
+
+#album-cover-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    object-fit: cover;
+    display: absolute;
+    top: 0px;
+}
+
+#album-cover-text {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    color: white;
+}
+
+#album-cover-gradient {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    height: 80px;
+    bottom: 5px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.1)
+    );
+}
+
+/* bottom half */
+
+#albums-individual-photo-container {
+    position: relative;
+}
+
+#albums-text {
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    color: white;
+}
+
+#albums-gradient {
+    position:absolute;
+    bottom: 6px;
+    height: 50px;
+    width: 98%;
+    right: 4px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.1)
+    );
+}
+
+#albums-trash {
+    position: absolute;
+    color: white;
+    right: 5%;
+    bottom: 5%;
+}

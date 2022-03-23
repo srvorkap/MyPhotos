@@ -6,6 +6,10 @@
     /* box-sizing: border-box; */
 }
 
+body {
+    font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+}
+
 ul {
     list-style-type: none;
 }
@@ -64,11 +68,14 @@ a:visited {
 
 .individual-photo {
     background-size: cover;
-    height: 241px;
-    width: 241px;
-    padding: 20px;
+    height: 344px;
+    width: 344px;
+    /* padding: 20px; */
     color: white;
     margin: 2px;
+    object-fit:cover;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .albums-photos-container {

@@ -75,7 +75,7 @@ const EditAlbumForm = ({ sessionUser }) => {
     return (
         <div
             style={{ backgroundImage: `url(${formBackgroundImage})` }}
-            id="whole-login-page"
+            className="whole-signup-login-page"
         >
             <NavBar />
             <div className="signup-login-page">

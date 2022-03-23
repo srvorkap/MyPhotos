@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import Cover from "../Cover";
 import PhotoPage from "../PhotoPage";
-import './Photostream.css'
+import "./Photostream.css";
+import { defaultImage } from "../../helper";
 
 const Photostream = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);
@@ -21,7 +22,7 @@ const Photostream = ({ sessionUser }) => {
     sessionUserPhotos?.reverse();
 
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
 
     // const onMouseEnter = e => {
     //     e.preventDefault();
@@ -41,7 +42,11 @@ const Photostream = ({ sessionUser }) => {
     return (
         <div>
             <Cover sessionUser={sessionUser} />
-            <div onClick={() => history.push('/photos/new')} id='create-new-photo' className="cursor-pointer">
+            <div
+                onClick={() => history.push("/photos/new")}
+                id="create-new-photo"
+                className="cursor-pointer"
+            >
                 <i class="fas fa-plus"></i>
                 <div>New photo</div>
             </div>
@@ -49,22 +54,25 @@ const Photostream = ({ sessionUser }) => {
                 <div className="albums-photos-container">
                     {sessionUserPhotos?.map(photo => (
                         <NavLink to={`/photos/${photo.id}`} key={photo.id}>
-                            <div
-                                style={{
-                                    // backgroundSize: 'cover',
-                                    // background: 'black',
-                                    backgroundImage: `url(${photo.image_url})`,
-                                }}
-                                className="individual-photo"
-                                onMouseEnter={() => setIsActive(true)}
-                                onMouseLeave={() => setIsActive(false)}
-                            >
-                                {isActive && (
-                                    <>
-                                        <p>{photo.title}</p>
-                                        <p>{photo?.user_id === sessionUser?.id ? 'by YOU!' : `by ${photo?.user_id.username}`}</p>
-                                    </>
-                                )}
+                            {/* <div id="image-text-container"> */}
+                            <div id="photostream-individual-photo-container">
+                                <div id="photostream-gradient"></div>
+                                <img
+                                    src={photo.image_url}
+                                    onError={e => (
+                                        (e.target.onerror = null),
+                                        (e.target.src = defaultImage)
+                                    )}
+                                    className="individual-photo"
+                                />
+                                <div id='photostream-text'>
+                                    <p>{photo.title}</p>
+                                    <p>
+                                        {photo?.user_id === sessionUser?.id
+                                            ? "by YOU!"
+                                            : `by ${photo?.user_id.username}`}
+                                    </p>
+                                </div>
                             </div>
                         </NavLink>
                     ))}

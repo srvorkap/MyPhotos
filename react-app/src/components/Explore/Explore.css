@@ -1,0 +1,29 @@
+#explore-page {
+    margin-top: 58px;
+}
+
+#explore-individual-photo-container {
+    position: relative;
+}
+
+#explore-text {
+    position: absolute;
+    bottom: 8px;
+    left: 5px;
+    color: white;
+}
+
+#explore-gradient {
+    position:absolute;
+    bottom: 6px;
+    height: 50px;
+    width: 98%;
+    right: 4px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.1)
+    );
+}

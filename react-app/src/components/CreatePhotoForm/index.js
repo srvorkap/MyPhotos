@@ -55,7 +55,8 @@ const CreatePhotoForm = ({ sessionUser }) => {
         else if (!data && !albumId) history.push("/photostream");
     };
 
-    if (!sessionUser) return <Redirect to="/login" />;
+    if (!sessionUser) return <Redirect to="/login" />
+    
     return (
         <div
             style={{ backgroundImage: `url(${formBackgroundImage})` }}

@@ -13,22 +13,66 @@
     align-items: center;
     align-content: center;
     justify-content: center;
-    background: rgba(0,0,0,.6);
+    color: white;
+}
+
+#album-title {
+    position: absolute;
+    top: 30%;
+    left: 50%;
 }
 
 .srkica {
     height: 300px;
+    width: 100%;
     color: white;
     text-align: center;
-    background-size: cover;
-    background-position: center;
+    object-fit: cover;
 }
 
 #album-description {
     height: 100px;
     word-wrap: break-word;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 #image-itself {
-    background-color: rgba(0,0,0,.6);
+}
+
+.aq {
+    position: relative;
+}
+
+.pen-size {
+    font-size: 20px;
+    /* color: white */
+}
+
+#edit-pen {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+}
+
+#album-number-of-photos {
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+}
+
+#album-header-gradient {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    height: 98%;
+    bottom: 5px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3)
+    );
 }

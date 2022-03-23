@@ -81,7 +81,6 @@ function App() {
                     <CreatePhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId" exact={true}>
-                    <NavBar />
                     <PhotoPage sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId/edit" exact={true}>

@@ -99,9 +99,6 @@ const LoginForm = () => {
                     </form>
                 </div>
             </div>
-            {/* <button id="demo-login" onClick={demoLogin2}>
-                Demo User2
-            </button> */}
         </div>
     );
 };
