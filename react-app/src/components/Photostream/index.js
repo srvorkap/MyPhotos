@@ -5,7 +5,8 @@ import { getPhotos } from "../../store/photo";
 import Cover from "../Cover";
 import PhotoPage from "../PhotoPage";
 import "./Photostream.css";
-import { defaultImage } from "../../helper";
+// import { defaultImage } from "../../helper";
+import defaultImage from "../../assets/404-error.png";
 
 const Photostream = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);

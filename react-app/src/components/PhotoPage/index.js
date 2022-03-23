@@ -5,7 +5,7 @@ import { getPhotos } from "../../store/photo";
 import { deletePhoto } from "../../store/photo";
 import NavBar from "../NavBar";
 import "./PhotoPage.css";
-import { defaultImage } from "../../helper";
+import defaultImage from "../../assets/404-error.png";
 
 const PhotoPage = ({ sessionUser, option }) => {
     const { photoId } = useParams();

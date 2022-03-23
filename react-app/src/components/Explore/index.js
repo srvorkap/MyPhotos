@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import "./Explore.css";
-import { defaultImage } from "../../helper";
+import defaultImage from "../../assets/404-error.png";
 
 const Explore = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);

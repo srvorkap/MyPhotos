@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import coverPhoto from "../../assets/cover-photo.jpeg";
 import { getPhotos } from "../../store/photo";
 import "./Cover.css";
-import { defaultImage } from "../../helper";
+import defaultImage from "../../assets/404-error.png";
 
 const Cover = ({ sessionUser }) => {
     const allPhotosObj = useSelector(store => store?.photo?.photos);

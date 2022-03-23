@@ -17,16 +17,15 @@ def check_url(form, field):
     regular_expresion = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)'
     url_is_an_image = re.match(regular_expresion, image_url)
     if not url_is_an_image:
-        raise ValidationError('Please use correct image URL.')
+        raise ValidationError('Image URL must end with .jpg, .gif, .png')
 
 class PhotoForm(FlaskForm):
     image_url = StringField('image_url', validators=[DataRequired('Image URL is required.'),
-    Length(max=255, message="Image URL must be < 255 characters."),
-    Length(min=2, message="Image URL must be > 1 character."), check_url])
+    Length(max=255, message="Image URL must be < 255 characters."), check_url])
 
     title = StringField('title', validators=[DataRequired('Title is required.'),
     Length(max=30, message="Title must be < 30 characters."),
-    Length(min=2, message="Title must be > 1 character.")])
+    Length(min=4, message="Title must be at least 4 characters long.")])
 
     description = TextAreaField('description', validators=[
         Length(max=255, message="Description must be < 255 characters.")])
