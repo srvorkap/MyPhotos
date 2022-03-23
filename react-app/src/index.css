@@ -139,3 +139,7 @@ a:visited {
     padding: 24px;
     background-color: white;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

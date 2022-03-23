@@ -56,7 +56,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
     };
 
     if (!sessionUser) return <Redirect to="/login" />
-    
+
     return (
         <div
             style={{ backgroundImage: `url(${formBackgroundImage})` }}
