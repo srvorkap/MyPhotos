@@ -1,4 +1,4 @@
-/* #albums-page {
+#albums-page {
     padding-bottom: 20px;
 }
 
@@ -7,7 +7,7 @@
     justify-content: center;
     justify-items: center;
     padding: 20px;
-} */
+}
 
 #album-cover-container {
     position: relative;

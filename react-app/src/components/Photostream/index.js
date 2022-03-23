@@ -55,25 +55,17 @@ const Photostream = ({ sessionUser }) => {
                     {sessionUserPhotos?.map(photo => (
                         <NavLink to={`/photos/${photo.id}`} key={photo.id}>
                             {/* <div id="image-text-container"> */}
-                            <div className="individual-album-photo-container">
-                                <div className="album-overlay"></div>
+                            <div id="photostream-individual-photo-container">
+                                <div id="photostream-gradient"></div>
                                 <img
                                     src={photo.image_url}
                                     onError={e => (
                                         (e.target.onerror = null),
                                         (e.target.src = defaultImage)
                                     )}
-                                    // style={{
-                                    //     // backgroundSize: 'cover',
-                                    //     // background: 'black',
-                                    //     backgroundImage: `url(${photo.image_url})`,
-                                    // }}
-                                    // className="individual-photo"
-                                    className="photo-grid-image"
-                                    // onMouseEnter={() => setIsActive(true)}
-                                    // onMouseLeave={() => setIsActive(false)}
+                                    className="individual-photo"
                                 />
-                                <div id="text-for-image">
+                                <div id='photostream-text'>
                                     <p>{photo.title}</p>
                                     <p>
                                         {photo?.user_id === sessionUser?.id
@@ -81,12 +73,6 @@ const Photostream = ({ sessionUser }) => {
                                             : `by ${photo?.user_id.username}`}
                                     </p>
                                 </div>
-                                {/* {isActive && (
-                                    <>
-                                        <p>{photo.title}</p>
-                                        <p>{photo?.user_id === sessionUser?.id ? 'by YOU!' : `by ${photo?.user_id.username}`}</p>
-                                    </>
-                                )} */}
                             </div>
                         </NavLink>
                     ))}
