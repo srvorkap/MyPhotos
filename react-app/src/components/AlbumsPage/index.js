@@ -7,7 +7,7 @@ import Cover from "../Cover";
 import defaultAlbumImage from "../../assets/default-album-image.jpeg";
 import coverPhoto from "../../assets/cover-photo.jpeg";
 import "./AlbumsPage.css";
-import { defaultImage } from "../../helper";
+import defaultImage from "../../assets/404-error.png";
 
 const AlbumsPage = ({ sessionUser }) => {
     const allAlbumsObj = useSelector(store => store?.album?.albums);

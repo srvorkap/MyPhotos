@@ -3,4 +3,4 @@ export const formatError = error => {
     return error.slice(startIndex);
 };
 
-export const defaultImage = 'https://www.makdigitaldesign.com/wp-content/uploads/2018/02/shutterstock_325494917-5a68d8403418c600190a3e1f.jpg'
+// export const defaultImage = 'https://www.al-burraq.com/blogs/wp-content/uploads/2018/10/404-error.png'

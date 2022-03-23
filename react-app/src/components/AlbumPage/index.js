@@ -6,7 +6,7 @@ import { getAlbums } from "../../store/album";
 import defaultAlbumImage from "../../assets/default-album-image.jpeg";
 import { deleteAlbum } from "../../store/album";
 import "./AlbumPage.css";
-import { defaultImage } from "../../helper";
+import defaultImage from "../../assets/404-error.png";
 
 const AlbumPage = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);
