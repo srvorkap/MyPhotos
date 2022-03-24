@@ -75,7 +75,7 @@ const SignUpForm = () => {
                             ))}
                         </div>
                         <div className="form-label-input">
-                            <label htmlFor="username">User Name</label>
+                            <label htmlFor="username">Username</label>
                             <input
                                 id="username"
                                 className="signup-login-fields"
@@ -109,7 +109,7 @@ const SignUpForm = () => {
                         </div>
                         <div className="form-label-input">
                             <label htmlFor="repeatPassword">
-                                Repeat Password
+                                Repeat password
                             </label>
                             <input
                                 id="repeatPassword"

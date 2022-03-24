@@ -21,14 +21,14 @@ def check_url(form, field):
 
 class PhotoForm(FlaskForm):
     image_url = StringField('image_url', validators=[DataRequired('Image URL is required.'),
-    Length(max=255, message="Image URL must be < 255 characters."), check_url])
+    Length(max=254, message="Image URL must be < 255 characters."), check_url])
 
     title = StringField('title', validators=[DataRequired('Title is required.'),
-    Length(max=30, message="Title must be < 30 characters."),
+    Length(max=29, message="Title must be less then 30 characters."),
     Length(min=4, message="Title must be at least 4 characters long.")])
 
     description = TextAreaField('description', validators=[
-        Length(max=255, message="Description must be < 255 characters.")])
+        Length(max=254, message="Description must be < 255 characters.")])
     # validators=[Length(max=255, message="Description must be < 255 characters")])
 
     # album_id = SelectField('album_id', choices=[])
