@@ -4,7 +4,7 @@ from app.models import db, Photo
 def seed_photos():
     first_photo = Photo(
         #user 1
-        image_url='http://3.bp.blogspot.com/-gR-kO2fy1sU/U7_tUMvTKyI/AAAAAAAAAos/C88KGJmzM8U/s1600/2508695615_7361d11105_o.jpg', title='Banksy Cleans Up', description='The latest work by mysterious street artist Banksy revealed at Leake Street, London this weekend. See the Banksy tag bottom right of the cave. The CCTV cameras above this were wrapped in grey poly bags to protect them from overspray! Created May 2008 but painted over by August 2008. If you want to blog, post or use this photograph in any way please ask me, link to this page,credit and mark © Michael Greenwood All my shots from the amazing Cans Festival are here… ', user_id=1, album_id=1)
+        image_url='http://3.bp.blogspot.com/-gR-kO2fy1sU/U7_tUMvTKyI/AAAAAAAAAos/C88KGJmzM8U/s1600/2508695615_7361d11105_o.jpg', title='Banksy Cleans Up', description='The latest work by mysterious street artist Banksy revealed at Leake Street, London this weekend. See the Banksy tag bottom right of the cave.', user_id=1, album_id=1)
     second_photo = Photo(
         image_url='https://i.postimg.cc/Hn0hs4Y8/bike.jpg', title='Desert quad bike ride', description=None, user_id=1, album_id=1)
     third_photo = Photo(
@@ -26,7 +26,7 @@ def seed_photos():
     tenth_photo = Photo(
         image_url='https://i.postimg.cc/ZR7wYrMV/Maldives.jpg', title='Maldives', description=None, user_id=2, album_id=5)
     eleventh_photo = Photo(
-        image_url='https://i.postimg.cc/HxMX7XZp/tree.jpg', title='Tree', description='This is the first photo I am uploading to MyPhotos - I have been taking photos actively for the last 15 years, and despite having a vast collection of thousands of images from all parts of the world, I have never really sold any. I love the idea of sharing free images for those who cannot afford to pay for them. I also believe that those who can afford to pay for a photo, and appreciate the efforts of a photographer will be happy to compensate the photographer when they use one for commercial purposes. Here is a free image of a tree - if you use it :)', user_id=2, album_id=5)
+        image_url='https://i.postimg.cc/HxMX7XZp/tree.jpg', title='Tree', description='This is the first photo I am uploading to MyPhotos - I have been taking photos actively for the last 15 years', user_id=2, album_id=5)
     twelfth_photo = Photo(
         image_url='https://i.postimg.cc/9Q2XYTLx/The-Island.jpg', title='The Island', description=None, user_id=2, album_id=5)
     thirteenth_photo = Photo(
