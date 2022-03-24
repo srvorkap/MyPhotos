@@ -78,7 +78,7 @@ Error handling login page.
 
 Error handling for signup page
 
-<img src="react-app/src/assets/readme/signupPage.png" width="40" height="40"/>
+<img src="react-app/src/assets/readme/signupPage.png"/>
 
 
 ## Navbar
@@ -89,7 +89,7 @@ Navbar is visible on every page. There is difference between navbar when user is
 
 Navbar has login and signup buttons when user is logged in.
 
-<img src="react-app/src/assets/readme/loggedOutUserNavbar.png" width="40" height="40"/>
+<img src="react-app/src/assets/readme/loggedOutUserNavbar.png"/>
 
 # Navbar for logged in users
 
