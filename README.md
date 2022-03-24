@@ -101,7 +101,7 @@ Navbar doesn't have login and signup buttons when user log in but it has some ad
 4. Upload button - opens create photo form
 5. Profile button - opens menu that gives us an option to logout
 
-<img src="react-app/src/assets/readme/loggedInUserNavbar.png"/>
+<img src="react-app/src/assets/readme/loggedInUserNavbar.png"></img>
 
 
 
