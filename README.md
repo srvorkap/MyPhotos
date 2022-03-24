@@ -9,7 +9,17 @@ MyPhotos is a full-stack application inspired by Flickr, is an image hosting pla
 
 # Technologies Used
 
-<img src="react-app/public/images/AWS.png" width="40" height="40"><img src="react-app/public/images/Python.png" width="40" height="40"><img src="react-app/public/images/Flask.png" width="40" height="40"><img src="react-app/public/images/React.png" width="40" height="40"><img src="react-app/public/images/Redux.png" width="40" height="40"><img src="react-app/public/images/HTML.png" width="40" height="40"><img src="react-app/public/images/CSS.png" width="40" height="40"><img src="react-app/public/images/Node.png" width="40" height="40"><img src="react-app/public/images/PostgresQL.png" width="40" height="40"><img src="react-app/public/images/SQLA.png" width="40" height="40"><img src="react-app/public/images/Javascript.png" width="40" height="40"><img src="react-app/public/images/Docker.png" width="40" height="40">
+<img src="react-app/src/assets/readme/Python.png" width="40" height="40">
+<img src="react-app/src/assets/readme/Flask.png" width="40" height="40">
+<img src="react-app/src/assets/readme/React.png" width="40" height="40">
+<img src="react-app/src/assets/readme/Redux.png" width="40" height="40">
+<img src="react-app/src/assets/readme/HTML.png" width="40" height="40">
+<img src="react-app/src/assets/readme/CSS.png" width="40" height="40">
+<img src="react-app/src/assets/readme/Node.png" width="40" height="40">
+<img src="react-app/src/assets/readme/PostgresQL.png" width="40" height="40">
+<img src="react-app/src/assets/readme/SQLA.png" width="40" height="40">
+<img src="react-app/src/assets/readme/Javascript.png" width="40" height="40">
+<img src="react-app/src/assets/readme/Docker.png" width="40" height="40">
 
 - Python
 - Flask
