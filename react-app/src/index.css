@@ -18,14 +18,22 @@ textarea {
     resize: none;
 }
 
+.nav-items > a {
+    color: white;
+}
+
+.signup-login-link > a {
+    color: #006dac;
+}
+
 a {
     color: black;
     text-decoration: none;
 }
 
-a:visited {
+/* a:visited {
     color: inherit;
-}
+} */
 
 .errors {
     color: #cc4539;
