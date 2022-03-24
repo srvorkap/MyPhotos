@@ -1,5 +1,5 @@
 # MyPhotos
-MyPhotos is a full-stack application inspired by Flickr, is an image hosting platform where users can upload their photos. Users can also create albums for better organization of their photos.
+MyPhotos is a full-stack application inspired by Flickr. It is an image hosting platform where users can upload their photos. Users can also create albums for better organization of their photos.
 
 [Visit the site live here!](https://my-photos-application.herokuapp.com/)
 
@@ -80,11 +80,9 @@ Error handling for signup page
 
 <img src="react-app/src/assets/readme/signupPage.png"/>
 
-
 ## Navbar
 
 Navbar is visible on every page. There is difference between navbar when user is logged in and when user is logged out. I both cases navbar has logo that cannot be clicked and github and linkedin about links.
-
 # Navbar for logged out users
 
 Navbar has login and signup buttons when user is logged in.
@@ -103,78 +101,20 @@ Navbar doesn't have login and signup buttons when user log in but it has some ad
 
 <img src="react-app/src/assets/readme/loggedInUserNavbar.png"></img>
 
+## Photostream
 
+Once logged in user is redirected to photostream page where he can see all photos uploaded by him. He can click on each photo and open individual photo page.
 
+<img src="react-app/src/assets/readme/photostream.png"></img>
 
+## Albums
 
+Albums page contains the list of all albums of the current user. Each individual album can be deleted (with all photos that it contains) by clicking the trash can icon. Also each album can be opened on its own page with the list of all photos that belong to that album.
 
+<img src="react-app/src/assets/readme/albums.png"></img>
 
-## Dashboard
+## Explore
 
-Once logged in, the dashboard presents the user with a feed of posts shared by those they follow. The user is then able to infinitely scroll down his feed and click on a post they would like to interact with. There is also a nav bar at the top of the dashboard that coveniently allows the user to create a post, go to their profile page, or log out.
+Explore page contains the list of all photos that don't belong to the current user. Current user can open individual photos but he can't edit or delete them.
 
-- When logging in you will be greeted with dashboard feed that is filled with post from users that you are following.
-- This feed will infinitely scroll until you run out of posts.
-
-<img src='react-app/public/read-me-imgs/dashboard.png'></img>
-
-- If you aren't following anyone your dashboard will be empty but you will see a list of suggested people to follow
-
-<img src='react-app/public/read-me-imgs/suggested-follows.png'></img>
-
-- On each dashboard post you can:
-  1. Click the ellipsis to open a modal that has an unfollow option. If you unfollow someone their post will stay on your feed until refresh and you will be given the option to follow that person again.
-  2. Click on the owner of the post to visit their profile.
-  3. Click on the heart to like a post which dynamically changes the color aswell as the like count.
-  4. Click the comment bubble to view all comments.
-  5. The user can add a comment to the post which updates dynamically. When there are more than 2 comments the rest are hidden.
-
-<img src='react-app/public/read-me-imgs/dashboard-post.png'></img> <img src='react-app/public/read-me-imgs/additional-comments.png'></img>
-
-- When you click on the comment bubble or 'View all comments' it opens the postView modal where you can see all comments
-  1. User can click on these ellipsis to unfollow this post's owner
-  2. Here you can also leave a comment or like a post and it will update here and the feed dynamically.
-  3. If you are the user that created a comment, this ellipsis will be here for you to edit or delete your comment.
-
-<img src='react-app/public/read-me-imgs/dashboard-postview-modal.png'></img>
-## Images
-
-Clicking on the upload icon in the nav bar will open up a modal form, where the user is able to create a new post with an image of their favorite pet and caption.
-
-Once a post is created, the user can both edit and delete their post.
-
-- When creating a post, user can click 'Select from computer' button to choose a file from their local machine.
-
-<img src='react-app/public/read-me-imgs/create-post.png'></img>
-
-- User can also just drag and drop an image and it will give you a preview.
-
-<img src='react-app/public/read-me-imgs/create-post-img.png'></img>
-
-- When clicking next, user can then add a caption to their image before posting.
-
-<img src='react-app/public/read-me-imgs/create-post-caption.png'></img>
-
-- After creating a post, it will show up on your feed and you can click the ellipsis to edit or delete that post.
-- If you refresh the page the post will disappear because your own posts are not part of your feed.
-<img src='react-app/public/read-me-imgs/delete-edit-post.png'></img>
-## Comments
-
-Upon clicking on a post, the user is able to read/write comments as well as delete/edit their own individual comment.
-
-
-
-
-## User Profile Page
-
-On the profile page, if it is the user's profile they can change their profile image. On any profile page, they can see the profile users followers and who the profile user is following. Here they can also view details of any post and view all of the post's comments.
-
-<img src='react-app/public/read-me-imgs/profile-page.png'></img>
-
-1. If the user is on his own profile page, he/she has the option to update the profile picture by clicking the profile picture. When the profile picture is clicked, it will generate a modal with options to update the profile image, but there will be more features to come in this menu.
-2. The profile page also displays a grid view of all posts from that user, with the most recent posts showing at the top. When hovering over a post, the user will be able to see an overlay which will display the amount of likes and comments that post currently has.
-3. In the header for the profile page, users can view how many posts this profile has, and the amount of followers and following the profile has as well. If the user clicks on followers or following, a modal will pop up which displays more detailed information such as the username, full name, and the option to follow/unfollow the other related users.
-
-<img src='react-app/public/read-me-imgs/edit-profile-image.png'></img>
-<img src='react-app/public/read-me-imgs/post-meta-data.png'></img>
-<img src='react-app/public/read-me-imgs/followers.png'></img>
+<img src="react-app/src/assets/readme/explore.png"></img>
