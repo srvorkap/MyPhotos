@@ -9,17 +9,7 @@ MyPhotos is a full-stack application inspired by Flickr, is an image hosting pla
 
 # Technologies Used
 
-<img src="react-app/src/assets/readme/Python.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/Flask.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/React.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/Redux.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/HTML.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/CSS.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/Node.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/PostgresQL.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/SQLA.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/Javascript.png" width="40" height="40"/>
-<img src="react-app/src/assets/readme/Docker.png" width="40" height="40"/>
+<img src="react-app/src/assets/readme/Python.png" width="40" height="40"/><img src="react-app/src/assets/readme/Flask.png" width="40" height="40"/><img src="react-app/src/assets/readme/React.png" width="40" height="40"/><img src="react-app/src/assets/readme/Redux.png" width="40" height="40"/><img src="react-app/src/assets/readme/HTML.png" width="40" height="40"/><img src="react-app/src/assets/readme/CSS.png" width="40" height="40"/><img src="react-app/src/assets/readme/Node.png" width="40" height="40"/><img src="react-app/src/assets/readme/PostgresQL.png" width="40" height="40"/><img src="react-app/src/assets/readme/SQLA.png" width="40" height="40"/><img src="react-app/src/assets/readme/Javascript.png" width="40" height="40"/><img src="react-app/src/assets/readme/Docker.png" width="40" height="40"/>
 
 - Python
 - Flask
