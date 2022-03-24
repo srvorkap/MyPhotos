@@ -86,6 +86,12 @@ const AlbumPage = ({ sessionUser }) => {
                                 id="image-itself"
                                 className="srkica"
                             />
+                            <div id="mukica">
+                                <h1 id="album-title">{currentAlbum?.title}</h1>
+                                <p id="album-description">
+                                    {currentAlbum?.description}
+                                </p>
+                            </div>
                             <span className="pen-size">
                                 <i
                                     class="fas fa-pen cursor-pointer"
@@ -93,10 +99,6 @@ const AlbumPage = ({ sessionUser }) => {
                                     onClick={onEdit}
                                 ></i>
                             </span>
-                            <h1 id="album-title">{currentAlbum?.title}</h1>
-                            <p id="album-description">
-                                {currentAlbum?.description}
-                            </p>
                             <h2 id="album-number-of-photos">
                                 {currentAlbumPhotosLength === 0
                                     ? `no photos`
@@ -113,6 +115,12 @@ const AlbumPage = ({ sessionUser }) => {
                                 id="image-itself"
                                 className="srkica"
                             />
+                            <div id="mukica">
+                                <h1 id="album-title">{currentAlbum?.title}</h1>
+                                <p id="album-description">
+                                    {currentAlbum?.description}
+                                </p>
+                            </div>
                             <span className="pen-size">
                                 <i
                                     class="fas fa-pen cursor-pointer"
@@ -120,10 +128,6 @@ const AlbumPage = ({ sessionUser }) => {
                                     onClick={onEdit}
                                 ></i>
                             </span>
-                            <h1 id="album-title">{currentAlbum?.title}</h1>
-                            <p id="album-description">
-                                {currentAlbum?.description}
-                            </p>
                             <h2 id="album-number-of-photos">
                                 {currentAlbumPhotosLength === 0
                                     ? `no photos`
@@ -149,7 +153,7 @@ const AlbumPage = ({ sessionUser }) => {
                                     )}
                                     className="individual-photo"
                                 />
-                                <div id='album-container-text'>
+                                <div id="album-container-text">
                                     <p>{photo?.title}</p>
                                     <p>
                                         {photo?.user_id === sessionUser?.id
