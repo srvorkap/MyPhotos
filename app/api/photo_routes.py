@@ -57,7 +57,9 @@ def patch_photo(photo_id):
         photo.image_url = data['image_url']
         photo.title = data['title']
         photo.description = data['description']
-        photo.album_id = data['album_id']
+        if data['album_id'] != 'None':
+            photo.album_id = data['album_id']
+        # photo.album_id = data['album_id']
 
         db.session.commit()
         return { 'photo': photo.to_dict()}
