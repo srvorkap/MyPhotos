@@ -65,20 +65,20 @@ MyPhotos is a full-stack application inspired by Flickr, is an image hosting pla
 ## Landing Page
 New users can click on start button or sign up button which will take them to the sign up page. Existing users can click on login button in navbar that will take them to the login page.
 
-<img landing page/>
+<img src="react-app/src/assets/readme/landingPage.png"/>
 
 ## Login Page
 
 On login page there is also a demo button which will allow someone to quickly sign up as a demo user and explore the site.
 Error handling login page.
 
-<img login page/>
+<img src="react-app/src/assets/readme/loginPage.png"/>
 
 ## Signup page
 
 Error handling for signup page
 
-<img signup page/>
+<img src="react-app/src/assets/readme/signupPage.png" width="40" height="40"/>
 
 
 ## Navbar
@@ -89,7 +89,7 @@ Navbar is visible on every page. There is difference between navbar when user is
 
 Navbar has login and signup buttons when user is logged in.
 
-<img navbar for logged out users/>
+<img src="react-app/src/assets/readme/loggedOutUserNavbar.png" width="40" height="40"/>
 
 # Navbar for logged in users
 
@@ -101,7 +101,7 @@ Navbar doesn't have login and signup buttons when user log in but it has some ad
 4. Upload button - opens create photo form
 5. Profile button - opens menu that gives us an option to logout
 
-<img navbar for logged in users/>
+<img src="react-app/src/assets/readme/loggedInUserNavbar.png"/>
 
 
 
