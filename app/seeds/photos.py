@@ -8,7 +8,7 @@ def seed_photos():
     second_photo = Photo(
         image_url='https://i.postimg.cc/Hn0hs4Y8/bike.jpg', title='Desert quad bike ride', description=None, user_id=1, album_id=1)
     third_photo = Photo(
-        image_url='https://shapeenergy.eu/wp-content/uploads/2017/11/belgrade-thumb.jpg', title='Belgrade', description='asdfsdf asdfsadf asdf asdf asdf asdf asdf sad fasdf asd fasdf asdfasdf asd fasd asd fsadf sad fasd fsad fasd fasdf dsf asdf as dfasdfasdf asd fasdf asdf asdf asdfasdf ', user_id=1, album_id=2)
+        image_url='https://shapeenergy.eu/wp-content/uploads/2017/11/belgrade-thumb.jpg', title='Belgrade', description=None, user_id=1, album_id=2)
     fourth_photo = Photo(
         image_url='https://i.postimg.cc/D0vtGX4J/berlin.jpg', title='Berlin', description=None, user_id=1, album_id=2)
     fifth_photo = Photo(
