@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import Cover from "../Cover";
 import PhotoPage from "../PhotoPage";
-import "./Photostream.css";
-// import { defaultImage } from "../../helper";
 import defaultImage from "../../assets/404-error.png";
+import "./Photostream.css";
+import { useLocation } from "react-router-dom";
 
 const Photostream = ({ sessionUser }) => {
     const [isActive, setIsActive] = useState(false);
@@ -25,15 +25,9 @@ const Photostream = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // const onMouseEnter = e => {
-    //     e.preventDefault();
-    //     setIsActive(true);
-    // };
+    const srki = useLocation()
+    console.log(srki)
 
-    // const onMouseLeave = e => {
-    //     e.preventDefault();
-    //     setIsActive(false);
-    // };
 
     useEffect(() => {
         dispatch(getPhotos());
