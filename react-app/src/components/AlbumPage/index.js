@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
+import { NavLink, Redirect, useParams, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import { getAlbums } from "../../store/album";
@@ -8,7 +8,7 @@ import { deleteAlbum } from "../../store/album";
 import "./AlbumPage.css";
 import defaultImage from "../../assets/404-error.png";
 
-const AlbumPage = ({ sessionUser }) => {
+const AlbumPage = (props) => {
     const [isActive, setIsActive] = useState(false);
     const { albumId } = useParams();
     const albumIdNumerical = +albumId;
@@ -38,6 +38,8 @@ const AlbumPage = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const albumLocation = useLocation()
+
     useEffect(() => {
         dispatch(getAlbums());
     }, [dispatch]);
@@ -62,7 +64,7 @@ const AlbumPage = ({ sessionUser }) => {
         history?.push("/albums");
     };
 
-    if (!sessionUser) return <Redirect to="/login" />;
+    if (!props.sessionUser) return <Redirect to="/login" />;
     return (
         <div id="album-page">
             <div onClick={onBack} className="back" id="go-back-srki">
@@ -142,7 +144,7 @@ const AlbumPage = ({ sessionUser }) => {
             <div className="albums-photos-container">
                 {currentAlbumPhotos?.map(photo => (
                     <div>
-                        <NavLink to={`/photos/${photo?.id}`}>
+                        <NavLink to={`/photos/${photo?.id}`} onClick={() => props.changeLocation(albumLocation)}>
                             <div id="album-individual-photo-container">
                                 <div id="album-container-gradient"></div>
                                 <img
@@ -156,7 +158,7 @@ const AlbumPage = ({ sessionUser }) => {
                                 <div id="album-container-text">
                                     <p>{photo?.title}</p>
                                     <p>
-                                        {photo?.user_id === sessionUser?.id
+                                        {photo?.user_id === props?.sessionUser?.id
                                             ? "by YOU!"
                                             : `by ${photo?.user_id?.username}`}
                                     </p>

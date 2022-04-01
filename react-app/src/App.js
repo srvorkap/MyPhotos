@@ -22,6 +22,7 @@ import PageNotFound from "./components/PageNotFound";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
+    const [location, setLocation] = useState()
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
 
@@ -64,11 +65,11 @@ function App() {
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
                     <NavBar />
-                    <AlbumPage sessionUser={sessionUser} />
+                    <AlbumPage sessionUser={sessionUser} changeLocation={location => setLocation(location)}/>
                 </Route>
                 <Route path="/photostream" exact={true}>
                     <NavBar />
-                    <Photostream sessionUser={sessionUser} />
+                    <Photostream sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                 </Route>
                 <Route path="/explore" exact={true}>
                     <NavBar />
@@ -81,7 +82,7 @@ function App() {
                     <CreatePhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId" exact={true}>
-                    <PhotoPage sessionUser={sessionUser} />
+                    <PhotoPage sessionUser={sessionUser} location={location}/>
                 </Route>
                 <Route path="/photos/:photoId/edit" exact={true}>
                     <EditPhotoForm sessionUser={sessionUser} />

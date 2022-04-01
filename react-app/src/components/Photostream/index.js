@@ -8,7 +8,7 @@ import defaultImage from "../../assets/404-error.png";
 import "./Photostream.css";
 import { useLocation } from "react-router-dom";
 
-const Photostream = ({ sessionUser }) => {
+const Photostream = (props) => {
     const [isActive, setIsActive] = useState(false);
 
     const allPhotosObj = useSelector(store => store?.photo?.photos);
@@ -16,7 +16,7 @@ const Photostream = ({ sessionUser }) => {
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
         sessionUserPhotos = allPhotosArr?.filter(
-            photo => photo?.user_id === sessionUser?.id
+            photo => photo?.user_id === props?.sessionUser?.id
         );
     }
 
@@ -25,21 +25,25 @@ const Photostream = ({ sessionUser }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const srki = useLocation()
-    console.log(srki)
+    const photostreamLocation = useLocation()
+
+    const func = () => {
+        history.push('/photos/new')
+        props.changeLocation(photostreamLocation)
+    }
 
 
     useEffect(() => {
         dispatch(getPhotos());
     }, [dispatch]);
 
-    if (!sessionUser) return <Redirect to="/login" />;
+    if (!props.sessionUser) return <Redirect to="/login" />;
     return (
         <div>
-            <Cover sessionUser={sessionUser} />
+            <Cover sessionUser={props?.sessionUser} />
             <div id="create-new-photo-container">
                 <div
-                    onClick={() => history.push("/photos/new")}
+                    onClick={func}
                     id="create-new-photo"
                     className="cursor-pointer"
                 >
@@ -50,7 +54,7 @@ const Photostream = ({ sessionUser }) => {
             <div>
                 <div className="albums-photos-container">
                     {sessionUserPhotos?.map(photo => (
-                        <NavLink to={`/photos/${photo.id}`} key={photo.id}>
+                        <NavLink to={`/photos/${photo.id}`} key={photo.id} onClick={() => props.changeLocation(photostreamLocation)}>
                             <div id="photostream-individual-photo-container">
                                 <div id="photostream-gradient"></div>
                                 <img
@@ -64,7 +68,7 @@ const Photostream = ({ sessionUser }) => {
                                 <div id="photostream-text">
                                     <p>{photo.title}</p>
                                     <p>
-                                        {photo?.user_id === sessionUser?.id
+                                        {photo?.user_id === props.sessionUser?.id
                                             ? "by YOU!"
                                             : `by ${photo?.user_id.username}`}
                                     </p>
