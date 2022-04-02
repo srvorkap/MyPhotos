@@ -73,7 +73,7 @@ function App() {
                 </Route>
                 <Route path="/explore" exact={true}>
                     <NavBar />
-                    <Explore sessionUser={sessionUser} />
+                    <Explore sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                 </Route>
                 {/* <Route path="/albums/new">
                     <CreateAlbumForm sessionUser={sessionUser}/>

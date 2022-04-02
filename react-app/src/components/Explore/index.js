@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import "./Explore.css";
 import defaultImage from "../../assets/404-error.png";
+import { useLocation } from "react-router-dom";
 
-const Explore = ({ sessionUser }) => {
+const Explore = (props) => {
     const [isActive, setIsActive] = useState(false);
 
     const allPhotosObj = useSelector(store => store?.photo?.photos);
@@ -13,13 +14,15 @@ const Explore = ({ sessionUser }) => {
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
         otherUsersPhotos = allPhotosArr?.filter(
-            photo => photo?.user_id !== sessionUser?.id
+            photo => photo?.user_id !== props?.sessionUser?.id
         );
     }
 
     otherUsersPhotos?.reverse();
 
     const dispatch = useDispatch();
+
+    const exploreLocation = useLocation()
 
     useEffect(() => {
         dispatch(getPhotos());
@@ -35,12 +38,12 @@ const Explore = ({ sessionUser }) => {
         setIsActive(false);
     };
 
-    if (!sessionUser) return <Redirect to="/login" />;
+    if (!props?.sessionUser) return <Redirect to="/login" />;
     return (
         <div id="explore-page">
             <div className="albums-photos-container">
                 {otherUsersPhotos?.map(photo => (
-                    <NavLink to={`/photos/${photo.id}`} key={photo.id}>
+                    <NavLink to={`/photos/${photo.id}`} key={photo.id} onClick={props.changeLocation(exploreLocation)}>
                         <div id="explore-individual-photo-container">
                             <div id="explore-gradient"></div>
                             <img
@@ -56,7 +59,7 @@ const Explore = ({ sessionUser }) => {
                             <div id="explore-text">
                                 <p>{photo.title}</p>
                                 <p>
-                                    {photo?.user_id === sessionUser?.id
+                                    {photo?.user_id === props?.sessionUser?.id
                                         ? "by YOU!"
                                         : `by ${photo?.user?.username}`}
                                 </p>
