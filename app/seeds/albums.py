@@ -6,8 +6,8 @@ def seed_albums():
         title='My first album', description=None, user_id=1)
     second_album = Album(
         title='Travel', description='Images from my trip to Europe', user_id=1)
-    third_album = Album(
-        title='Cars', description=None, user_id=1)
+    # third_album = Album(
+    #     title='Cars', description=None, user_id=1)
     fourth_album = Album(
         title='My first album', description=None, user_id=2)
     fifth_album = Album(
@@ -22,7 +22,7 @@ def seed_albums():
 
     db.session.add(first_album)
     db.session.add(second_album)
-    db.session.add(third_album)
+    # db.session.add(third_album)
     db.session.add(fourth_album)
     db.session.add(fifth_album)
     db.session.add(sixth_album)
