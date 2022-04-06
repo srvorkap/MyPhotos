@@ -21,7 +21,8 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const [imageUrl, setImageUrl] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [albumId, setAlbumId] = useState();
+    const [albums, setAlbums] = useState([]);
+    console.log(albums)
 
     const [errors, setErrors] = useState([]);
 
@@ -35,7 +36,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const reset = () => {
         setTitle("");
         setDescription("");
-        setAlbumId();
+        // setAlbumId();
     };
 
     const onSubmit = async e => {
@@ -44,15 +45,15 @@ const CreatePhotoForm = ({ sessionUser }) => {
             image_url: imageUrl,
             title,
             description,
-            album_id: albumId,
+            // album_id: albumId,
         };
 
         const data = await dispatch(postPhoto(photo));
 
         if (data) setErrors(data);
 
-        if (!data && albumId) history.push(`/albums/${albumId}`);
-        else if (!data && !albumId) history.push("/photostream");
+        // if (!data && albumId) history.push(`/albums/${albumId}`);
+        // else if (!data && !albumId) history.push("/photostream");
     };
 
     if (!sessionUser) return <Redirect to="/login" />
@@ -113,14 +114,16 @@ const CreatePhotoForm = ({ sessionUser }) => {
                                 Select an album (optional)
                             </label>
                             <select
+                                multiple
+                                size={1}
                                 id="album-id"
                                 name="albumId"
-                                value={albumId}
-                                onChange={e => setAlbumId(e.target.value)}
+                                value={albums}
+                                // onChange={e => setAlbums()}
                             >
                                 <option value="11">-Select an album (optional)-</option>
                                 {sessionUserAlbums?.map(album => (
-                                    <option value={album?.id}>
+                                    <option value={album?.id} onClick={(e) => albums.push(e.target.value)}>
                                         {album?.title}
                                     </option>
                                 ))}

@@ -30,6 +30,8 @@ def post_photo():
         image_url = data['image_url']
         title = data['title']
         description = data['description']
+        albums = data['albums']
+        print('________________',albums)
         # album_id = data['album_id']
 
         photo = Photo(
@@ -37,7 +39,7 @@ def post_photo():
             title=title,
             description=description,
             # album_id=album_id,
-            user_id=current_user_id
+            user_id=current_user_id,
         )
 
         db.session.add(photo)
