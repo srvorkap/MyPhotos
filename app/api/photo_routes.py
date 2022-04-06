@@ -18,22 +18,25 @@ def get_all_photos():
 
 @photo_routes.route('/', methods=['POST'])
 def post_photo():
-    current_user_id = current_user.get_id()
+    print('srkicaaaaaaaaaa')
+    # current_user_id = current_user.get_id()
+    current_user_id = 1
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
+    print('00000000000000000000',data)
 
     if form.validate_on_submit():
         image_url = data['image_url']
         title = data['title']
         description = data['description']
-        album_id = data['album_id']
+        # album_id = data['album_id']
 
         photo = Photo(
             image_url=image_url,
             title=title,
             description=description,
-            album_id=album_id,
+            # album_id=album_id,
             user_id=current_user_id
         )
 
@@ -68,9 +71,7 @@ def patch_photo(photo_id):
 
 @photo_routes.route('/<int:photo_id>', methods=['DELETE'])
 def delete_photo(photo_id):
-    print(photo_id)
     photo = Photo.query.get(photo_id)
-    print(photo_id)
 
     db.session.delete(photo)
     db.session.commit()
