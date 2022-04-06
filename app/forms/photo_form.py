@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import IntegerField, StringField, SelectField, TextAreaField, FileField
+from wtforms.fields import IntegerField, StringField, SelectField, TextAreaField, FileField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import Photo
 import re
@@ -32,4 +32,5 @@ class PhotoForm(FlaskForm):
     # validators=[Length(max=255, message="Description must be < 255 characters")])
 
     # album_id = SelectField('album_id', choices=[])
-    album_id = SelectField('album_id', validate_choice=False)
+    # album_id = SelectField('album_id', validate_choice=False)
+    albums = SelectMultipleField('albums', validate_choice=False)
