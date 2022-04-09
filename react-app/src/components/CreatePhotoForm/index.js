@@ -108,7 +108,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
                                 cols="80"
                             />
                         </div>
-                        <div className="form-label-input">
+                        {/* <div className="form-label-input">
                             <label htmlFor="album-id">
                                 Select an album (optional)
                             </label>
@@ -125,6 +125,9 @@ const CreatePhotoForm = ({ sessionUser }) => {
                                     </option>
                                 ))}
                             </select>
+                        </div> */}
+                        <div>
+                            <div onClick={() => history.push('/addToAlbums')}>Add to albums</div>
                         </div>
                         <div className="business-buttons-container">
                             <div

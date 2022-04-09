@@ -1,0 +1,11 @@
+#check-mark {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
+
+#not-check-mark {
+    height: 100px;
+    width: 100px;
+    background-color: black;
+}

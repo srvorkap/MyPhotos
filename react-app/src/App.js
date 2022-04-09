@@ -19,6 +19,7 @@ import EditPhotoForm from "./components/EditPhotoForm";
 import Photostream from "./components/Photostream";
 import Explore from "./components/Explore";
 import PageNotFound from "./components/PageNotFound";
+import AddToAlbums from "./components/AddToAlbums";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
@@ -83,6 +84,9 @@ function App() {
                 </Route>
                 <Route path="/photos/:photoId" exact={true}>
                     <PhotoPage sessionUser={sessionUser} location={location}/>
+                </Route>
+                <Route>
+                    <AddToAlbums sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId/edit" exact={true}>
                     <EditPhotoForm sessionUser={sessionUser} />
