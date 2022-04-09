@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { getAlbums } from "../../store/album";
+import '../AddToAlbums/AddToAlbums.css'
 
 const AddToAlbums = ({ sessionUser }) => {
     const allAlbumsObj = useSelector(store => store?.album?.albums);
@@ -12,28 +13,34 @@ const AddToAlbums = ({ sessionUser }) => {
             album => album?.user_id === sessionUser?.id
         );
     }
+    const dispatch = useDispatch();
+    const history = useHistory()
 
-    const [id, setId] = useState([])
+    const [albums, setAlbums] = useState([])
+    console.log(albums)
 
     const onClick = () => {
-
+        console.log(albums)
     }
 
-    const srki = (id) => id
-    console.log(srki())
-
-    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAlbums());
     }, [dispatch]);
     return (
-        <div>
+        <div onClick={onClick}>
             {sessionUserAlbums?.map(album => (
                 <div onClick={() => {
-                    id.push(album.id)
-                    console.log(id)
-                }}>{album.title}</div>
+                    if (albums.indexOf(album.id) === -1) {
+                        setAlbums([...albums, album.id])
+                    } else {
+                        albums.splice(albums.indexOf(album.id), 1)
+                        setAlbums([...albums])
+                    }
+                }}>
+                    <div>{album.title}</div>
+                    <div id={albums.indexOf(album.id) === -1 ? 'not-check-mark' : 'check-mark'}></div>
+                </div>
             ))}
         </div>
     )

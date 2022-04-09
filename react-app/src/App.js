@@ -19,7 +19,7 @@ import EditPhotoForm from "./components/EditPhotoForm";
 import Photostream from "./components/Photostream";
 import Explore from "./components/Explore";
 import PageNotFound from "./components/PageNotFound";
-import AddToAlbums from "./components/addToAlbums";
+import AddToAlbums from "./components/AddToAlbums";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
