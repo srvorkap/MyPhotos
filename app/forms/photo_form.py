@@ -12,11 +12,9 @@ def password_match(form, field):
         raise ValidationError('Password inputs do not match')
 
 def check_url(form, field):
-    print('in url_is_an_image------------------')
     image_url = field.data
     regular_expresion = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)'
     url_is_an_image = re.match(regular_expresion, image_url)
-    print('gavrilo princip')
     if not url_is_an_image:
         raise ValidationError('Image URL must end with .jpg, .gif, .png')
 
@@ -30,12 +28,3 @@ class PhotoForm(FlaskForm):
 
     description = TextAreaField('description', validators=[
         Length(max=254, message="Description must be < 255 characters.")])
-    # validators=[Length(max=255, message="Description must be < 255 characters")])
-
-    # album_id = SelectField('album_id', choices=[])
-    # album_id = SelectField('album_id', validate_choice=False)
-
-
-    print('inside photo form --------------------')
-    # albums = SelectMultipleField('albums', validate_choice=False)
-    # album_ids = SelectField('album_ids', validate_choice=False)

@@ -23,7 +23,6 @@ def post_photo():
     current_user_id = 1
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # data = form.data
     data = request.json
 
     if form.validate_on_submit():
@@ -31,23 +30,16 @@ def post_photo():
         title = data['title']
         description = data['description']
         album_ids = data['album_ids']
-        print('----------------------', album_ids)
-
-        # album_id = data['album_id']
-        # album = Album.query.get(album_ids)
 
         photo = Photo(
             image_url=image_url,
             title=title,
             description=description,
-            # album_id=album_id,
-            # albums=albums,
             user_id=current_user_id,
         )
         for album_id in album_ids:
             album = Album.query.get(album_id)
             photo.albums.append(album)
-        # photo.albums.append(album)
 
         db.session.add(photo)
         db.session.commit()
