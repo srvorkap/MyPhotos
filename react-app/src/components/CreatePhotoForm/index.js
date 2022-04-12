@@ -27,6 +27,8 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const [albumId, setAlbumId] = useState();
     const [albums, setAlbums] = useState([])
 
+    const srki = albums
+
     console.log('srkicacar', albums)
 
     const [errors, setErrors] = useState([]);
@@ -135,7 +137,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
                             </select>
                         </div> */}
                         <div>
-                            <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)}/>
+                            <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)} srki={srki}/>
                             {albums?.map(album => <div>{allAlbumsObj[album].title}</div>)}
                         </div>
                         <div className="business-buttons-container">

@@ -20,8 +20,6 @@ const PhotoPage = (props) => {
         );
     }
 
-    console.log('srkica album', props.location.pathname)
-
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -33,8 +31,6 @@ const PhotoPage = (props) => {
         e.preventDefault();
         history.push(`/photos/${currentPhoto.id}/edit`);
     };
-
-    console.log('location is', props.location.pathname)
 
     const onDelete = e => {
         e.preventDefault();
