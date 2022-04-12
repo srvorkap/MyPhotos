@@ -27,14 +27,14 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const [albumId, setAlbumId] = useState();
     const [albums, setAlbums] = useState([])
 
+    console.log('srkicacar', albums)
+
     const [errors, setErrors] = useState([]);
 
     // const [showModal, setShowModal] = useState(false);
 
     const dispatch = useDispatch();
     const history = useHistory();
-
-    console.log('skroz gore', albums)
 
     useEffect(() => {
         dispatch(getAlbums());
@@ -52,8 +52,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
             image_url: imageUrl,
             title,
             description,
-            // album_id: albumId,
-            albums
+            album_ids: albums
         };
 
         const data = await dispatch(postPhoto(photo));
@@ -137,7 +136,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
                         </div> */}
                         <div>
                             <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)}/>
-                            {albums?.map(album => <div>{sessionUserAlbums[album].title}</div>)}
+                            {albums?.map(album => <div>{allAlbumsObj[album].title}</div>)}
                         </div>
                         <div className="business-buttons-container">
                             <div

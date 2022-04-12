@@ -19,8 +19,8 @@ def get_all_photos():
 
 @photo_routes.route('/', methods=['POST'])
 def post_photo():
-    # current_user_id = current_user.get_id()
-    current_user_id = 1
+    current_user_id = current_user.get_id()
+    # current_user_id = 1
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = request.json
