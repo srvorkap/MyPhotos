@@ -16,6 +16,7 @@ def check_url(form, field):
     image_url = field.data
     regular_expresion = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)'
     url_is_an_image = re.match(regular_expresion, image_url)
+    print('gavrilo princip')
     if not url_is_an_image:
         raise ValidationError('Image URL must end with .jpg, .gif, .png')
 
@@ -33,4 +34,8 @@ class PhotoForm(FlaskForm):
 
     # album_id = SelectField('album_id', choices=[])
     # album_id = SelectField('album_id', validate_choice=False)
-    albums = SelectMultipleField('albums', validate_choice=False)
+
+
+    print('inside photo form --------------------')
+    # albums = SelectMultipleField('albums', validate_choice=False)
+    # album_ids = SelectField('album_ids', validate_choice=False)

@@ -7,6 +7,9 @@ import formBackgroundImage from "../../assets/cover-photo.jpeg";
 import { formatError } from "../../helper";
 import "./CreatePhotoForm.css";
 import NavBar from "../NavBar";
+// import { Modal } from '../../context/Modal'
+// import AddToAlbums from '../AddToAlbums'
+import AddToAlbumsModal from "../AddToAlbumsModal";
 
 const CreatePhotoForm = ({ sessionUser }) => {
     const allAlbumsObj = useSelector(store => store?.album?.albums);
@@ -22,11 +25,16 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [albumId, setAlbumId] = useState();
+    const [albums, setAlbums] = useState([])
 
     const [errors, setErrors] = useState([]);
 
+    // const [showModal, setShowModal] = useState(false);
+
     const dispatch = useDispatch();
     const history = useHistory();
+
+    console.log('skroz gore', albums)
 
     useEffect(() => {
         dispatch(getAlbums());
@@ -44,7 +52,8 @@ const CreatePhotoForm = ({ sessionUser }) => {
             image_url: imageUrl,
             title,
             description,
-            album_id: albumId,
+            // album_id: albumId,
+            albums
         };
 
         const data = await dispatch(postPhoto(photo));
@@ -55,7 +64,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
         else if (!data && !albumId) history.push("/photostream");
     };
 
-    if (!sessionUser) return <Redirect to="/login" />
+    if (!sessionUser) return <Redirect to="/login" />;
 
     return (
         <div
@@ -127,7 +136,8 @@ const CreatePhotoForm = ({ sessionUser }) => {
                             </select>
                         </div> */}
                         <div>
-                            <div onClick={() => history.push('/addToAlbums')}>Add to albums</div>
+                            <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)}/>
+                            {albums?.map(album => <div>{sessionUserAlbums[album].title}</div>)}
                         </div>
                         <div className="business-buttons-container">
                             <div

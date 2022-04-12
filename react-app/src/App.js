@@ -85,9 +85,9 @@ function App() {
                 <Route path="/photos/:photoId" exact={true}>
                     <PhotoPage sessionUser={sessionUser} location={location}/>
                 </Route>
-                <Route>
+                {/* <Route>
                     <AddToAlbums sessionUser={sessionUser} />
-                </Route>
+                </Route> */}
                 <Route path="/photos/:photoId/edit" exact={true}>
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>

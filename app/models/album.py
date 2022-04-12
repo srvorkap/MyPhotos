@@ -16,11 +16,19 @@ class Album(db.Model):
     # photos = db.relationship('Photo', back_populates='album')
     photos = db.relationship('Photo', back_populates='albums', secondary=album_photos)
 
+    def a_to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'user_id': self.user_id
+        }
+
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
             'description': self.description,
             'user_id': self.user_id,
-            'photos': [photo.to_dict() for photo in self.photos]
+            'photos': [photo.p_to_dict() for photo in self.photos]
         }

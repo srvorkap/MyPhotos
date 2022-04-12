@@ -1,3 +1,4 @@
+from cmath import cos
 from crypt import methods
 from flask import Blueprint, jsonify, session, request
 from app.models import db, User, Album, Photo
@@ -18,29 +19,35 @@ def get_all_photos():
 
 @photo_routes.route('/', methods=['POST'])
 def post_photo():
-    print('srkicaaaaaaaaaa')
     # current_user_id = current_user.get_id()
     current_user_id = 1
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    data = form.data
-    print('00000000000000000000',data)
+    # data = form.data
+    data = request.json
 
     if form.validate_on_submit():
         image_url = data['image_url']
         title = data['title']
         description = data['description']
-        albums = data['albums']
-        print('________________',albums)
+        album_ids = data['album_ids']
+        print('----------------------', album_ids)
+
         # album_id = data['album_id']
+        # album = Album.query.get(album_ids)
 
         photo = Photo(
             image_url=image_url,
             title=title,
             description=description,
             # album_id=album_id,
+            # albums=albums,
             user_id=current_user_id,
         )
+        for album_id in album_ids:
+            album = Album.query.get(album_id)
+            photo.albums.append(album)
+        # photo.albums.append(album)
 
         db.session.add(photo)
         db.session.commit()
