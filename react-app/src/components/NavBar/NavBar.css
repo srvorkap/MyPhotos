@@ -1,16 +1,32 @@
-#nav {
+#navbar {
     display: flex;
     flex-direction: row;
     background-color: rgb(22,22,24);
     color: white;
     height: 50px;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     width: auto;
 }
 
-#nav a:hover{
-    color: grey;
+#navbar a:hover{
+    color: gray;
+}
+
+#navbar-left {
+    display: flex;
+    flex-direction: row;
+}
+
+#navbar-center {
+    display: flex;
+    /* justify-self: center;
+    align-self: center; */
+}
+
+#navbar-right {
+    display: flex;
+    flex-direction: row;
 }
 
 #flickr-dots {
@@ -29,4 +45,9 @@
 
 #upload-button {
     font-size: 25px;
+}
+
+#about-links {
+    display: flex;
+    flex-direction: row;
 }

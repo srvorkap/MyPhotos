@@ -5,8 +5,8 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
+// import UsersList from "./components/UsersList";
+// import User from "./components/User";
 import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
@@ -91,9 +91,9 @@ function App() {
                 <Route path="/photos/:photoId/edit" exact={true}>
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
-                <ProtectedRoute path="/users/:userId" exact={true}>
+                {/* <ProtectedRoute path="/users/:userId" exact={true}>
                     <User />
-                </ProtectedRoute>
+                </ProtectedRoute> */}
                 {/* <ProtectedRoute path="/" exact={true}>
                     <h1>My Home Page</h1>
                 </ProtectedRoute> */}
