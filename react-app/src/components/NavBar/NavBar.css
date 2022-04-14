@@ -16,21 +16,21 @@
 #navbar-left {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 #navbar-center {
     display: flex;
-    /* justify-self: center;
-    align-self: center; */
 }
 
 #navbar-right {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 #flickr-dots {
-    height: 12px;
+    height: 10px;
     justify-self: center;
 }
 
@@ -40,7 +40,6 @@
 
 .nav-items {
     margin: 0 25px;
-    /* width: 150px; */
 }
 
 #upload-button {
