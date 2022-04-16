@@ -49,20 +49,33 @@ def post_photo():
 
 @photo_routes.route('/<int:photo_id>/edit', methods=['PATCH'])
 def patch_photo(photo_id):
+    print('1111111111')
     current_user_id = current_user.get_id()
+    # current_user_id = 1
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    data = form.data
+    data = request.json
+    print(data)
+    # data = form.data
 
     if form.validate_on_submit():
         photo = Photo.query.get(photo_id)
 
-        data = form.data
+        # data = form.data
         photo.image_url = data['image_url']
         photo.title = data['title']
         photo.description = data['description']
-        if data['album_id'] != 'None':
-            photo.album_id = data['album_id']
+        album_ids = data['album_ids']
+
+        print(album_ids)
+        photo.albums = []
+
+        for album_id in album_ids:
+            album = Album.query.get(album_id)
+            photo.albums.append(album)
+
+        # if data['album_id'] != 'None':  !!!!!!!! DAVID SHOWED ME
+        #     photo.album_id = data['album_id']
         # photo.album_id = data['album_id']
 
         db.session.commit()
