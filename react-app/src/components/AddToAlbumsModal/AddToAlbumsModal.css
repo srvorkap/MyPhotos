@@ -12,7 +12,8 @@
     width: 270px;
     height: 20px;
     border-radius: 4px;
+    font-weight: 400;
 }
 #add-to-albums-button:hover {
-    background-color: grey;
+    background-color: #f1f1f1;
 }

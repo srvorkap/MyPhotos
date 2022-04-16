@@ -32,8 +32,6 @@ const EditPhotoForm = ({ sessionUser }) => {
         );
     }
 
-    console.log(currentPhoto)
-
     let image_url;
     let title;
     let description;
@@ -45,19 +43,12 @@ const EditPhotoForm = ({ sessionUser }) => {
         album_ids = currentPhoto.album_ids;
     }
 
-    console.log(album_ids)
-
-
-
     const [editedImageUrl, setEditedImageUrl] = useState(image_url);
     const [editedTitle, setEditedTitle] = useState(title);
     const [editedDescription, setEditedDescription] = useState(description);
     const [editedAlbumIds, setEditedAlbumIds] = useState(album_ids);
 
-
-    // const [editedAlbums, setEditedAlbums] = useState()
-
-    const srki = editedAlbumIds
+    const srki = editedAlbumIds;
 
     const [errors, setErrors] = useState([]);
 
@@ -104,7 +95,11 @@ const EditPhotoForm = ({ sessionUser }) => {
             <NavBar />
             <div className="signup-login-page">
                 <div className="signup-login-form">
-                    <form onSubmit={onSubmit} id="edit-photo-form" className="forms">
+                    <form
+                        onSubmit={onSubmit}
+                        id="edit-photo-form"
+                        className="forms"
+                    >
                         <h1 className="form-heading">Edit Photo</h1>
                         <ul className="errors">
                             {errors.map(error => (
@@ -151,32 +146,18 @@ const EditPhotoForm = ({ sessionUser }) => {
                                 cols="80"
                             />
                         </div>
-                        {/* <div className="form-label-input">
-                            <label htmlFor="editedAlbum_id">
-                                Select an album (optional)
-                            </label>
-                            <select
-                                id="edit-album-id"
-                                // className="signup-login-fields"
-                                name="editedAlbum_id"
-                                value={editedAlbumId}
-                                onChange={e =>
-                                    setEditedAlbumId(e.target.value)
-                                }
-                            >
-                                <option value="11">-optional-</option>
-                                {sessionUserAlbums?.map((album, index) => (
-                                    <option value={album?.id}>
-                                        {album?.title}
-                                    </option>
-                                ))}
-                            </select>
-                        </div> */}
-
-
                         <div>
-                            <AddToAlbumsModal changeAlbums={albums => setEditedAlbumIds(albums)} srki={srki}/>
-                            {editedAlbumIds?.map(album => <div>{allAlbumsObj[album].title}</div>)}
+                            <AddToAlbumsModal
+                                changeAlbums={albums =>
+                                    setEditedAlbumIds(albums)
+                                }
+                                srki={srki}
+                            />
+                        </div>
+                        <div id="edit-photo-list-of-albums">
+                            {editedAlbumIds?.map(album => (
+                                <div>{allAlbumsObj[album].title}</div>
+                            ))}
                         </div>
                         <div className="business-buttons-container">
                             <div
