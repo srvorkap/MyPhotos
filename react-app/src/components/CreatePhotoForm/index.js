@@ -117,7 +117,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
                         </div>
                         <div id="new-photo-list-of-albums">
                             {albums?.map(album => (
-                                <div>{allAlbumsObj[album].title}</div>
+                                <div key={allAlbumsObj[album].id}>{allAlbumsObj[album].title}</div>
                             ))}
                         </div>
                         <div className="business-buttons-container">

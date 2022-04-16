@@ -31,7 +31,6 @@ const AlbumPage = props => {
     let currentAlbumPhotosLength;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
-        console.log("allPhotosArr", allPhotosArr);
         currentAlbumPhotos = allPhotosArr?.filter(photo =>
             photo?.album_ids.includes(albumIdNumerical)
         );

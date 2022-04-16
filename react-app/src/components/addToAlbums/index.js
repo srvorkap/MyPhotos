@@ -19,7 +19,6 @@ const AddToAlbums = props => {
     const dispatch = useDispatch();
 
     const [albums, setAlbums] = useState(props.srki2);
-    console.log(albums);
 
     const onDone = () => {
         setAlbums(albums);
@@ -42,7 +41,7 @@ const AddToAlbums = props => {
                 <div id="add_to_albums_list">
                     {isLoaded &&
                         sessionUserAlbums?.map(album => (
-                            <div className="add_to_albums_list_elements"
+                            <div className="add_to_albums_list_elements" key={album.id}
                                 onClick={() => {
                                     if (albums.indexOf(album.id) === -1) {
                                         setAlbums([...albums, album.id]);
