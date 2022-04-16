@@ -61,8 +61,8 @@ const AlbumsPage = ({ sessionUser }) => {
                     <div>New album</div>
                 </div>
             </div>
-            <div>
-                <div className="albums-photos-container">
+            <div id="outer-albums-container">
+                <div id="inner-albums-container">
                     {sessionUserAlbums?.map(album => (
                         <div key={album?.id}>
                             <NavLink to={`/albums/${album?.id}`}>

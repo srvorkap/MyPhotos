@@ -93,3 +93,16 @@
 #mikica {
     color: red;
 }
+
+#outer-albums-container {
+    display: flex;
+    justify-content:center;
+}
+
+#inner-albums-container {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
