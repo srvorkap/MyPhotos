@@ -63,15 +63,7 @@
     flex-direction: row;
 }
 
-#dropdown {
-    width: 200px;
-    height: 200px;
-    background-color: black;
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    z-index: 1;
-}
+
 
 #srki {
     display: flex;

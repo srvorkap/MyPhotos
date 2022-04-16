@@ -9,3 +9,33 @@
     margin-right: 10px;
     height: 30px;
 }
+
+#profile-dropdown {
+    background-color: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 50px;
+    right: 1%;
+    z-index: 2;
+    width: 230px;
+    box-shadow: 0.1px 0.1px 3px 1px rgb(0 0 0 / 14%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
+}
+
+#logout-button {
+    color: #666;
+    /* background-color: rgb(211, 35, 35);
+    border-color: rgb(211, 35, 35); */
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    cursor: pointer;
+    color: #0073bb;
+  }
+
+  #logout-button:hover {
+    color: none;
+    text-decoration: underline;
+  }
