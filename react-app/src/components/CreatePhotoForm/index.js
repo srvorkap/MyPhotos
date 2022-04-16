@@ -119,9 +119,11 @@ const CreatePhotoForm = ({ sessionUser }) => {
                                 srki={srki}
                             />
                         </div>
-                        {albums?.map(album => (
-                            <div>{allAlbumsObj[album].title}</div>
-                        ))}
+                        <div id="new-photo-list-of-albums">
+                            {albums?.map(album => (
+                                <div>{allAlbumsObj[album].title}</div>
+                            ))}
+                        </div>
                         <div className="business-buttons-container">
                             <div
                                 onClick={onSubmit}

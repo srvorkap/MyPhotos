@@ -1,5 +1,5 @@
 #photo-form {
-    height: 600px;
+    height: fit-content;
     margin-top: 5px;
     align-self: center;
     justify-self: center;
@@ -15,4 +15,11 @@
     border: 1px black solid;
     font-size: 13.33px;
     font-weight: 400;
+}
+
+#new-photo-list-of-albums {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
 }

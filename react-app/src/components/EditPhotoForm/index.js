@@ -32,25 +32,32 @@ const EditPhotoForm = ({ sessionUser }) => {
         );
     }
 
+    console.log(currentPhoto)
+
     let image_url;
     let title;
     let description;
-    let album_id;
+    let album_ids;
     if (currentPhoto) {
         image_url = currentPhoto.image_url;
         title = currentPhoto.title;
         description = currentPhoto.description;
-        album_id = currentPhoto.album_id;
+        album_ids = currentPhoto.album_ids;
     }
+
+    console.log(album_ids)
+
+
 
     const [editedImageUrl, setEditedImageUrl] = useState(image_url);
     const [editedTitle, setEditedTitle] = useState(title);
     const [editedDescription, setEditedDescription] = useState(description);
-    const [editedAlbumId, setEditedAlbumId] = useState(album_id);
+    const [editedAlbumIds, setEditedAlbumIds] = useState(album_ids);
 
 
     // const [editedAlbums, setEditedAlbums] = useState()
 
+    const srki = editedAlbumIds
 
     const [errors, setErrors] = useState([]);
 
@@ -73,7 +80,7 @@ const EditPhotoForm = ({ sessionUser }) => {
             image_url: editedImageUrl,
             title: editedTitle,
             description: editedDescription,
-            album_id: editedAlbumId,
+            album_ids: editedAlbumIds,
         };
         const data = await dispatch(patchPhoto(editedPhoto));
 
@@ -82,7 +89,7 @@ const EditPhotoForm = ({ sessionUser }) => {
             setEditedImageUrl(image_url);
             setEditedTitle(title);
             setEditedDescription(description);
-            setEditedAlbumId(album_id);
+            setEditedAlbumIds(album_ids);
         }
 
         if (!data) history.push(`/photos/${currentPhoto.id}`);
@@ -167,10 +174,10 @@ const EditPhotoForm = ({ sessionUser }) => {
                         </div> */}
 
 
-                        {/* <div>
-                            <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)} srki={srki}/>
-                            {albums?.map(album => <div>{allAlbumsObj[album].title}</div>)}
-                        </div> */}
+                        <div>
+                            <AddToAlbumsModal changeAlbums={albums => setEditedAlbumIds(albums)} srki={srki}/>
+                            {editedAlbumIds?.map(album => <div>{allAlbumsObj[album].title}</div>)}
+                        </div>
                         <div className="business-buttons-container">
                             <div
                                 onClick={onSubmit}
