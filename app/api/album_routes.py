@@ -55,11 +55,6 @@ def patch_album(album_id):
 
 @album_routes.route('/<int:album_id>', methods=['DELETE'])
 def delete_album(album_id):
-    photos = Photo.query.filter(Photo.album_id == album_id).all()
-    for photo in photos:
-        db.session.delete(photo)
-        db.session.commit()
-
     album = Album.query.get(album_id)
     db.session.delete(album)
     db.session.commit()

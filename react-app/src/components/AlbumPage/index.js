@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     NavLink,
     Redirect,
@@ -15,7 +15,6 @@ import "./AlbumPage.css";
 import defaultImage from "../../assets/404-error.png";
 
 const AlbumPage = props => {
-    const [isActive, setIsActive] = useState(false);
     const { albumId } = useParams();
     const albumIdNumerical = +albumId;
 

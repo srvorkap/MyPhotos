@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/index";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-// import UsersList from "./components/UsersList";
-// import User from "./components/User";
 import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
 import AlbumsPage from "./components/AlbumsPage";
@@ -19,7 +16,6 @@ import EditPhotoForm from "./components/EditPhotoForm";
 import Photostream from "./components/Photostream";
 import Explore from "./components/Explore";
 import PageNotFound from "./components/PageNotFound";
-import AddToAlbums from "./components/AddToAlbums";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);

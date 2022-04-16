@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
 import { getAlbums } from "../../store/album";
 import "./AddToAlbums.css";
 
@@ -18,7 +17,6 @@ const AddToAlbums = props => {
         );
     }
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [albums, setAlbums] = useState(props.srki2);
     console.log(albums);
@@ -32,7 +30,7 @@ const AddToAlbums = props => {
     useEffect(() => {
         dispatch(getAlbums());
         setIsLoaded(true);
-    }, []);
+    }, [dispatch]);
     return (
         <div id="add_to_albums_modal">
             <div id="add_to_albums_modal_header">
