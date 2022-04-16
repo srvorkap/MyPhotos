@@ -96,7 +96,7 @@ def seed_albums():
     db.session.add(third_photo)
     db.session.add(fifth_photo)
     db.session.add(twentyeth_photo)
-    db.session.add(eleventh_photo)
+    db.session.add(tenth_photo)
 
     db.session.add(twentyethsecond_photo)
 
@@ -113,7 +113,7 @@ def seed_albums():
     db.session.add(seventeenth_photo)
     db.session.add(eighteenth_photo)
     db.session.add(fifthteenth_photo)
-    db.session.add(tenth_photo)
+    db.session.add(eleventh_photo)
 
     db.session.add(twentyethfirst_photo)
     db.session.add(ninth_photo)

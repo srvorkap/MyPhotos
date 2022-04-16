@@ -87,8 +87,15 @@
     /* height: 50px; */
 }
 
-#mufasa {
-    width: 100%;
+#outer-photostream-photos-container {
     display: flex;
+    justify-content:center;
+}
+
+#inner-photostream-photos-container {
+    display: flex;
+    width: 80%;
     justify-content: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
 }

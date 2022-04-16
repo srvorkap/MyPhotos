@@ -51,8 +51,8 @@ const Photostream = (props) => {
                     <div id="new-middle">New photo</div>
                 </div>
             </div>
-            <div id="mufasa">
-                <div className="albums-photos-container">
+            <div id="outer-photostream-photos-container">
+                <div id="inner-photostream-photos-container">
                     {sessionUserPhotos?.map(photo => (
                         <NavLink to={`/photos/${photo.id}`} key={photo.id} onClick={() => props.changeLocation(photostreamLocation)}>
                             <div id="photostream-individual-photo-container">

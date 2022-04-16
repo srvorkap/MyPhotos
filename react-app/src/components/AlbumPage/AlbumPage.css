@@ -109,3 +109,16 @@
     width: fit-content;
     cursor: pointer;
 }
+
+#outer-albums-photos-container {
+    display: flex;
+    justify-content:center;
+}
+
+#inner-albums-photos-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}

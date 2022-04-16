@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { NavLink, Redirect, useParams, useHistory, useLocation } from "react-router-dom";
+import {
+    NavLink,
+    Redirect,
+    useParams,
+    useHistory,
+    useLocation,
+} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import { getAlbums } from "../../store/album";
@@ -8,7 +14,7 @@ import { deleteAlbum } from "../../store/album";
 import "./AlbumPage.css";
 import defaultImage from "../../assets/404-error.png";
 
-const AlbumPage = (props) => {
+const AlbumPage = props => {
     const [isActive, setIsActive] = useState(false);
     const { albumId } = useParams();
     const albumIdNumerical = +albumId;
@@ -27,9 +33,9 @@ const AlbumPage = (props) => {
     let currentAlbumPhotosLength;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
-        console.log('allPhotosArr', allPhotosArr)
-        currentAlbumPhotos = allPhotosArr?.filter(
-            photo => photo?.album_ids.includes(albumIdNumerical)
+        console.log("allPhotosArr", allPhotosArr);
+        currentAlbumPhotos = allPhotosArr?.filter(photo =>
+            photo?.album_ids.includes(albumIdNumerical)
         );
         currentAlbumPhotosLength = currentAlbumPhotos?.length;
     }
@@ -39,7 +45,7 @@ const AlbumPage = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const albumLocation = useLocation()
+    const albumLocation = useLocation();
 
     useEffect(() => {
         dispatch(getAlbums());
@@ -142,10 +148,13 @@ const AlbumPage = (props) => {
                     )}
                 </div>
             )}
-            <div className="albums-photos-container">
-                {currentAlbumPhotos?.map(photo => (
-                    <div>
-                        <NavLink to={`/photos/${photo?.id}`} onClick={() => props.changeLocation(albumLocation)}>
+            <div id="outer-albums-photos-container">
+                <div id="inner-albums-photos-container">
+                    {currentAlbumPhotos?.map(photo => (
+                        <NavLink
+                            to={`/photos/${photo?.id}`}
+                            onClick={() => props.changeLocation(albumLocation)}
+                        >
                             <div id="album-individual-photo-container">
                                 <div id="album-container-gradient"></div>
                                 <img
@@ -159,15 +168,16 @@ const AlbumPage = (props) => {
                                 <div id="album-container-text">
                                     <p>{photo?.title}</p>
                                     <p>
-                                        {photo?.user_id === props?.sessionUser?.id
+                                        {photo?.user_id ===
+                                        props?.sessionUser?.id
                                             ? "by YOU!"
                                             : `by ${photo?.user_id?.username}`}
                                     </p>
                                 </div>
                             </div>
                         </NavLink>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );
