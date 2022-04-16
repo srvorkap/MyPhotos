@@ -15,7 +15,7 @@ const AddToAlbumsModal = (props) => {
 
     return (
         <>
-            <h4 id='add_to_albums_button' onClick={() => setShowModal(true)}>Add to albums (optional)</h4>
+            <h4 id='add-to-albums-button' onClick={() => setShowModal(true)}>Add to albums (optional)</h4>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <AddToAlbums changeShowModal={showModal => setShowModal(showModal)} srki2={srki2}

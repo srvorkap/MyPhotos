@@ -24,9 +24,9 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const [imageUrl, setImageUrl] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [albums, setAlbums] = useState([])
+    const [albums, setAlbums] = useState([]);
 
-    const srki = albums
+    const srki = albums;
 
     const [errors, setErrors] = useState([]);
 
@@ -50,14 +50,14 @@ const CreatePhotoForm = ({ sessionUser }) => {
             image_url: imageUrl,
             title,
             description,
-            album_ids: albums
+            album_ids: albums,
         };
 
         const data = await dispatch(postPhoto(photo));
 
         if (data) setErrors(data);
 
-        history.push("/photostream");
+        if (!data) history.push("/photostream");
     };
 
     if (!sessionUser) return <Redirect to="/login" />;
@@ -114,9 +114,14 @@ const CreatePhotoForm = ({ sessionUser }) => {
                             />
                         </div>
                         <div>
-                            <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)} srki={srki}/>
-                            {albums?.map(album => <div>{allAlbumsObj[album].title}</div>)}
+                            <AddToAlbumsModal
+                                changeAlbums={albums => setAlbums(albums)}
+                                srki={srki}
+                            />
                         </div>
+                        {albums?.map(album => (
+                            <div>{allAlbumsObj[album].title}</div>
+                        ))}
                         <div className="business-buttons-container">
                             <div
                                 onClick={onSubmit}
