@@ -41,7 +41,7 @@ const Explore = (props) => {
     if (!props?.sessionUser) return <Redirect to="/login" />;
     return (
         <div id="explore-page">
-            <div className="albums-photos-container">
+            <div id="inner-explore-page">
                 {otherUsersPhotos?.map(photo => (
                     <NavLink to={`/photos/${photo.id}`} key={photo.id} onClick={props.changeLocation(exploreLocation)}>
                         <div id="explore-individual-photo-container">
