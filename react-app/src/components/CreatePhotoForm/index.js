@@ -24,12 +24,9 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const [imageUrl, setImageUrl] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [albumId, setAlbumId] = useState();
     const [albums, setAlbums] = useState([])
 
     const srki = albums
-
-    console.log('srkicacar', albums)
 
     const [errors, setErrors] = useState([]);
 
@@ -45,7 +42,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
     const reset = () => {
         setTitle("");
         setDescription("");
-        setAlbumId();
     };
 
     const onSubmit = async e => {
@@ -61,8 +57,7 @@ const CreatePhotoForm = ({ sessionUser }) => {
 
         if (data) setErrors(data);
 
-        if (!data && albumId) history.push(`/albums/${albumId}`);
-        else if (!data && !albumId) history.push("/photostream");
+        history.push("/photostream");
     };
 
     if (!sessionUser) return <Redirect to="/login" />;
@@ -118,24 +113,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
                                 cols="80"
                             />
                         </div>
-                        {/* <div className="form-label-input">
-                            <label htmlFor="album-id">
-                                Select an album (optional)
-                            </label>
-                            <select
-                                id="album-id"
-                                name="albumId"
-                                value={albumId}
-                                onChange={e => setAlbumId(e.target.value)}
-                            >
-                                <option value="11">-Select an album (optional)-</option>
-                                {sessionUserAlbums?.map(album => (
-                                    <option value={album?.id}>
-                                        {album?.title}
-                                    </option>
-                                ))}
-                            </select>
-                        </div> */}
                         <div>
                             <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)} srki={srki}/>
                             {albums?.map(album => <div>{allAlbumsObj[album].title}</div>)}

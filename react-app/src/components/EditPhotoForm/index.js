@@ -8,6 +8,7 @@ import { formatError } from "../../helper";
 import formBackgroundImage from "../../assets/cover-photo.jpeg";
 import "./EditPhotoForm.css";
 import NavBar from "../NavBar";
+import AddToAlbumsModal from "../AddToAlbumsModal";
 
 const EditPhotoForm = ({ sessionUser }) => {
     const { photoId } = useParams();
@@ -46,6 +47,10 @@ const EditPhotoForm = ({ sessionUser }) => {
     const [editedTitle, setEditedTitle] = useState(title);
     const [editedDescription, setEditedDescription] = useState(description);
     const [editedAlbumId, setEditedAlbumId] = useState(album_id);
+
+
+    // const [editedAlbums, setEditedAlbums] = useState()
+
 
     const [errors, setErrors] = useState([]);
 
@@ -139,7 +144,7 @@ const EditPhotoForm = ({ sessionUser }) => {
                                 cols="80"
                             />
                         </div>
-                        <div className="form-label-input">
+                        {/* <div className="form-label-input">
                             <label htmlFor="editedAlbum_id">
                                 Select an album (optional)
                             </label>
@@ -159,7 +164,13 @@ const EditPhotoForm = ({ sessionUser }) => {
                                     </option>
                                 ))}
                             </select>
-                        </div>
+                        </div> */}
+
+
+                        {/* <div>
+                            <AddToAlbumsModal changeAlbums={albums => setAlbums(albums)} srki={srki}/>
+                            {albums?.map(album => <div>{allAlbumsObj[album].title}</div>)}
+                        </div> */}
                         <div className="business-buttons-container">
                             <div
                                 onClick={onSubmit}
