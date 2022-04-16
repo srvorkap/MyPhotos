@@ -10,7 +10,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import { getAlbums } from "../../store/album";
 import defaultAlbumImage from "../../assets/default-album-image.jpeg";
-import { deleteAlbum } from "../../store/album";
 import "./AlbumPage.css";
 import defaultImage from "../../assets/404-error.png";
 
@@ -59,12 +58,6 @@ const AlbumPage = props => {
         history.push(`/albums/${currentAlbum.id}/edit`);
     };
 
-    const onDelete = e => {
-        e.preventDefault();
-        dispatch(deleteAlbum(currentAlbum?.id));
-        history?.push("/albums");
-    };
-
     const onBack = e => {
         e.preventDefault();
         history?.push("/albums");
@@ -74,7 +67,7 @@ const AlbumPage = props => {
     return (
         <div id="album-page">
             <div onClick={onBack} className="back" id="go-back-srki">
-                <i class="fas fa-arrow-left"></i>Back to albums list
+                <i className="fas fa-arrow-left"></i>Back to albums list
             </div>
             {currentAlbumPhotos && (
                 <div id="album-background-image">
@@ -88,11 +81,12 @@ const AlbumPage = props => {
                                     ]?.image_url
                                 }
                                 onError={e => (
-                                    (e.target.onerror = null),
+                                    (e.target.onerror = null)
                                     (e.target.src = defaultImage)
                                 )}
                                 id="image-itself"
                                 className="srkica"
+                                alt="album background"
                             />
                             <div id="mukica">
                                 <h1 id="album-title">{currentAlbum?.title}</h1>
@@ -102,7 +96,7 @@ const AlbumPage = props => {
                             </div>
                             <span className="pen-size">
                                 <i
-                                    class="fas fa-pen cursor-pointer"
+                                    className="fas fa-pen cursor-pointer"
                                     id="edit-pen"
                                     onClick={onEdit}
                                 ></i>
@@ -122,6 +116,7 @@ const AlbumPage = props => {
                                 src={defaultAlbumImage}
                                 id="image-itself"
                                 className="srkica"
+                                alt="album default"
                             />
                             <div id="mukica">
                                 <h1 id="album-title">{currentAlbum?.title}</h1>
@@ -131,7 +126,7 @@ const AlbumPage = props => {
                             </div>
                             <span className="pen-size">
                                 <i
-                                    class="fas fa-pen cursor-pointer"
+                                    className="fas fa-pen cursor-pointer"
                                     id="edit-pen"
                                     onClick={onEdit}
                                 ></i>
@@ -159,10 +154,11 @@ const AlbumPage = props => {
                                 <img
                                     src={photo?.image_url}
                                     onError={e => (
-                                        (e.target.onerror = null),
+                                        (e.target.onerror = null)
                                         (e.target.src = defaultImage)
                                     )}
                                     className="individual-photo"
+                                    alt="individual"
                                 />
                                 <div id="album-container-text">
                                     <p>{photo?.title}</p>

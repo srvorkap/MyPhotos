@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import logoutImage from "../../assets/logout-button.png";
 import "./LogoutButton.css";
@@ -19,7 +19,7 @@ const LogoutButton = ({ sessionUser }) => {
 
     return (
         <div id="logout">
-            <img src={logoutImage} onClick={openMenu} id="logout-image"></img>
+            <img src={logoutImage} onClick={openMenu} id="logout-image" alt="logout"></img>
             {showMenu && (
                 <div id="profile-dropdown">
                     <p>{sessionUser.username === 'Demo' ? 'Demo User' : sessionUser.username}</p>

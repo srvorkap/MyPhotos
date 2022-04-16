@@ -15,13 +15,13 @@ const EditPhotoForm = ({ sessionUser }) => {
     const photoIdNumerical = +photoId;
 
     const allAlbumsObj = useSelector(store => store?.album?.albums);
-    let sessionUserAlbums;
-    if (allAlbumsObj) {
-        const allAlbumsArr = Object?.values(allAlbumsObj);
-        sessionUserAlbums = allAlbumsArr?.filter(
-            album => album?.user_id === sessionUser?.id
-        );
-    }
+    // let sessionUserAlbums;
+    // if (allAlbumsObj) {
+    //     const allAlbumsArr = Object?.values(allAlbumsObj);
+    //     sessionUserAlbums = allAlbumsArr?.filter(
+    //         album => album?.user_id === sessionUser?.id
+    //     );
+    // }
 
     const allPhotosObj = useSelector(store => store?.photo?.photos);
     let currentPhoto;

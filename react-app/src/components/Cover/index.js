@@ -15,10 +15,10 @@ const Cover = ({ sessionUser }) => {
         );
     }
 
-    let numberOfPhotos;
-    if (sessionUserPhotos?.length === 0) numberOfPhotos = null;
-    else if (sessionUserPhotos?.length === 1) numberOfPhotos = "1 Photo";
-    else numberOfPhotos = `${sessionUserPhotos?.length} Photos`;
+    // let numberOfPhotos;
+    // if (sessionUserPhotos?.length === 0) numberOfPhotos = null;
+    // else if (sessionUserPhotos?.length === 1) numberOfPhotos = "1 Photo";
+    // else numberOfPhotos = `${sessionUserPhotos?.length} Photos`;
 
     const dispatch = useDispatch();
 
@@ -32,9 +32,11 @@ const Cover = ({ sessionUser }) => {
             <img
                 src={coverPhoto}
                 onError={e => (
-                    (e.target.onerror = null), (e.target.src = defaultImage)
+                    (e.target.onerror = null)
+                    (e.target.src = defaultImage)
                 )}
                 id="cover-image"
+                alt="cover"
             ></img>
             <div id='cover-text'>
                 <h1>{sessionUser?.username}</h1>

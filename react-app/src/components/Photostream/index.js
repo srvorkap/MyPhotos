@@ -1,16 +1,13 @@
 import { NavLink, Redirect, useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPhotos } from "../../store/photo";
 import Cover from "../Cover";
-import PhotoPage from "../PhotoPage";
 import defaultImage from "../../assets/404-error.png";
 import "./Photostream.css";
 import { useLocation } from "react-router-dom";
 
 const Photostream = (props) => {
-    const [isActive, setIsActive] = useState(false);
-
     const allPhotosObj = useSelector(store => store?.photo?.photos);
     let sessionUserPhotos;
     if (allPhotosObj) {
@@ -47,7 +44,7 @@ const Photostream = (props) => {
                     id="create-new-photo"
                     className="cursor-pointer"
                 >
-                    <i class="fas fa-plus"></i>
+                    <i className="fas fa-plus"></i>
                     <div id="new-middle">New photo</div>
                 </div>
             </div>
@@ -60,10 +57,11 @@ const Photostream = (props) => {
                                 <img
                                     src={photo.image_url}
                                     onError={e => (
-                                        (e.target.onerror = null),
+                                        (e.target.onerror = null)
                                         (e.target.src = defaultImage)
                                     )}
                                     className="individual-photo"
+                                    alt="individual"
                                 />
                                 <div id="photostream-text">
                                     <p>{photo.title}</p>

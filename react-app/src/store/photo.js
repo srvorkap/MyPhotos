@@ -88,7 +88,7 @@ export const deletePhoto = id => async dispatch => {
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ id })
     })
-    const data = await res.json()
+    // const data = await res.json()
 
     if (res.ok) {
         dispatch(deletePhotoActionCreator(id))

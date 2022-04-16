@@ -57,16 +57,17 @@ const PhotoPage = (props) => {
                     className="cursor-pointer"
                     id="photo-page-go-back"
                 >
-                    <i class="fas fa-arrow-left"></i>Back
+                    <i className="fas fa-arrow-left"></i>Back
                 </div>
                 <div id="photo-image-container">
                     <img
                         src={currentPhoto?.image_url}
                         onError={e => (
-                            (e.target.onerror = null),
+                            (e.target.onerror = null)
                             (e.target.src = defaultImage)
                         )}
                         id="photo-page-image"
+                        alt="individual"
                     />
                 </div>
                 <div>
@@ -74,14 +75,14 @@ const PhotoPage = (props) => {
                         <>
                             <span className="trash-and-pen-size">
                                 <i
-                                    class="fas fa-pen"
+                                    className="fas fa-pen"
                                     id="photo-page-edit-pen"
                                     onClick={onEdit}
                                 ></i>
                             </span>
                             <span className="trash-and-pen-size">
                                 <i
-                                    class="fas fa-trash-alt cursor-pointer"
+                                    className="fas fa-trash-alt cursor-pointer"
                                     id="photo-page-trash"
                                     onClick={onDelete}
                                 ></i>

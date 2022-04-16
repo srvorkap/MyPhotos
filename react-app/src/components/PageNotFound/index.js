@@ -10,7 +10,7 @@ const PageNotFound = ({ sessionUser }) => {
             <h1 id="page-not-found-heading">Page Not Found</h1>
             <div id="page-not-found-bottom">
                 <div id="icon-and-text">
-                    <i class="fas fa-exclamation-triangle"></i>
+                    <i className="fas fa-exclamation-triangle"></i>
                     <p>Oops! Looks like you followed a bad link.</p>
                 </div>
                 <p>

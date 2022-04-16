@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Redirect, NavLink } from "react-router-dom";
 import { getAlbums, deleteAlbum } from "../../store/album";
-import { getPhotos } from "../../store/photo";
-import Cover from "../Cover";
 import defaultAlbumImage from "../../assets/default-album-image.jpeg";
 import coverPhoto from "../../assets/cover-photo.jpeg";
 import "./AlbumsPage.css";
@@ -36,9 +34,11 @@ const AlbumsPage = ({ sessionUser }) => {
                 <img
                     src={coverPhoto}
                     onError={e => (
-                        (e.target.onerror = null), (e.target.src = defaultImage)
+                        (e.target.onerror = null)
+                        (e.target.src = defaultImage)
                     )}
                     id="album-cover-image"
+                    alt="albums cover"
                 />
                 <div id="album-cover-text">
                     <h1>{sessionUser?.username}</h1>
@@ -57,7 +57,7 @@ const AlbumsPage = ({ sessionUser }) => {
                     id="create-new-album"
                     className="cursor-pointer"
                 >
-                    <i class="fas fa-plus"></i>
+                    <i className="fas fa-plus"></i>
                     <div>New album</div>
                 </div>
             </div>
@@ -75,10 +75,11 @@ const AlbumsPage = ({ sessionUser }) => {
                                                 : album.photos[0].image_url
                                         }
                                         onError={e => (
-                                            (e.target.onerror = null),
+                                            (e.target.onerror = null)
                                             (e.target.src = defaultImage)
                                         )}
                                         className="individual-photo"
+                                        alt="individual"
                                     />
                                     <div id="albums-text">
                                         <p>{album.title}</p>
@@ -92,7 +93,7 @@ const AlbumsPage = ({ sessionUser }) => {
                                     </div>
                                     <i
                                         id="albums-trash"
-                                        class="fas fa-trash-alt cursor-pointer"
+                                        className="fas fa-trash-alt cursor-pointer"
                                         onClick={e => {
                                             e.preventDefault();
                                             dispatch(deleteAlbum(album.id));

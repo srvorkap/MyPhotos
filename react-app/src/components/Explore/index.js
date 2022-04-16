@@ -18,6 +18,10 @@ const Explore = (props) => {
         );
     }
 
+    if(isActive) {
+
+    }
+
     otherUsersPhotos?.reverse();
 
     const dispatch = useDispatch();
@@ -49,12 +53,13 @@ const Explore = (props) => {
                             <img
                                 src={photo.image_url}
                                 onError={e => (
-                                    (e.target.onerror = null),
+                                    (e.target.onerror = null)
                                     (e.target.src = defaultImage)
                                 )}
                                 className="individual-photo"
                                 onMouseEnter={onMouseEnter}
                                 onMouseLeave={onMouseLeave}
+                                alt='explore individual'
                             />
                             <div id="explore-text">
                                 <p>{photo.title}</p>

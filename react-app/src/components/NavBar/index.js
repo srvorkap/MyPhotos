@@ -17,7 +17,7 @@ const NavBar = () => {
                     id="srki"
                     className="nav-items"
                 >
-                    <img src={flickrDots} id="flickr-dots" />
+                    <img src={flickrDots} id="flickr-dots" alt="flickr dots"/>
                     <h1 id="my-photos">MyPhotos</h1>
                 </NavLink>
                 {sessionUser && (
@@ -55,16 +55,16 @@ const NavBar = () => {
 
             <div id="navbar-center">
                 <div className="nav-items">
-                    <a href="https://srvorkap.github.io/" target="_blank">
+                    <a href="https://srvorkap.github.io/" target="_blank" rel="noreferrer">
                         <span id="github-icon">
                             <div>Portfolio</div>
                         </span>
                     </a>
                 </div>
                 <div className="nav-items">
-                    <a href="https://github.com/srvorkap" target="_blank">
+                    <a href="https://github.com/srvorkap" target="_blank" rel="noreferrer">
                         <span id="github-icon">
-                            <i class="fab fa-github"></i>
+                            <i className="fab fa-github"></i>
                         </span>
                     </a>
                 </div>
@@ -72,16 +72,17 @@ const NavBar = () => {
                     <a
                         href="https://www.linkedin.com/in/srdanvorkapic/"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         <span id="linkedin-icon">
-                            <i class="fab fa-linkedin"></i>
+                            <i className="fab fa-linkedin"></i>
                         </span>
                     </a>
                 </div>
                 <div className="nav-items">
-                    <a href="https://angel.co/u/srdan-vorkapic" target="_blank">
+                    <a href="https://angel.co/u/srdan-vorkapic" target="_blank" rel="noreferrer">
                         <span id="linkedin-icon">
-                            <i class="fab fa-angellist"></i>
+                            <i className="fab fa-angellist"></i>
                         </span>
                     </a>
                 </div>
@@ -95,7 +96,7 @@ const NavBar = () => {
                         <div className="nav-items">
                             <NavLink to="/photos/new">
                                 <span id="upload-button">
-                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <i className="fas fa-cloud-upload-alt"></i>
                                 </span>
                             </NavLink>
                         </div>

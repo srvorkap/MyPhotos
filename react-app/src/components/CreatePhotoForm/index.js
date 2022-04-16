@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { postPhoto } from "../../store/photo";
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbums } from "../../store/album";
@@ -7,19 +7,17 @@ import formBackgroundImage from "../../assets/cover-photo.jpeg";
 import { formatError } from "../../helper";
 import "./CreatePhotoForm.css";
 import NavBar from "../NavBar";
-// import { Modal } from '../../context/Modal'
-// import AddToAlbums from '../AddToAlbums'
 import AddToAlbumsModal from "../AddToAlbumsModal";
 
 const CreatePhotoForm = ({ sessionUser }) => {
     const allAlbumsObj = useSelector(store => store?.album?.albums);
-    let sessionUserAlbums;
-    if (allAlbumsObj) {
-        const allAlbumsArr = Object?.values(allAlbumsObj);
-        sessionUserAlbums = allAlbumsArr?.filter(
-            album => album?.user_id === sessionUser?.id
-        );
-    }
+    // let sessionUserAlbums;
+    // if (allAlbumsObj) {
+    //     const allAlbumsArr = Object?.values(allAlbumsObj);
+    //     sessionUserAlbums = allAlbumsArr?.filter(
+    //         album => album?.user_id === sessionUser?.id
+    //     );
+    // }
 
     const [imageUrl, setImageUrl] = useState("");
     const [title, setTitle] = useState("");
@@ -30,8 +28,6 @@ const CreatePhotoForm = ({ sessionUser }) => {
 
     const [errors, setErrors] = useState([]);
 
-    // const [showModal, setShowModal] = useState(false);
-
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -39,10 +35,10 @@ const CreatePhotoForm = ({ sessionUser }) => {
         dispatch(getAlbums());
     }, [dispatch]);
 
-    const reset = () => {
-        setTitle("");
-        setDescription("");
-    };
+    // const reset = () => {
+    //     setTitle("");
+    //     setDescription("");
+    // };
 
     const onSubmit = async e => {
         e.preventDefault();

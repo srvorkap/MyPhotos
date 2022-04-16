@@ -59,7 +59,7 @@ const AddToAlbums = props => {
                                 <div className="add_to_albums_list_elements_title_check-mark">
                                     {albums.indexOf(album.id) === -1 ? null : (
                                         <i
-                                            class="fas fa-check check-mark"
+                                            className="fas fa-check check-mark"
                                         ></i>
                                     )}
                                 </div>
