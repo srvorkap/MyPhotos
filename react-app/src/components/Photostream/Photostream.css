@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     justify-items: center;
-    padding: 20px;
+    width: fit-content;
+    padding: 15px;
 }
 
 /* #image-text-container {
@@ -83,8 +84,5 @@
 #create-new-photo-container {
     display: flex;
     justify-content: center;
-}
-
-#create-new-photo {
-    width: fit-content;
+    /* height: 50px; */
 }

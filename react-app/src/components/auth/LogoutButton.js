@@ -20,14 +20,16 @@ const LogoutButton = ({ sessionUser }) => {
     return (
         <div id="logout">
             <img src={logoutImage} onClick={openMenu} id="logout-image"></img>
-            <div>
-                {showMenu && (
-                    <>
-                        <p>Hi {sessionUser.username}!</p>
-                        <p onClick={onLogout} className='cursor-pointer'>Logout</p>
-                    </>
-                )}
-            </div>
+            {/* <div> */}
+            {showMenu && (
+                <div id="dropdown">
+                    <p>{sessionUser.username === 'Demo' ? 'Demo User' : sessionUser.username}</p>
+                    <p onClick={onLogout} className="cursor-pointer">
+                        Logout
+                    </p>
+                </div>
+            )}
+            {/* </div> */}
         </div>
     );
 };

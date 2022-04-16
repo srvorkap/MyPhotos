@@ -5,8 +5,8 @@
     color: white;
     height: 50px;
     align-items: center;
-    justify-content: space-between;
     width: auto;
+    min-width: fit-content;
 }
 
 #navbar a:hover{
@@ -17,21 +17,33 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: left;
+    width: 45%;
+    min-width: fit-content;
 }
 
 #navbar-center {
     display: flex;
+    justify-content: left;
+    /* align-items: center; */
+    /* justify-self: center; */
+    width: 20%;
+    min-width: fit-content;
 }
 
 #navbar-right {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 35%;
+    min-width: fit-content;
+    justify-content: right;
 }
 
 #flickr-dots {
     height: 10px;
     justify-self: center;
+    margin-right: 5px;
 }
 
 #logo {
@@ -49,4 +61,20 @@
 #about-links {
     display: flex;
     flex-direction: row;
+}
+
+#dropdown {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    z-index: 1;
+}
+
+#srki {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

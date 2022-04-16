@@ -14,7 +14,7 @@ const NavBar = () => {
             <div id="navbar-left">
                 <NavLink
                     to="/photostream"
-                    id="navbar-left"
+                    id="srki"
                     className="nav-items"
                 >
                     <img src={flickrDots} id="flickr-dots" />
