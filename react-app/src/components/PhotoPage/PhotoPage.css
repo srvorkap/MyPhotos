@@ -9,6 +9,7 @@
 #photo-background {
     position: relative;
     height: 80%;
+    min-width: fit-content;
 }
 #photo-page-go-back {
     width: fit-content;
@@ -38,9 +39,10 @@
 
 #photo-image-container {
     display: flex;
+    flex-direction: row;
     height: 100%;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .trash-and-pen-size {
@@ -49,4 +51,22 @@
 
 #photo-page-footer {
     text-align: center;
+}
+
+#go-left {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    /* position: absolute; */
+    /* left: 0px; */
+    /* top: 200px; */
+}
+
+#go-right {
+    /* position: absolute; */
+    /* right: 0px; */
+    /* top: 200px; */
+    height: 100px;
+    width: 100px;
+    background-color: yellow;
 }

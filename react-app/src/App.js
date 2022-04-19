@@ -19,6 +19,7 @@ import PageNotFound from "./components/PageNotFound";
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
+    console.log('aaaaaaaaaaa', sessionUser)
     const [location, setLocation] = useState()
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
