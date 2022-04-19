@@ -7,22 +7,59 @@ import NavBar from "../NavBar";
 import "./PhotoPage.css";
 import defaultImage from "../../assets/404-error.png";
 
-const PhotoPage = (props) => {
+const PhotoPage = props => {
     const { photoId } = useParams();
     const photoIdNumerical = +photoId;
+    let carouselArr;
 
     const allPhotosObj = useSelector(store => store?.photo?.photos);
-    let currentPhoto;
+    // Photostream
+    let sessionUserPhotos;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
-        currentPhoto = allPhotosArr?.find(
+        sessionUserPhotos = allPhotosArr?.filter(
+            photo => photo?.user_id === props?.sessionUser?.id
+        );
+    }
+
+    sessionUserPhotos?.reverse();
+
+    // Explore
+    // const allPhotosObj = useSelector(store => store?.photo?.photos);
+    let otherUsersPhotos;
+    if (allPhotosObj) {
+        const allPhotosArr = Object?.values(allPhotosObj);
+        otherUsersPhotos = allPhotosArr?.filter(
+            photo => photo?.user_id !== props?.sessionUser?.id
+        );
+    }
+
+    otherUsersPhotos?.reverse();
+
+    // Carousel
+    if (props.location.pathname === "/photostream")
+        carouselArr = sessionUserPhotos;
+    else if (props.location.pathname === "/explore")
+        carouselArr = otherUsersPhotos;
+
+    // const allPhotosObj = useSelector(store => store?.photo?.photos);
+    // let allPhotosArr;
+    // if (allPhotosObj) {
+    //     allPhotosArr = Object?.values(allPhotosObj);
+    // }
+    // let [ allPhotosArrNew, setAllPhotosArrNew ] = useState(allPhotosArr ? [...allPhotosArr] : [])
+    // let [ allPhotosArr, setAllPhotosArr ] = useState(allPhotosArr?.find(photo => photo?.id === photoIdNumerical))
+    let currentPhoto;
+    if (allPhotosObj) {
+        currentPhoto = carouselArr?.find(
             photo => photo?.id === photoIdNumerical
         );
     }
 
-    let [ currentPhotoNew, setCurrentPhotoNew ] = useState(currentPhoto)
-    if (currentPhoto) {
-    }
+    let [index, setIndex] = useState(carouselArr.indexOf(currentPhoto));
+    // let index
+    // if (allPhotosObj) {
+    //     index = allPh
 
     // console.log('currentPhoto', currentPhoto)
     // console.log('currentPhotoNew', currentPhotoNew)
@@ -31,33 +68,36 @@ const PhotoPage = (props) => {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch(getPhotos())
+        dispatch(getPhotos());
     }, [dispatch]);
-
 
     const onEdit = e => {
         e.preventDefault();
-        history.push(`/photos/${currentPhoto.id}/edit`);
+        // history.push(`/photos/${currentPhoto.id}/edit`);
     };
 
     const onDelete = e => {
         e.preventDefault();
-        dispatch(deletePhoto(currentPhoto.id));
+        // dispatch(deletePhoto(currentPhoto.id));
         // if (currentPhoto.album_id)
         //     history.push(`/albums/${currentPhoto.album_id}`);
         // else history.push(`/photostream`);
-        history.push(props.location.pathname)
+        history.push(props.location.pathname);
     };
 
     const onBack = e => {
         e.preventDefault();
         // history.push(`/albums/${currentPhoto.album_id}`);
-        history.push(props.location.pathname)
+        history.push(props.location.pathname);
+    };
+
+    const goLeft = () => {
+        setIndex(index - 1);
     };
 
     const goRight = () => {
-
-    }
+        setIndex(index + 1);
+    };
 
     if (!props.sessionUser) return <Redirect to="/login" />;
     return (
@@ -72,23 +112,21 @@ const PhotoPage = (props) => {
                     <i className="fas fa-arrow-left"></i>Back
                 </div>
                 <div id="photo-image-container">
-                    <div id="go-left"></div>
-                    {currentPhoto && (
-
-                        <img
-                            src={currentPhotoNew?.image_url}
-                            onError={e => (
-                                (e.target.onerror = null)
+                    {index !== 0 && <div id="go-left" onClick={goLeft}></div>}
+                    <img
+                        src={carouselArr[index]?.image_url}
+                        onError={e =>
+                            (e.target.onerror = null)(
                                 (e.target.src = defaultImage)
-                            )}
-                            id="photo-page-image"
-                            alt="individual"
-                        />
-                    )}
-                    <div id="go-right" onClick={goRight}></div>
+                            )
+                        }
+                        id="photo-page-image"
+                        alt="individual"
+                    />
+                    {index !== carouselArr.length -1 && <div id="go-right" onClick={goRight}></div>}
                 </div>
                 <div>
-                    {currentPhoto?.user_id === props?.sessionUser?.id && (
+                    {carouselArr[index]?.user_id === props?.sessionUser?.id && (
                         <>
                             <span className="trash-and-pen-size">
                                 <i
@@ -109,9 +147,9 @@ const PhotoPage = (props) => {
                 </div>
             </div>
             <div id="photo-page-footer">
-                <h1>{currentPhoto?.user?.username}</h1>
-                <h3>{currentPhoto?.title}</h3>
-                <h5>{currentPhoto?.description}</h5>
+                <h1>{carouselArr[index]?.user?.username}</h1>
+                <h3>{carouselArr[index]?.title}</h3>
+                <h5>{carouselArr[index]?.description}</h5>
             </div>
         </div>
     );
