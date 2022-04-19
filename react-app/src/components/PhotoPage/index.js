@@ -57,12 +57,6 @@ const PhotoPage = props => {
     }
 
     let [index, setIndex] = useState(carouselArr.indexOf(currentPhoto));
-    // let index
-    // if (allPhotosObj) {
-    //     index = allPh
-
-    // console.log('currentPhoto', currentPhoto)
-    // console.log('currentPhotoNew', currentPhotoNew)
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -73,7 +67,7 @@ const PhotoPage = props => {
 
     const onEdit = e => {
         e.preventDefault();
-        // history.push(`/photos/${currentPhoto.id}/edit`);
+        history.push(`/photos/${carouselArr[index]?.id}/edit`);
     };
 
     const onDelete = e => {
@@ -112,7 +106,11 @@ const PhotoPage = props => {
                     <i className="fas fa-arrow-left"></i>Back
                 </div>
                 <div id="photo-image-container">
-                    {index !== 0 && <div id="go-left" onClick={goLeft}></div>}
+                    <div onClick={goLeft}>
+                        {index !== 0 && (
+                            <div id="go-left"></div>
+                        )}
+                    </div>
                     <img
                         src={carouselArr[index]?.image_url}
                         onError={e =>
@@ -123,7 +121,11 @@ const PhotoPage = props => {
                         id="photo-page-image"
                         alt="individual"
                     />
-                    {index !== carouselArr.length -1 && <div id="go-right" onClick={goRight}></div>}
+                    <div onClick={goRight}>
+                        {index !== carouselArr.length - 1 && (
+                            <div id="go-right"></div>
+                        )}
+                    </div>
                 </div>
                 <div>
                     {carouselArr[index]?.user_id === props?.sessionUser?.id && (
