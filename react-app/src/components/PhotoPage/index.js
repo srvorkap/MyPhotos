@@ -1,6 +1,6 @@
 import { useParams, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPhotos } from "../../store/photo";
 import { deletePhoto } from "../../store/photo";
 import NavBar from "../NavBar";
@@ -20,12 +20,20 @@ const PhotoPage = (props) => {
         );
     }
 
+    let [ currentPhotoNew, setCurrentPhotoNew ] = useState(currentPhoto)
+    if (currentPhoto) {
+    }
+
+    // console.log('currentPhoto', currentPhoto)
+    // console.log('currentPhotoNew', currentPhotoNew)
+
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-        dispatch(getPhotos());
+        dispatch(getPhotos())
     }, [dispatch]);
+
 
     const onEdit = e => {
         e.preventDefault();
@@ -47,6 +55,10 @@ const PhotoPage = (props) => {
         history.push(props.location.pathname)
     };
 
+    const goRight = () => {
+
+    }
+
     if (!props.sessionUser) return <Redirect to="/login" />;
     return (
         <div id="whole-photo-page">
@@ -61,16 +73,19 @@ const PhotoPage = (props) => {
                 </div>
                 <div id="photo-image-container">
                     <div id="go-left"></div>
-                    <img
-                        src={currentPhoto?.image_url}
-                        onError={e => (
-                            (e.target.onerror = null)
-                            (e.target.src = defaultImage)
-                        )}
-                        id="photo-page-image"
-                        alt="individual"
-                    />
-                    <div id="go-right"></div>
+                    {currentPhoto && (
+
+                        <img
+                            src={currentPhotoNew?.image_url}
+                            onError={e => (
+                                (e.target.onerror = null)
+                                (e.target.src = defaultImage)
+                            )}
+                            id="photo-page-image"
+                            alt="individual"
+                        />
+                    )}
+                    <div id="go-right" onClick={goRight}></div>
                 </div>
                 <div>
                     {currentPhoto?.user_id === props?.sessionUser?.id && (
