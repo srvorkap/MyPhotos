@@ -50,3 +50,21 @@
 #photo-page-footer {
     text-align: center;
 }
+
+#go-left {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    position: absolute;
+    left: 0px;
+    top: 200px;
+}
+
+#go-right {
+    position: absolute;
+    right: 0px;
+    top: 200px;
+    height: 100px;
+    width: 100px;
+    background-color: yellow;
+}

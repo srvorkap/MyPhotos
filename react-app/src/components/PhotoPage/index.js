@@ -60,6 +60,7 @@ const PhotoPage = (props) => {
                     <i className="fas fa-arrow-left"></i>Back
                 </div>
                 <div id="photo-image-container">
+                    <div id="go-left"></div>
                     <img
                         src={currentPhoto?.image_url}
                         onError={e => (
@@ -69,6 +70,7 @@ const PhotoPage = (props) => {
                         id="photo-page-image"
                         alt="individual"
                     />
+                    <div id="go-right"></div>
                 </div>
                 <div>
                     {currentPhoto?.user_id === props?.sessionUser?.id && (
