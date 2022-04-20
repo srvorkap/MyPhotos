@@ -111,7 +111,7 @@ const PhotoPage = props => {
                         id="go-left-container"
                         className={index !== 0 && "cursor-pointer"}
                     >
-                        {index !== 0 && <div id="go-left"></div>}
+                        {index !== 0 && <i className="fas fa-chevron-left" id="chevron-left"></i>}
                     </div>
                     <img
                         src={carouselArr[index]?.image_url}
@@ -131,7 +131,7 @@ const PhotoPage = props => {
                         }
                     >
                         {index !== carouselArr.length - 1 && (
-                            <div id="go-right"></div>
+                            <i className="fas fa-chevron-right" id="chevron-right"></i>
                         )}
                     </div>
                 </div>

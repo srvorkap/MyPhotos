@@ -55,40 +55,39 @@
 }
 
 #go-left-container {
-    /* cursor: pointer; */
     display: flex;
     flex-direction: row;
-    justify-content:left;
     align-items: center;
     width: 100%;
     height: 90%;
-    background-color: purple;
+}
+
+#go-left-container:hover {
+    color: white;
 }
 
 #go-right-container {
-    /* cursor: pointer; */
     display: flex;
     flex-direction: row;
     justify-content:right;
     align-items: center;
     width: 100%;
     height: 90%;
-    background-color: green;
 }
 
-#go-left {
-    height: 100px;
-    width: 100px;
-    background-color: red;
-    justify-self: center;
+#go-right-container:hover {
+    color: white;
 }
 
-#go-right {
-    height: 100px;
-    width: 100px;
-    background-color: yellow;
+#chevron-left {
+    font-size: 100px;
+    color: gray;
+    margin-left: 10px;
 }
 
-.oooboze {
-    cursor: pointer;
+#chevron-right {
+    justify-self: right;
+    font-size: 100px;
+    color: gray;
+    margin-right: 10px;
 }
