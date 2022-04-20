@@ -21,7 +21,7 @@
     max-width: 90%;
     height: 90%;
     object-fit: cover;
-    position:absolute;
+    /* position:absolute; */
 }
 #photo-page-edit-pen {
     position: absolute;
@@ -43,6 +43,7 @@
     height: 100%;
     width: 100%;
     justify-content: space-between;
+    min-width: fit-content;
 }
 
 .trash-and-pen-size {
@@ -53,20 +54,41 @@
     text-align: center;
 }
 
+#go-left-container {
+    /* cursor: pointer; */
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+    background-color: purple;
+}
+
+#go-right-container {
+    /* cursor: pointer; */
+    display: flex;
+    flex-direction: row;
+    justify-content:right;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+    background-color: green;
+}
+
 #go-left {
     height: 100px;
     width: 100px;
     background-color: red;
-    /* position: absolute; */
-    /* left: 0px; */
-    /* top: 200px; */
+    justify-self: center;
 }
 
 #go-right {
-    /* position: absolute; */
-    /* right: 0px; */
-    /* top: 200px; */
     height: 100px;
     width: 100px;
     background-color: yellow;
+}
+
+.oooboze {
+    cursor: pointer;
 }

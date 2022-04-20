@@ -106,10 +106,12 @@ const PhotoPage = props => {
                     <i className="fas fa-arrow-left"></i>Back
                 </div>
                 <div id="photo-image-container">
-                    <div onClick={goLeft}>
-                        {index !== 0 && (
-                            <div id="go-left"></div>
-                        )}
+                    <div
+                        onClick={index !== 0 && goLeft}
+                        id="go-left-container"
+                        className={index !== 0 && "cursor-pointer"}
+                    >
+                        {index !== 0 && <div id="go-left"></div>}
                     </div>
                     <img
                         src={carouselArr[index]?.image_url}
@@ -121,7 +123,13 @@ const PhotoPage = props => {
                         id="photo-page-image"
                         alt="individual"
                     />
-                    <div onClick={goRight}>
+                    <div
+                        onClick={index !== carouselArr.length - 1 && goRight}
+                        id="go-right-container"
+                        className={
+                            index !== carouselArr.length - 1 && "cursor-pointer"
+                        }
+                    >
                         {index !== carouselArr.length - 1 && (
                             <div id="go-right"></div>
                         )}
