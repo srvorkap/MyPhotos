@@ -1,4 +1,5 @@
 # MyPhotos
+<img src="react-app/src/assets/readme/photostream.png"></img>
 MyPhotos is a full-stack application inspired by Flickr. It is an image hosting platform where users can upload their photos. Users can also create albums for better organization of their photos.
 
 [Visit the site live here!](https://my-photos-application.herokuapp.com/)
