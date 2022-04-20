@@ -80,14 +80,14 @@
 }
 
 #chevron-left {
-    font-size: 100px;
+    font-size: 52px;
     color: gray;
-    margin-left: 10px;
+    margin-left: 25px;
 }
 
 #chevron-right {
-    justify-self: right;
-    font-size: 100px;
+    font-size: 52px;
     color: gray;
-    margin-right: 10px;
+    margin-right: 25px;
+    justify-self: right;
 }
