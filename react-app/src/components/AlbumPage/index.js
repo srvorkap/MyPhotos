@@ -43,6 +43,7 @@ const AlbumPage = props => {
     const history = useHistory();
 
     const albumLocation = useLocation();
+    console.log('sssssssss', albumLocation)
 
     useEffect(() => {
         dispatch(getAlbums());
