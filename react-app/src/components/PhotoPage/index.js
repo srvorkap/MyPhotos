@@ -13,52 +13,39 @@ const PhotoPage = props => {
     let carouselArr;
 
     const allPhotosObj = useSelector(store => store?.photo?.photos);
-    // Photostream
+    
     let sessionUserPhotos;
+    let otherUsersPhotos;
+    let currentAlbumPhotos;
     if (allPhotosObj) {
         const allPhotosArr = Object?.values(allPhotosObj);
+        // Photostream
         sessionUserPhotos = allPhotosArr?.filter(
             photo => photo?.user_id === props?.sessionUser?.id
         );
-    }
-
-    sessionUserPhotos?.reverse();
-
-    // Explore
-    // const allPhotosObj = useSelector(store => store?.photo?.photos);
-    let otherUsersPhotos;
-    if (allPhotosObj) {
-        const allPhotosArr = Object?.values(allPhotosObj);
+        // Explore
         otherUsersPhotos = allPhotosArr?.filter(
             photo => photo?.user_id !== props?.sessionUser?.id
         );
-    }
-
-    otherUsersPhotos?.reverse();
-
-    let currentAlbumPhotos;
-    if (allPhotosObj) {
-        const allPhotosArr = Object?.values(allPhotosObj)
+        // Album
         currentAlbumPhotos = allPhotosArr?.filter(
             // photo => console.log('srkica', photo.album_ids)
-            photo => photo?.album_ids.includes(1)
+            photo => photo?.album_ids.includes(3)
         )
     }
 
-    // Carousel
+    sessionUserPhotos?.reverse();
+    otherUsersPhotos?.reverse();
+    currentAlbumPhotos?.reverse()
+
+    // Carousel array
     if (props.location.pathname === "/photostream")
         carouselArr = sessionUserPhotos;
     else if (props.location.pathname === "/explore")
         carouselArr = otherUsersPhotos;
     else carouselArr = currentAlbumPhotos;
 
-    // const allPhotosObj = useSelector(store => store?.photo?.photos);
-    // let allPhotosArr;
-    // if (allPhotosObj) {
-    //     allPhotosArr = Object?.values(allPhotosObj);
-    // }
-    // let [ allPhotosArrNew, setAllPhotosArrNew ] = useState(allPhotosArr ? [...allPhotosArr] : [])
-    // let [ allPhotosArr, setAllPhotosArr ] = useState(allPhotosArr?.find(photo => photo?.id === photoIdNumerical))
+
     let currentPhoto;
     if (allPhotosObj) {
         currentPhoto = carouselArr?.find(
