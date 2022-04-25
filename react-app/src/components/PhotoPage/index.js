@@ -36,11 +36,21 @@ const PhotoPage = props => {
 
     otherUsersPhotos?.reverse();
 
+    let currentAlbumPhotos;
+    if (allPhotosObj) {
+        const allPhotosArr = Object?.values(allPhotosObj)
+        currentAlbumPhotos = allPhotosArr?.filter(
+            // photo => console.log('srkica', photo.album_ids)
+            photo => photo?.album_ids.includes(1)
+        )
+    }
+
     // Carousel
     if (props.location.pathname === "/photostream")
         carouselArr = sessionUserPhotos;
     else if (props.location.pathname === "/explore")
         carouselArr = otherUsersPhotos;
+    else carouselArr = currentAlbumPhotos;
 
     // const allPhotosObj = useSelector(store => store?.photo?.photos);
     // let allPhotosArr;
@@ -96,7 +106,9 @@ const PhotoPage = props => {
     if (!props.sessionUser) return <Redirect to="/login" />;
     return (
         <div id="whole-photo-page">
+            {/* Navbar */}
             <NavBar />
+            {/* Photo */}
             <div id="photo-background">
                 <div
                     onClick={onBack}
@@ -156,6 +168,7 @@ const PhotoPage = props => {
                     )}
                 </div>
             </div>
+            {/* Username, Photo title and Photo description */}
             <div id="photo-page-footer">
                 <h1>{carouselArr[index]?.user?.username}</h1>
                 <h3>{carouselArr[index]?.title}</h3>
