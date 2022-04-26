@@ -13,7 +13,7 @@ const PhotoPage = props => {
     let carouselArr;
 
     const allPhotosObj = useSelector(store => store?.photo?.photos);
-    
+
     let sessionUserPhotos;
     let otherUsersPhotos;
     let currentAlbumPhotos;
@@ -28,15 +28,17 @@ const PhotoPage = props => {
             photo => photo?.user_id !== props?.sessionUser?.id
         );
         // Album
+        const albumId = props.location.pathname.split("/")[2];
+        const albumIdNumerical = +albumId
         currentAlbumPhotos = allPhotosArr?.filter(
-            // photo => console.log('srkica', photo.album_ids)
-            photo => photo?.album_ids.includes(3)
-        )
+            photo => photo?.album_ids.includes(albumIdNumerical)
+        );
+        console.log(currentAlbumPhotos)
     }
 
     sessionUserPhotos?.reverse();
     otherUsersPhotos?.reverse();
-    currentAlbumPhotos?.reverse()
+    currentAlbumPhotos?.reverse();
 
     // Carousel array
     if (props.location.pathname === "/photostream")
@@ -44,7 +46,6 @@ const PhotoPage = props => {
     else if (props.location.pathname === "/explore")
         carouselArr = otherUsersPhotos;
     else carouselArr = currentAlbumPhotos;
-
 
     let currentPhoto;
     if (allPhotosObj) {
@@ -110,7 +111,12 @@ const PhotoPage = props => {
                         id="go-left-container"
                         className={index !== 0 && "cursor-pointer"}
                     >
-                        {index !== 0 && <i className="fas fa-chevron-left" id="chevron-left"></i>}
+                        {index !== 0 && (
+                            <i
+                                className="fas fa-chevron-left"
+                                id="chevron-left"
+                            ></i>
+                        )}
                     </div>
                     <img
                         src={carouselArr[index]?.image_url}
@@ -130,7 +136,10 @@ const PhotoPage = props => {
                         }
                     >
                         {index !== carouselArr.length - 1 && (
-                            <i className="fas fa-chevron-right" id="chevron-right"></i>
+                            <i
+                                className="fas fa-chevron-right"
+                                id="chevron-right"
+                            ></i>
                         )}
                     </div>
                 </div>
