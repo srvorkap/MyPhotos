@@ -1,4 +1,4 @@
-import landingPageImage from "../../assets/LandingPage.jpeg";
+import landingPageImage from "../../assets/srki.jpeg";
 import NavBar from "../NavBar";
 import { NavLink, Redirect } from "react-router-dom";
 import "./LandingPage.css";
