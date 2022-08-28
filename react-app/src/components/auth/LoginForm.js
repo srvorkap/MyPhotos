@@ -91,10 +91,10 @@ const LoginForm = () => {
                             Demo User
                         </div>
                         <p className="signup-login-text">
-                            Not a MyPhotos member?{" "}
-                            <span className="signup-login-link">
+                            Not a MyPhotos member?
+                            <div className="signup-login-link">
                                 <NavLink to="/sign-up">Sign up here.</NavLink>
-                            </span>
+                            </div>
                         </p>
                     </form>
                 </div>

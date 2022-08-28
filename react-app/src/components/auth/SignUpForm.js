@@ -122,7 +122,7 @@ const SignUpForm = () => {
                             Sign Up
                         </div>
                         <p className="signup-login-text">
-                            Already a MyPhotos member?{" "}
+                            Already a MyPhotos member?
                             <div className="signup-login-link">
                                 <NavLink to="/login">Log in here.</NavLink>
                             </div>
