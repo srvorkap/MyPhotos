@@ -113,7 +113,7 @@ const NavBar = () => {
                                 exact={true}
                                 activeClassName="active"
                             >
-                                Login
+                                Log In
                             </NavLink>
                         </div>
                         <div className="nav-items">

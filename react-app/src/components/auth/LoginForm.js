@@ -81,7 +81,7 @@ const LoginForm = () => {
                             />
                         </div>
                         <div onClick={onLogin} className="signup-login-button">
-                            Login
+                            Log In
                         </div>
                         <div
                             id="demo-login"

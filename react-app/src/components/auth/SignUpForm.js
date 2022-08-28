@@ -123,9 +123,9 @@ const SignUpForm = () => {
                         </div>
                         <p className="signup-login-text">
                             Already a MyPhotos member?{" "}
-                            <span className="signup-login-link">
+                            <div className="signup-login-link">
                                 <NavLink to="/login">Log in here.</NavLink>
-                            </span>
+                            </div>
                         </p>
                     </form>
                 </div>

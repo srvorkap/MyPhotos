@@ -37,7 +37,6 @@ function App() {
 
     return (
         <BrowserRouter>
-            {/* <NavBar /> */}
             <Switch>
                 <Route path="/" exact={true}>
                     <LandingPage sessionUser={sessionUser}/>
@@ -48,9 +47,6 @@ function App() {
                 <Route path="/sign-up" exact={true}>
                     <SignUpForm />
                 </Route>
-                {/* <ProtectedRoute path="/users" exact={true}>
-                    <UsersList />
-                </ProtectedRoute> */}
                 <Route path="/albums/new" exact={true}>
                     <CreateAlbumForm sessionUser={sessionUser} />
                 </Route>
@@ -73,27 +69,15 @@ function App() {
                     <NavBar />
                     <Explore sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                 </Route>
-                {/* <Route path="/albums/new">
-                    <CreateAlbumForm sessionUser={sessionUser}/>
-                </Route> */}
                 <Route path="/photos/new" exact={true}>
                     <CreatePhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/photos/:photoId" exact={true}>
                     <PhotoPage sessionUser={sessionUser} location={location}/>
                 </Route>
-                {/* <Route>
-                    <AddToAlbums sessionUser={sessionUser} />
-                </Route> */}
                 <Route path="/photos/:photoId/edit" exact={true}>
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
-                {/* <ProtectedRoute path="/users/:userId" exact={true}>
-                    <User />
-                </ProtectedRoute> */}
-                {/* <ProtectedRoute path="/" exact={true}>
-                    <h1>My Home Page</h1>
-                </ProtectedRoute> */}
                 <Route>
                     <NavBar />
                     <PageNotFound sessionUser={sessionUser} />
