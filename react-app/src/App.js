@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import { authenticate } from "./store/session";
-import LandingPage from "./components/LandingPage";
 import AlbumPage from "./components/AlbumPage";
 import CreateAlbumForm from "./components/CreateAlbumForm";
 import EditAlbumForm from "./components/EditAlbumForm";
@@ -15,6 +14,8 @@ import PageNotFound from "./components/PageNotFound";
 import Loading from "./components/Loading";
 
 // Lazy Loading
+// import LandingPage from "./components/LandingPage";
+const LazyLandingPage = React.lazy(() => import('./components/LandingPage'))
 const LazyNavBar = React.lazy(() => import('./components/NavBar'))
 const LazyPhotostream = React.lazy(() => import('./components/Photostream'))
 const LazyAlbumsPage = React.lazy(() => import('./components/AlbumsPage'))
@@ -29,7 +30,7 @@ function App() {
     useEffect(() => {
         (async () => {
             await dispatch(authenticate());
-            setLoaded(true);
+            // setLoaded(true);
         })();
     }, [dispatch]);
 
@@ -41,7 +42,9 @@ function App() {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact={true}>
-                    <LandingPage sessionUser={sessionUser}/>
+                    <React.Suspense fallback={<Loading />}>
+                        <LazyLandingPage sessionUser={sessionUser}/>
+                    </React.Suspense>
                 </Route>
                 <Route path="/login" exact={true}>
                     <LoginForm />
