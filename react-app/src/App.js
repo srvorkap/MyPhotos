@@ -59,7 +59,7 @@ function App() {
                     <EditAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums" exact={true}>
-                    <React.Suspense fallback={Loading}>
+                    <React.Suspense fallback={<Loading />}>
                         <LazyNavBar />
                        <LazyAlbumsPage sessionUser={sessionUser} />
                     </React.Suspense>
@@ -71,13 +71,13 @@ function App() {
                     </React.Suspense>
                 </Route>
                 <Route path="/photostream" exact={true}>
-                    <React.Suspense fallback='Loading...'>
+                    <React.Suspense fallback={<Loading />}>
                         <LazyNavBar />
                         <LazyPhotostream sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                     </React.Suspense>
                 </Route>
                 <Route path="/explore" exact={true}>
-                    <React.Suspense fallback={Loading}>
+                    <React.Suspense fallback={<Loading />}>
                         <LazyNavBar />
                         <LazyExplore sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                     </React.Suspense>
@@ -92,7 +92,7 @@ function App() {
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route>
-                    <React.Suspense fallback={Loading}>
+                    <React.Suspense fallback={<Loading />}>
                         <LazyNavBar />
                         <PageNotFound sessionUser={sessionUser} />
                     </React.Suspense>
