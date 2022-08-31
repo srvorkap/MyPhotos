@@ -23,7 +23,7 @@ const LazyExplore = React.lazy(() => import('./components/Explore'))
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
     const [location, setLocation] = useState()
-    const [loaded, setLoaded] = useState(false);
+    // const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -33,9 +33,9 @@ function App() {
         })();
     }, [dispatch]);
 
-    if (!loaded) {
-        return <Loading />
-    }
+    // if (!loaded) {
+    //     return <Loading />
+    // }
 
     return (
         <BrowserRouter>
@@ -56,13 +56,13 @@ function App() {
                     <EditAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums" exact={true}>
-                    <React.Suspense fallback='Loading...'>
+                    <React.Suspense fallback={Loading}>
                         <LazyNavBar />
                        <LazyAlbumsPage sessionUser={sessionUser} />
                     </React.Suspense>
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
-                    <React.Suspense fallback='Loading'>
+                    <React.Suspense fallback={<Loading/>}>
                         <LazyNavBar />
                         <AlbumPage sessionUser={sessionUser} changeLocation={location => setLocation(location)}/>
                     </React.Suspense>
@@ -74,7 +74,7 @@ function App() {
                     </React.Suspense>
                 </Route>
                 <Route path="/explore" exact={true}>
-                    <React.Suspense fallback='Loading...'>
+                    <React.Suspense fallback={Loading}>
                         <LazyNavBar />
                         <LazyExplore sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                     </React.Suspense>
@@ -89,7 +89,7 @@ function App() {
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route>
-                    <React.Suspense fallback='Loading ...'>
+                    <React.Suspense fallback={Loading}>
                         <LazyNavBar />
                         <PageNotFound sessionUser={sessionUser} />
                     </React.Suspense>
