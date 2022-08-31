@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
@@ -12,19 +12,16 @@ import PhotoPage from "./components/PhotoPage";
 import CreatePhotoForm from "./components/CreatePhotoForm";
 import EditPhotoForm from "./components/EditPhotoForm";
 import PageNotFound from "./components/PageNotFound";
+import Loading from "./components/Loading";
 
-// import NavBar from "./components/NavBar/index";
+// Lazy Loading
 const LazyNavBar = React.lazy(() => import('./components/NavBar'))
-// import Photostream from "./components/Photostream";
 const LazyPhotostream = React.lazy(() => import('./components/Photostream'))
-// import AlbumsPage from "./components/AlbumsPage";
 const LazyAlbumsPage = React.lazy(() => import('./components/AlbumsPage'))
-// import Explore from "./components/Explore";
 const LazyExplore = React.lazy(() => import('./components/Explore'))
 
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
-    console.log('aaaaaaaaaaa', sessionUser)
     const [location, setLocation] = useState()
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
@@ -37,7 +34,7 @@ function App() {
     }, [dispatch]);
 
     if (!loaded) {
-        return null;
+        return <Loading />
     }
 
     return (
@@ -59,24 +56,26 @@ function App() {
                     <EditAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums" exact={true}>
-                    <Suspense fallback='Loading...'>
+                    <React.Suspense fallback='Loading...'>
                         <LazyNavBar />
                        <LazyAlbumsPage sessionUser={sessionUser} />
-                    </Suspense>
+                    </React.Suspense>
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
-                    <LazyNavBar />
-                    <AlbumPage sessionUser={sessionUser} changeLocation={location => setLocation(location)}/>
+                    <React.Suspense fallback='Loading'>
+                        <LazyNavBar />
+                        <AlbumPage sessionUser={sessionUser} changeLocation={location => setLocation(location)}/>
+                    </React.Suspense>
                 </Route>
                 <Route path="/photostream" exact={true}>
-                    <LazyNavBar />
-                    <Suspense fallback='Loading...'>
+                    <React.Suspense fallback='Loading...'>
+                        <LazyNavBar />
                         <LazyPhotostream sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
-                    </Suspense>
+                    </React.Suspense>
                 </Route>
                 <Route path="/explore" exact={true}>
-                    <LazyNavBar />
                     <React.Suspense fallback='Loading...'>
+                        <LazyNavBar />
                         <LazyExplore sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                     </React.Suspense>
                 </Route>
@@ -90,10 +89,10 @@ function App() {
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route>
-                    <Suspense fallback='Loading ...'>
+                    <React.Suspense fallback='Loading ...'>
                         <LazyNavBar />
                         <PageNotFound sessionUser={sessionUser} />
-                    </Suspense>
+                    </React.Suspense>
                 </Route>
             </Switch>
         </BrowserRouter>
