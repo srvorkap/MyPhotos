@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar/index";
 import { authenticate } from "./store/session";
 import LandingPage from "./components/LandingPage";
 import AlbumPage from "./components/AlbumPage";
@@ -14,6 +13,8 @@ import CreatePhotoForm from "./components/CreatePhotoForm";
 import EditPhotoForm from "./components/EditPhotoForm";
 import PageNotFound from "./components/PageNotFound";
 
+// import NavBar from "./components/NavBar/index";
+const LazyNavBar = React.lazy(() => import('./components/NavBar'))
 // import Photostream from "./components/Photostream";
 const LazyPhotostream = React.lazy(() => import('./components/Photostream'))
 // import AlbumsPage from "./components/AlbumsPage";
@@ -58,23 +59,23 @@ function App() {
                     <EditAlbumForm sessionUser={sessionUser} />
                 </Route>
                 <Route path="/albums" exact={true}>
-                    <NavBar />
                     <Suspense fallback='Loading...'>
+                        <LazyNavBar />
                        <LazyAlbumsPage sessionUser={sessionUser} />
                     </Suspense>
                 </Route>
                 <Route path="/albums/:albumId" exact={true}>
-                    <NavBar />
+                    <LazyNavBar />
                     <AlbumPage sessionUser={sessionUser} changeLocation={location => setLocation(location)}/>
                 </Route>
                 <Route path="/photostream" exact={true}>
-                    {/* <NavBar /> */}
+                    <LazyNavBar />
                     <Suspense fallback='Loading...'>
                         <LazyPhotostream sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                     </Suspense>
                 </Route>
                 <Route path="/explore" exact={true}>
-                    <NavBar />
+                    <LazyNavBar />
                     <React.Suspense fallback='Loading...'>
                         <LazyExplore sessionUser={sessionUser} changeLocation={location => setLocation(location)} />
                     </React.Suspense>
@@ -89,8 +90,10 @@ function App() {
                     <EditPhotoForm sessionUser={sessionUser} />
                 </Route>
                 <Route>
-                    <NavBar />
-                    <PageNotFound sessionUser={sessionUser} />
+                    <Suspense fallback='Loading ...'>
+                        <LazyNavBar />
+                        <PageNotFound sessionUser={sessionUser} />
+                    </Suspense>
                 </Route>
             </Switch>
         </BrowserRouter>
