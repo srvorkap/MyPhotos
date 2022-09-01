@@ -21,6 +21,9 @@ const LazyPhotostream = React.lazy(() => import('./components/Photostream'))
 const LazyAlbumsPage = React.lazy(() => import('./components/AlbumsPage'))
 const LazyExplore = React.lazy(() => import('./components/Explore'))
 
+const herokuLoading = document.getElementById('heroku-loading')
+herokuLoading.remove()
+
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
     const [location, setLocation] = useState()
@@ -35,7 +38,7 @@ function App() {
     }, [dispatch]);
 
     if (!loaded) {
-        return 'Loading'
+        return <Loading />
     }
 
     return (
