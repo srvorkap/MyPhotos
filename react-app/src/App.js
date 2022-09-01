@@ -24,19 +24,19 @@ const LazyExplore = React.lazy(() => import('./components/Explore'))
 function App() {
     const sessionUser = useSelector(state => state?.session?.user);
     const [location, setLocation] = useState()
-    // const [loaded, setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
         (async () => {
             await dispatch(authenticate());
-            // setLoaded(true);
+            setLoaded(true);
         })();
     }, [dispatch]);
 
-    // if (!loaded) {
-    //     return <Loading />
-    // }
+    if (!loaded) {
+        return 'Loading'
+    }
 
     return (
         <BrowserRouter>
