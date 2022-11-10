@@ -156,7 +156,7 @@ const EditPhotoForm = ({ sessionUser }) => {
                         </div>
                         <div id="edit-photo-list-of-albums">
                             {editedAlbumIds?.map(album => (
-                                <div>{allAlbumsObj[album].title}</div>
+                                <div>{allAlbumsObj?.[album].title}</div>
                             ))}
                         </div>
                         <div className="business-buttons-container">

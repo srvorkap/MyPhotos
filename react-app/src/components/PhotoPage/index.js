@@ -144,7 +144,7 @@ const PhotoPage = props => {
                         <>
                             <span className="trash-and-pen-size">
                                 <i
-                                    className="fas fa-pen"
+                                    className="fas fa-pen cursor-pointer"
                                     id="photo-page-edit-pen"
                                     onClick={onEdit}
                                 ></i>
