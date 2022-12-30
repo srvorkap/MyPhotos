@@ -33,7 +33,6 @@ const PhotoPage = props => {
         currentAlbumPhotos = allPhotosArr?.filter(
             photo => photo?.album_ids.includes(albumIdNumerical)
         );
-        console.log(currentAlbumPhotos)
     }
 
     sessionUserPhotos?.reverse();
@@ -54,7 +53,7 @@ const PhotoPage = props => {
         );
     }
 
-    let [index, setIndex] = useState(carouselArr.indexOf(currentPhoto));
+    const [index, setIndex] = useState(carouselArr.indexOf(currentPhoto));
 
     const dispatch = useDispatch();
     const history = useHistory();

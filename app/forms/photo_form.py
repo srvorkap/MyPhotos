@@ -1,20 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import IntegerField, StringField, SelectField, TextAreaField, FileField, SelectMultipleField
+from wtforms.fields import IntegerField, StringField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import Photo
 import re
 
 # add custom validators
-def password_match(form, field):
-    password = form.data['password']
-    repeat_password = field.data
-    if password != repeat_password:
-        raise ValidationError('Password inputs do not match')
 
 def check_url(form, field):
     image_url = field.data
-    regular_expresion = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)'
-    url_is_an_image = re.match(regular_expresion, image_url)
+    regular_expression = '(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)'
+    url_is_an_image = re.match(regular_expression, image_url)
     if not url_is_an_image:
         raise ValidationError('Image URL must end with .jpg, .gif, .png')
 
@@ -28,3 +23,10 @@ class PhotoForm(FlaskForm):
 
     description = TextAreaField('description', validators=[
         Length(max=254, message="Description must be < 255 characters.")])
+
+
+
+
+
+
+sadfdfsadf

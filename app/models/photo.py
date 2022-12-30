@@ -32,9 +32,9 @@ class Photo(db.Model):
             'image_url': self.image_url,
             'title': self.title,
             'description': self.description,
-            # 'album_id': self.album_id,
-            # 'albums': [album.a_to_dict() for album in self.albums],
             'album_ids': [album.id for album in self.albums],
             'user_id': self.user_id,
             'user': self.user.to_dict()
         }
+
+
