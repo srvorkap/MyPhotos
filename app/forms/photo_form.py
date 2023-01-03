@@ -23,10 +23,3 @@ class PhotoForm(FlaskForm):
 
     description = TextAreaField('description', validators=[
         Length(max=254, message="Description must be < 255 characters.")])
-
-
-
-
-
-
-sadfdfsadf
